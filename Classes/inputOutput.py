@@ -1,9 +1,9 @@
 class Input_output:
     def __init__(self) -> None:
         self._input_choice_lvl1 = ""
-        self._input_choice_name_player1 = ""
-        self._input_choice_name_player2 = "Computer"
-          
+        self._name_player1 = ""
+        self._name_player2 = "Computer"
+
     def brain(self):
         self.lvl1()
         self.lvl1_input()
@@ -16,15 +16,12 @@ class Input_output:
         print("1) VS. Computer")
         print("2) Two players")
 
-
     def lvl1_input(self):
         self._input_choice_lvl1 = input("Choice: ")
 
-
     def lvl2_choice1_input(self):
-        self._input_name_player1 = input("Name of the first player: ")
-
+        self._name_player1 = input("Name of the first player: ")
 
     def lvl2_choice2_input(self):
-        self._input_name_player1 = input("Name of the first player: ")
-        self._input_name_player2 = input("Name of the second player: ")
+        self._name_player1 = input("Name of the first player: ")
+        self._name_player2 = input("Name of the second player: ")
