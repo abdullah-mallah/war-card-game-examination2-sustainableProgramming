@@ -17,6 +17,12 @@ class Player:
         random.shuffle(deck)
         return deck
 
+    def create_deck2(self):
+        deck = []
+        deck = self.create_deck_hearts() + self.create_deck_spades()
+        random.shuffle(deck)
+        return deck
+
     def create_deck_clubs(self):
         type = "clubs"
         deck_clubs = []
@@ -30,3 +36,17 @@ class Player:
         for number in range(1, 14):
             deck_diamond.append([type, number])
         return deck_diamond
+
+    def create_deck_hearts(self):
+        type = "hearts"
+        deck_hearts = []
+        for number in range(1, 14):
+            deck_hearts.append([type, number])
+        return deck_hearts
+
+    def create_deck_spades(self):
+        type = "spades"
+        deck_spades = []
+        for number in range(1, 14):
+            deck_spades.append([type, number])
+        return deck_spades
