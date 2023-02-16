@@ -40,7 +40,7 @@ class Input_output:
 
     # Read the choice of level Game
     def lvl_game_input(self):
-        self._input_lvl_game = input("Choice: ")
+        self._choice_lvl_game = input("Choice: ")
 
     # Print out flipped card of level Game
     def lvl_game_flipped_card(self, war_card):
