@@ -74,6 +74,18 @@ class Player:
             if card == self._temp_deck[len(self._temp_deck) - 1]:
                 return card[1]  # return only the number of the card
 
+    # Add the cards on the floor to the player's hand
+    def add_temp_list_to_deck(self, temp_list1, temp_list2):
+        self._deck += temp_list1 + temp_list2
+
+    # Empty the cards on the floor
+    def empty_temp(self):
+        self._temp_deck = []
+
     # Return the cards of the player
     def get_card_list(self):
         return self._deck
+
+    # Return the cards on the floor
+    def get_temp(self):
+        return self._temp_deck
