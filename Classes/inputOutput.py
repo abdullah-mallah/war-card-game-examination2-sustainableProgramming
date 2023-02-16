@@ -32,6 +32,14 @@ class Input_output:
     def lvl2_choice2_input(self):
         self._name_player1 = input("Name of the first player: ")
         self._name_player2 = input("Name of the second player: ")
+    
+    # Print out the choices of level game
+    def lvl_game_choices(self):
+        print("1 - Show card")
+
+    # Read the choice of level game
+    def lvl_game_input(self):
+        self._input_lvl_game = input("Choice: ")
 
     # Getters
     def get_choice_lvl1(self):
