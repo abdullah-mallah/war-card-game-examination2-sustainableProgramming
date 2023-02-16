@@ -29,23 +29,23 @@ def main():
         for turn in range(1, 3):
             inputOutput.lvl_game_choices()
             inputOutput.lvl_game_input()
-            if inputOutput.get_input_lvl_game() == "1" and turn == 1:
+            if inputOutput.get_choice_lvl_game() == "1" and turn == 1:
                 # check if the player has cards in his deck
                 cards_found = player1.check_cards_left(player1.get_card_list())
                 if cards_found:
                     war_card1 = player1.get_next_card()
-                    inputOutput.lvl_game_score(war_card1)
+                    inputOutput.lvl_game_flipped_card(war_card1)
                 # if no cards with first player
                 else:
                     winner_found = True
                     inputOutput.congrats(turn + 1)
                     break
-            elif inputOutput.get_input_lvl_game() == "1" and turn == 2:
+            elif inputOutput.get_choice_lvl_game() == "1" and turn == 2:
                 # check if the player has cards in his deck
                 cards_found = player2.check_cards_left(player2.get_card_list())
                 if cards_found:
                     war_card2 = player2.get_next_card()
-                    inputOutput.lvl_game_score(war_card2)
+                    inputOutput.lvl_game_flipped_card(war_card2)
                     # if the card on floor bigger
                     if war_card1 > war_card2:
                         player1.add_temp_list_to_deck(player2.get_temp(),

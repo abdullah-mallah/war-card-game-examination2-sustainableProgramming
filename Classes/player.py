@@ -50,3 +50,12 @@ class Player:
         for number in range(1, 14):
             deck_spades.append([type, number])
         return deck_spades
+
+    def check_cards_left(self, cards_list):
+        cards_left = False
+        if len(cards_list) > 0:
+            cards_left = True
+        return cards_left
+
+    def get_card_list(self):
+        return self._deck
