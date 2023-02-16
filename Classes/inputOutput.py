@@ -61,4 +61,3 @@ class Input_output:
 
     def get_choice_lvl_game(self):
         return self._choice_lvl_game
-
