@@ -1,6 +1,7 @@
 class Input_output:
     def __init__(self) -> None:
         self._choice_lvl1 = ""
+        self._choice_lvl_game = ""
         self._name_player1 = ""
         self._name_player2 = "Computer"
 
