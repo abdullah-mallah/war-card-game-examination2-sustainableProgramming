@@ -33,13 +33,20 @@ class Input_output:
         self._name_player1 = input("Name of the first player: ")
         self._name_player2 = input("Name of the second player: ")
     
-    # Print out the choices of level game
+    # Print out the choices of level Game
     def lvl_game_choices(self):
         print("1 - Show card")
 
-    # Read the choice of level game
+    # Read the choice of level Game
     def lvl_game_input(self):
         self._input_lvl_game = input("Choice: ")
+
+    # Print out flipped card of level Game
+    def lvl_game_flipped_card(self, war_card):
+        print(f"card is: {war_card}")
+
+    def congrats(self, turn):
+        print(f"Congrats to player {turn}! You have won!")
 
     # Getters
     def get_choice_lvl1(self):
@@ -50,3 +57,7 @@ class Input_output:
 
     def get_name2(self):
         return self._name_player2
+
+    def get_choice_lvl_game(self):
+        return self._choice_lvl_game
+
