@@ -40,6 +40,30 @@ def main():
                     winner_found = True
                     inputOutput.congrats(turn + 1)
                     break
+            elif inputOutput.get_input_lvl_game() == "1" and turn == 2:
+                # check if the player has cards in his deck
+                cards_found = player2.check_cards_left(player2.get_card_list())
+                if cards_found:
+                    war_card2 = player2.get_next_card()
+                    inputOutput.lvl_game_score(war_card2)
+                    # if the card on floor bigger
+                    if war_card1 > war_card2:
+                        player1.add_temp_list_to_deck(player2.get_temp(),
+                                                      player1.get_temp())
+                        player1.empty_temp()
+                        player2.empty_temp()
+                    elif war_card1 < war_card2:
+                        player2.add_temp_list_to_deck(player1.get_temp(),
+                                                      player2.get_temp())
+                        player1.empty_temp()
+                        player2.empty_temp()
+                    else:
+                        continue
+                # if no cards with second player
+                else:
+                    winner_found = True
+                    inputOutput.congrats(turn - 1)
+                    break
 
 
 if __name__ == "__main__":
