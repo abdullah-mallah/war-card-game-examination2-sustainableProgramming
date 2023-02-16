@@ -32,3 +32,13 @@ class Input_output:
     def lvl2_choice2_input(self):
         self._name_player1 = input("Name of the first player: ")
         self._name_player2 = input("Name of the second player: ")
+
+    # Getters
+    def get_choice_lvl1(self):
+        return self._choice_lvl1
+
+    def get_name1(self):
+        return self._name_player1
+
+    def get_name2(self):
+        return self._name_player2
