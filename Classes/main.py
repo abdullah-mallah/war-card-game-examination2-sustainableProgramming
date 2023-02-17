@@ -67,7 +67,12 @@ def turn_loop_4_times(player1: Player, player2: Player,
     return war_card1, war_card2
 
 
-def activate_lvl1(inputOutput: Input_output):
+def activate_lvl1():
+    choice = ""
+    return choice
+
+
+def activate_lvl2(inputOutput: Input_output):
     # will take the choice vs_computer or not and the name of player/s
     inputOutput.brain()
 
@@ -81,10 +86,6 @@ def activate_lvl1(inputOutput: Input_output):
             else:
                 player2 = Player(inputOutput.get_name2(), player)
     return player1, player2
-
-
-def activate_lvl2():
-    pass
 
 
 def activate_lvl_game(player1: Player, player2: Player,
@@ -158,9 +159,16 @@ def activate_lvl_game(player1: Player, player2: Player,
 
 def main():
     inputOutput = Input_output()
-    player1, player2 = activate_lvl1(inputOutput)
-    activate_lvl2()
-    activate_lvl_game(player1, player2, inputOutput)
+    choice = activate_lvl1()
+    if choice == "1":  # the player choose to play
+        player1, player2 = activate_lvl2(inputOutput)
+        activate_lvl_game(player1, player2, inputOutput)
+    elif choice == "2":  # the player choose to see scores
+        pass
+    elif choice == "3":  # the player choose to change his name
+        pass
+    elif choice == "4":  # the player wanted to exit
+        pass
 
 
 if __name__ == "__main__":
