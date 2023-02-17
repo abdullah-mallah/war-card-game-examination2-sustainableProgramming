@@ -22,3 +22,16 @@ class FileRW:
         if not self.check_name():
             with open(self._file_name, 'w') as wf:
                 wf.write(name + "\n")
+
+    # Retrieving names from the text file
+    def get_names(self):
+        names = []
+        more_enteries = True
+        with open(self._file_name, 'r') as rf:
+            while more_enteries:
+                line = rf.readline().rstrip('\n')
+                if line != '':
+                    names.append(line)
+                else:
+                    more_enteries = False
+        return names
