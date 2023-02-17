@@ -82,6 +82,9 @@ class Player:
     def empty_temp(self):
         self._temp_deck = []
 
+    def count_cards(self):
+        return len(self._deck)
+
     # Return the cards of the player
     def get_card_list(self):
         return self._deck

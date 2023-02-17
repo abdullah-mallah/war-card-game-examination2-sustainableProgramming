@@ -48,6 +48,25 @@ def add_cards_to_round_winner(player1: Player, player2: Player,
         player2.empty_temp()
 
 
+def count_cards(player: Player):
+    cards_in_hand = player.count_cards()
+    return cards_in_hand
+
+
+def turn_loop_4_times(player1: Player, player2: Player,
+                      inputOutput: Input_output):
+    for loop in range(4):
+        for turn in range(1, 3):
+            if turn == 1:
+                war_card1 = flipp_once(player1)
+            else:
+                war_card2 = flipp_once(player2)
+        if loop == 3:
+            inputOutput.lvl_game_flipped_card(war_card1)
+            inputOutput.lvl_game_flipped_card(war_card2)
+    return war_card1, war_card2
+
+
 def main():
     inputOutput = Input_output()
     # will take the choice vs_computer or not and the name of player/s
@@ -64,7 +83,9 @@ def main():
                 player2 = Player(inputOutput.get_name2(), player)
 
     card_in1_found = True
-    card_in1_found = True
+    card_in2_found = True
+    cards_in1 = 0
+    cards_in2 = 0
     round_finished = False
     winner1_found = False
     winner2_found = False
@@ -76,36 +97,36 @@ def main():
     # will keep looping untill one player has no more cards
     while not winner1_found and not winner2_found:
         round_finished = False
-        # will keep looping until the round is finished
         while not round_finished:
             if flipp_4_times:
-                for flipp in range(4):
-                    # check if cards left in the hand
-                    card_in1_found = check_card(player1)
-                    card_in2_found = check_card(player2)
-                    if card_in1_found and card_in2_found:
-                        war_card1, war_card2 = turn_loop(player1, player2,
-                                                         inputOutput)
-                        if flipp == 3:
-                            # if the card on floor big
-                            player_won_round = check_player_won_round(war_card1,
-                                                                      war_card2)
-                            if player_won_round != 0:
-                                add_cards_to_round_winner(player1, player2,
-                                                          player_won_round)
-                                round_finished = True
-                                flipp_4_times = False
-                            else:
-                                continue
-                    elif not card_in1_found:
-                        winner2_found = True
-                        inputOutput.congrats(2)
-                    elif not card_in2_found:
-                        winner1_found = True
-                        inputOutput.congrats(1)
+                cards_in1 = count_cards(player1)
+                cards_in2 = count_cards(player2)
+                if cards_in1 >= 4 and cards_in2 >= 4:
+                    war_card1, war_card2 = turn_loop_4_times(player1,
+                                                             player2,
+                                                             inputOutput)
+                    player_won_round = check_player_won_round(war_card1,
+                                                              war_card2)
+                    if player_won_round != 0:
+                        add_cards_to_round_winner(player1, player2,
+                                                  player_won_round)
+                        round_finished = True
+                        flipp_4_times = False
+                    else:
+                        continue
+                elif cards_in1 < 4:
+                    round_finished = True
+                    flipp_4_times = False
+                    winner2_found = True
+                    inputOutput.congrats(2)
+                elif cards_in2 < 4:
+                    round_finished = True
+                    flipp_4_times = False
+                    winner1_found = True
+                    inputOutput.congrats(1)
 
             else:
-                # check if cards left in the hand
+                # loop on turns of players to show thier hands
                 card_in1_found = check_card(player1)
                 card_in2_found = check_card(player2)
                 if card_in1_found and card_in2_found:
