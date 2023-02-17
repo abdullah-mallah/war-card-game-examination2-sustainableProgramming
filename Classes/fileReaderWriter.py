@@ -19,8 +19,8 @@ class FileRW:
 
     # Store the players name in a text file
     def store_name(self, name):
-        if not self.check_name():
-            with open(self._file_name, 'w') as wf:
+        if not self.check_name(name):
+            with open(self._file_name, 'a') as wf:
                 wf.write(name + "\n")
 
     # Retrieving names from the text file

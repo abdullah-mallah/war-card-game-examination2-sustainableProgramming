@@ -92,3 +92,7 @@ class Player:
     # Return the cards on the floor
     def get_temp(self):
         return self._temp_deck
+
+    # Get the name of the player
+    def get_name(self):
+        return self._name
