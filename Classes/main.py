@@ -67,8 +67,7 @@ def turn_loop_4_times(player1: Player, player2: Player,
     return war_card1, war_card2
 
 
-def main():
-    inputOutput = Input_output()
+def activate_lvl1(inputOutput: Input_output):
     # will take the choice vs_computer or not and the name of player/s
     inputOutput.brain()
 
@@ -81,7 +80,15 @@ def main():
                 player2 = Player("computer", player)
             else:
                 player2 = Player(inputOutput.get_name2(), player)
+    return player1, player2
 
+
+def activate_lvl2():
+    pass
+
+
+def activate_lvl_game(player1: Player, player2: Player,
+                      inputOutput: Input_output):
     card_in1_found = True
     card_in2_found = True
     cards_in1 = 0
@@ -147,6 +154,13 @@ def main():
                 elif not card_in2_found:
                     winner1_found = True
                     inputOutput.congrats(1)
+
+
+def main():
+    inputOutput = Input_output()
+    player1, player2 = activate_lvl1(inputOutput)
+    activate_lvl2()
+    activate_lvl_game(player1, player2, inputOutput)
 
 
 if __name__ == "__main__":
