@@ -1,6 +1,7 @@
 class Input_output:
     def __init__(self) -> None:
         self._choice_lvl1 = ""
+        self._choice_lvl2 = ""
         self._choice_lvl_game = ""
         self._name_player1 = ""
         self._name_player2 = "Computer"
@@ -9,28 +10,39 @@ class Input_output:
     # Read choice of level 1
     # and decide if its going to read the name of one player or two players
     def brain(self):
-        self.lvl1()
-        self.lvl1_input()
-        if self._choice_lvl1 == "1":
-            self.lvl2_choice1_input()
+        self.lvl2()
+        self.lvl2_input()
+        if self._choice_lvl2 == "1":
+            self.one_name_input()
         else:
-            self.lvl2_choice2_input()
+            self.two_names_input()
 
     # Print out the choice of level 1
     def lvl1(self):
-        print("1) VS. Computer")
-        print("2) Two players")
+        print("1) Play the game")
+        print("2) See player details")
+        print("3) Change name of player")
+        print("4) Exit the game")
 
     # Read the choice of the user of level 1
     def lvl1_input(self):
         self._choice_lvl1 = input("Choice: ")
 
+    # Print out the choice of level 2
+    def lvl2(self):
+        print("1) VS. Computer")
+        print("2) Two players")
+
+    # Read the choice of the user of level 2
+    def lvl2_input(self):
+        self._choice_lvl2 = input("Choice: ")
+
     # Read the name of one player
-    def lvl2_choice1_input(self):
+    def one_name_input(self):
         self._name_player1 = input("Name of the first player: ")
 
     # Read the names of two players
-    def lvl2_choice2_input(self):
+    def two_names_input(self):
         self._name_player1 = input("Name of the first player: ")
         self._name_player2 = input("Name of the second player: ")
 
@@ -52,6 +64,9 @@ class Input_output:
     # Getters
     def get_choice_lvl1(self):
         return self._choice_lvl1
+
+    def get_choice_lvl2(self):
+        return self._choice_lvl2
 
     def get_name1(self):
         return self._name_player1

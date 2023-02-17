@@ -81,7 +81,7 @@ def activate_lvl2(inputOutput: Input_output):
         if player == 1:
             player1 = Player(inputOutput.get_name1(), player)
         else:
-            if inputOutput.get_choice_lvl1() == "1":
+            if inputOutput.get_choice_lvl2() == "1":
                 player2 = Player("computer", player)
             else:
                 player2 = Player(inputOutput.get_name2(), player)
