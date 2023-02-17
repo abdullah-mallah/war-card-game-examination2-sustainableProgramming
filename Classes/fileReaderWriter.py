@@ -17,5 +17,8 @@ class FileRW:
                     more_enteries = False
         return name_found
 
+    # Store the players name in a text file
     def store_name(self, name):
-        pass
+        if not self.check_name():
+            with open(self._file_name, 'w') as wf:
+                wf.write(name + "\n")
