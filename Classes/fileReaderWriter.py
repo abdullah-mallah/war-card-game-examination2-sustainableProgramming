@@ -37,3 +37,10 @@ class FileRW:
                 else:
                     more_enteries = False
         return names
+
+    def update_score(self, name, score):
+        names = self.get_names()
+        for line in names:
+            for value in line:
+                if value[0] == name:
+                    value[1] = score  # Updating the score of the player
