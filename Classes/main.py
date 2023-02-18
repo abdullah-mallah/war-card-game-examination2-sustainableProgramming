@@ -95,7 +95,7 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
 
 
 def activate_lvl_game(player1: Player, player2: Player,
-                      inputOutput: Input_output):
+                      inputOutput: Input_output, fileRW: FileRW):
     card_in1_found = True
     card_in2_found = True
     cards_in1 = 0
@@ -133,11 +133,13 @@ def activate_lvl_game(player1: Player, player2: Player,
                     flipp_4_times = False
                     winner2_found = True
                     inputOutput.congrats(2)
+                    fileRW.update_score(player2.get_name(), (str)(player2.get_wins()))
                 elif cards_in2 < 4:
                     round_finished = True
                     flipp_4_times = False
                     winner1_found = True
                     inputOutput.congrats(1)
+                    fileRW.update_score(player1.get_name(), (str)(player1.get_wins()))
 
             else:
                 # loop on turns of players to show thier hands
@@ -158,9 +160,11 @@ def activate_lvl_game(player1: Player, player2: Player,
                 elif not card_in1_found:
                     winner2_found = True
                     inputOutput.congrats(2)
+                    fileRW.update_score(player2.get_name(), (str)(player2.get_wins()))
                 elif not card_in2_found:
                     winner1_found = True
                     inputOutput.congrats(1)
+                    fileRW.update_score(player1.get_name(), (str)(player1.get_wins()))
 
 
 def main():
@@ -171,7 +175,7 @@ def main():
         choice = activate_lvl1(inputOutput)
         if choice == "1":  # the player choose to play
             player1, player2 = activate_lvl2(inputOutput, fileRW)
-            activate_lvl_game(player1, player2, inputOutput)
+            activate_lvl_game(player1, player2, inputOutput, fileRW)
         elif choice == "2":  # the player choose to see scores
             names = fileRW.get_names()
             inputOutput.print_names(names)

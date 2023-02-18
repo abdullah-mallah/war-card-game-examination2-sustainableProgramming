@@ -41,9 +41,14 @@ class FileRW:
     def update_score(self, name, score):
         names = self.get_names()
         for line in names:
-            for value in line:
-                if value[0] == name:
-                    value[1] = score  # Updating the score of the player
+            if line[0] == name:
+                line[1] = score  # Updating the score of the player
+        self.store_names(names)
+
+    def store_names(self, names):
+        with open(self._file_name, "w") as wf:
+            for name in names:
+                wf.write(name[0] + "," + name[1] + "\n")
 
     def get_score(self, name):
         names = self.get_names()
