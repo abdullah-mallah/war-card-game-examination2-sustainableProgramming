@@ -44,3 +44,10 @@ class FileRW:
             for value in line:
                 if value[0] == name:
                     value[1] = score  # Updating the score of the player
+
+    def get_score(self, name):
+        names = self.get_names()
+        for line in names:
+            for value in line:
+                if value[0] == name:
+                    return value[1]
