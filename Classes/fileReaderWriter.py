@@ -17,11 +17,11 @@ class FileRW:
                     more_enteries = False
         return name_found
 
-    # Store the players name in a text file
-    def store_name(self, name):
+    # Store the players name and score in a text file
+    def store_name(self, name, score):
         if not self.check_name(name):
             with open(self._file_name, 'a') as wf:
-                wf.write(name + "\n")
+                wf.write(name + "," + score + "\n")
 
     # Retrieving names from the text file
     def get_names(self):
