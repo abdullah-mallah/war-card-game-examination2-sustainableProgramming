@@ -23,15 +23,17 @@ class FileRW:
             with open(self._file_name, 'a') as wf:
                 wf.write(name + "," + score + "\n")
 
-    # Retrieving names from the text file
+    # Retrieving names and score from the text file
     def get_names(self):
         names = []
+        name_list = []  # This list consists of name and score, in the future it will consist of name, score, how many times the player played, percentage of winning.
         more_enteries = True
         with open(self._file_name, 'r') as rf:
             while more_enteries:
                 line = rf.readline().rstrip('\n')
                 if line != '':
-                    names.append(line)
+                    name_list = line.split(',')
+                    names.append(name_list)
                 else:
                     more_enteries = False
         return names
