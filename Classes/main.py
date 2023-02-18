@@ -83,13 +83,14 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
     for player in range(1, 3):
         if player == 1:
             player1 = Player(inputOutput.get_name1(), player)
-            fileRW.store_name(player1.get_name())
+            fileRW.store_name(player1.get_name(), (str)(player1.get_wins()))
         else:
             if inputOutput.get_choice_lvl2() == "1":
                 player2 = Player("computer", player)
             else:
                 player2 = Player(inputOutput.get_name2(), player)
-                fileRW.store_name(player2.get_name())
+                fileRW.store_name(player2.get_name(),
+                                  (str)(player2.get_wins()))
     return player1, player2
 
 
@@ -164,7 +165,7 @@ def activate_lvl_game(player1: Player, player2: Player,
 
 def main():
     inputOutput = Input_output()
-    fileRW = FileRW("score.txt")
+    fileRW = FileRW("C:\\Users\\a\\Desktop\\war-card-game-examination2-sustainableProgramming\\Classes\\score.txt")
     choice = ""
     while choice != "1":
         choice = activate_lvl1(inputOutput)

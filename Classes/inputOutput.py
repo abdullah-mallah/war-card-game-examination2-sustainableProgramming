@@ -27,7 +27,7 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            print(name)
+            print(f"name: {name[0]}    wins: {name[1]}")
 
     # Read the choice of the user of level 1
     def lvl1_input(self):
