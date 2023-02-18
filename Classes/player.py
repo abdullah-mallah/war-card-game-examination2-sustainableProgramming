@@ -10,6 +10,7 @@ class Player:
         else:
             self._deck = self.create_deck2()
         self._temp_deck = []
+        self._wins = 0
 
     # Creating a deck for player 1
     def create_deck1(self):
@@ -96,3 +97,9 @@ class Player:
     # Get the name of the player
     def get_name(self):
         return self._name
+
+    def get_wins(self):
+        return self._wins
+
+    def set_wins(self, wins):
+        self._wins = wins
