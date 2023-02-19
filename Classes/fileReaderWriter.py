@@ -38,11 +38,11 @@ class FileRW:
                     more_enteries = False
         return names
 
-    def update_score(self, name, score):
+    def update_wins(self, name, wins):
         names = self.get_names()
         for line in names:
             if line[0] == name:
-                line[1] = score  # Updating the score of the player
+                line[1] = wins  # Updating the score of the player
         self.store_names(names)
 
     def store_names(self, names):
@@ -50,9 +50,8 @@ class FileRW:
             for name in names:
                 wf.write(name[0] + "," + name[1] + "\n")
 
-    def get_score(self, name):
+    def get_wins(self, name):
         names = self.get_names()
         for line in names:
-            for value in line:
-                if value[0] == name:
-                    return value[1]
+            if line[0] == name:
+                return line[1]
