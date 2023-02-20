@@ -1,5 +1,0 @@
-a,0
-g,0
-qqq,0
-aaaa,0
-bbbb,0

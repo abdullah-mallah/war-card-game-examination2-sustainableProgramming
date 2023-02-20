@@ -24,14 +24,14 @@ class Input_output:
         print("3) Change name of player")
         print("4) Exit the game")
 
+    # Read the choice of the user of level 1
+    def lvl1_input(self):
+        self._choice_lvl1 = input("Choice: ")
+
     # Print list of names
     def print_names(self, names):
         for name in names:
             print(f"name: {name[0]}    wins: {name[1]}")
-
-    # Read the choice of the user of level 1
-    def lvl1_input(self):
-        self._choice_lvl1 = input("Choice: ")
 
     # Print out the choice of level 2
     def lvl2(self):
