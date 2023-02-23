@@ -87,6 +87,17 @@ class Player:
     def count_cards(self):
         return len(self._deck)
 
+    def steal_1_card(self):
+        card = []
+        length = len(self._deck) - 1
+        rand_num = random.randint(0, length)
+        card += self._deck[rand_num]
+        del self._deck[rand_num]
+        return card
+
+    def add_1_card(self, card):
+        self._deck += card
+
     # Return the cards of the player
     def get_card_list(self):
         return self._deck

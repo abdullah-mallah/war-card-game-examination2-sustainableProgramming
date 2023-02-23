@@ -32,7 +32,7 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            print(f"name: {name[0]}    wins: {name[1]}")
+            print(f"name: {name[0]}| wins: {name[1]}| times played: {name[2]}")
 
     # Print out the choice of level 2
     def lvl2(self):
@@ -56,7 +56,7 @@ class Input_output:
     # and to read input from user when playing the game
     def lvl_game_brain(self):
         self.lvl_game_choices()
-        self._choice_lvl_game = self.lvl_game_input()
+        self.lvl_game_input()
         if self._choice_lvl_game == "2":
             self.print_hacks()
             self.hack_input()

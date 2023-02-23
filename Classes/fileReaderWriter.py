@@ -39,15 +39,15 @@ class FileRW:
         names = self.get_names()
         for line in names:
             if line[0] == name:
-                line[1] = wins  # Updating the score of the player
-                line[2] = times_played
+                line[1] = (str)(wins)  # Updating the score of the player
+                line[2] = (str)(times_played)
         self.store_names(names)
 
     def store_names(self, names):
         with open(self._file_name, "w") as wf:
             for name in names:
                 wf.write(name[0] + "," + name[1] +
-                         "," + name[2] + "," + name[3] + "\n")
+                         "," + name[2] + "\n")
 
     def get_wins(self, name):
         names = self.get_names()

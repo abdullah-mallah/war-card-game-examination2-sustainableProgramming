@@ -8,8 +8,10 @@ class Game:
         cards_in_hand = player.count_cards()
         return cards_in_hand
 
-    def turn_loop_4_times(self, player1: Player, player2: Player,
-                          inputOutput: Input_output):
+    def flip_4_times(self, player1: Player, player2: Player,
+                     inputOutput: Input_output):
+        war_card1 = 0
+        war_card2 = 0
         for loop in range(4):
             for turn in range(1, 3):
                 if turn == 1:
@@ -21,28 +23,61 @@ class Game:
                 inputOutput.lvl_game_flipped_card(war_card2)
         return war_card1, war_card2
 
-    def turn_loop(self, player1: Player, player2: Player,
+    def flip_once(self, player1: Player, player2: Player,
                   inputOutput: Input_output):
         war_card1 = 0
         war_card2 = 0
         for turn in range(1, 3):
             if turn == 1:
-                inputOutput.lvl_game_choices()
-                inputOutput.lvl_game_input()
-                if inputOutput.get_choice_lvl_game() == "1":
-                    war_card1 = self.flipp_once(player1)
-                    inputOutput.lvl_game_flipped_card(war_card1)
+                while inputOutput.get_choice_lvl_game != "1":
+                    inputOutput.lvl_game_brain()
+                    if inputOutput.get_choice_lvl_game() == "1":
+                        war_card1 = self.flipp_once(player1)
+                        inputOutput.lvl_game_flipped_card(war_card1)
+                        break
+                    elif inputOutput.get_choice_lvl_game() == "2":
+                        if inputOutput.get_hack_type() == "1":
+                            self.steal_1_card(player1, player2, turn)
+                            if self.count_cards(player2) == 0:
+                                war_card1 = 1
+                                war_card2 = 0
+                                break
+                        else:
+                            pass
+                if war_card1 == 1 and war_card2 == 0:
+                    break
             else:
                 if player2.get_name() == "Computer":
                     war_card2 = self.flipp_once(player2)
                     inputOutput.lvl_game_flipped_card(war_card2)
                 else:
-                    inputOutput.lvl_game_choices()
-                    inputOutput.lvl_game_input()
-                    if inputOutput.get_choice_lvl_game() == "1":
-                        war_card2 = self.flipp_once(player2)
-                        inputOutput.lvl_game_flipped_card(war_card2)
+                    while inputOutput.get_choice_lvl_game != "1":
+                        inputOutput.lvl_game_brain()
+                        if inputOutput.get_choice_lvl_game() == "1":
+                            war_card1 = self.flipp_once(player1)
+                            inputOutput.lvl_game_flipped_card(war_card1)
+                            break
+                        elif inputOutput.get_choice_lvl_game() == "2":
+                            if inputOutput.get_hack_type() == "1":
+                                self.steal_1_card(player1, player2, turn)
+                                if self.count_cards(player1) == 0:
+                                    war_card1 = 0
+                                    war_card2 = 1
+                                    break
+                            else:
+                                pass
+                    if war_card1 == 0 and war_card2 == 1:
+                        break
         return war_card1, war_card2
+
+    def steal_1_card(self, player1: Player, player2: Player, turn):
+        card = []
+        if turn == 1:
+            card = player2.steal_1_card()
+            player1.add_1_card(card)
+        else:
+            card = player1.steal_1_card()
+            player2.add_1_card(card)
 
     def chk_player_won_round(self, war_card1, war_card2):
         if war_card1 > war_card2:
@@ -95,10 +130,9 @@ class Game:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
                     if cards_in1 >= 4 and cards_in2 >= 4:
-                        war_card1,
-                        war_card2 = self.turn_loop_4_times(player1,
-                                                           player2,
-                                                           inputOutput)
+                        war_card1, war_card2 = self.flip_4_times(player1,
+                                                                 player2,
+                                                                 inputOutput)
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
                         if player_won_round != 0:
@@ -115,31 +149,51 @@ class Game:
                         inputOutput.congrats(2)
                         if player2.get_name() != "Computer":
                             fileRW.update_wins(player2.get_name(),
-                                               (str)(player2.get_wins() + 1),
-                                               (str)(player2.get_times_played() + 1))
+                                               player2.get_wins() + 1,
+                                               player2.get_times_played() + 1)
                         fileRW.update_wins(player1.get_name(),
-                                           (str)(player1.get_wins()),
-                                           (str)(player1.get_times_played() + 1))
+                                           player1.get_wins(),
+                                           player1.get_times_played() + 1)
                     elif cards_in2 < 4:
                         round_finished = True
                         flipp_4_times = False
                         winner1_found = True
                         inputOutput.congrats(1)
                         fileRW.update_wins(player1.get_name(),
-                                           (str)(player1.get_wins() + 1),
-                                           (str)(player1.get_times_played() + 1))
+                                           player1.get_wins() + 1,
+                                           player1.get_times_played() + 1)
                         if player2.get_name != "Computer":
                             fileRW.update_wins(player2.get_name(),
-                                               (str)(player2.get_wins()),
-                                               (str)(player2.get_times_played() + 1))
+                                               player2.get_wins(),
+                                               player2.get_times_played() + 1)
 
                 else:
                     # loop on turns of players to show thier hands
                     card_in1_found = self.check_card(player1)
                     card_in2_found = self.check_card(player2)
                     if card_in1_found and card_in2_found:
-                        war_card1, war_card2 = self.turn_loop(player1, player2,
+                        war_card1, war_card2 = self.flip_once(player1, player2,
                                                               inputOutput)
+                        if war_card1 == 0:  # after using hack
+                            winner2_found = True
+                            inputOutput.congrats(2)
+                            if player2.get_name() != "Computer":
+                                fileRW.update_wins(player2.get_name(),
+                                                   player2.get_wins() + 1,
+                                                   player2.get_times_played() + 1)
+                            fileRW.update_wins(player1.get_name(),
+                                               player1.get_wins(),
+                                               player1.get_times_played() + 1)
+                        elif war_card2 == 0:  # after using hack
+                            winner1_found = True
+                            inputOutput.congrats(1)
+                            fileRW.update_wins(player1.get_name(),
+                                               player1.get_wins() + 1,
+                                               player1.get_times_played() + 1)
+                            if player2.get_name != "Computer":
+                                fileRW.update_wins(player2.get_name(),
+                                                   player2.get_wins(),
+                                                   player2.get_times_played() + 1)
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
@@ -154,18 +208,18 @@ class Game:
                         inputOutput.congrats(2)
                         if player2.get_name() != "Computer":
                             fileRW.update_wins(player2.get_name(),
-                                               (str)(player2.get_wins() + 1),
-                                               (str)(player2.get_times_played() + 1))
+                                               player2.get_wins() + 1,
+                                               player2.get_times_played() + 1)
                         fileRW.update_wins(player1.get_name(),
-                                           (str)(player1.get_wins()),
-                                           (str)(player1.get_times_played() + 1))
+                                           player1.get_wins(),
+                                           player1.get_times_played() + 1)
                     elif not card_in2_found:
                         winner1_found = True
                         inputOutput.congrats(1)
                         fileRW.update_wins(player1.get_name(),
-                                           (str)(player1.get_wins() + 1),
-                                           (str)(player1.get_times_played() + 1))
+                                           player1.get_wins() + 1,
+                                           player1.get_times_played() + 1)
                         if player2.get_name != "Computer":
                             fileRW.update_wins(player2.get_name(),
-                                               (str)(player2.get_wins()),
-                                               (str)(player2.get_times_played() + 1))
+                                               player2.get_wins(),
+                                               player2.get_times_played() + 1)
