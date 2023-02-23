@@ -44,6 +44,8 @@ class Game:
                                 break
                         else:
                             self.increase_chance(player1, player2, turn)
+                    else:
+                        exit()
                 if war_card1 == 1 and war_card2 == 0:
                     break
             else:
@@ -66,6 +68,8 @@ class Game:
                                     break
                             else:
                                 self.increase_chance(player1, player2, turn)
+                        else:
+                            exit()
                     if war_card1 == 0 and war_card2 == 1:
                         break
         return war_card1, war_card2

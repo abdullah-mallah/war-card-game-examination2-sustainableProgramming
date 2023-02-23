@@ -73,6 +73,7 @@ class Input_output:
     def lvl_game_choices(self):
         print("1 - Show card")
         print("2 - Use hack")
+        print("3 - Exit")
 
     # Read the choice of level Game from user
     def lvl_game_input(self):
