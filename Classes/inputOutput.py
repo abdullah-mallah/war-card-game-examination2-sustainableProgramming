@@ -5,6 +5,7 @@ class Input_output:
         self._choice_lvl_game = ""
         self._name_player1 = ""
         self._name_player2 = "Computer"
+        self._hack_type = ""
 
     # This will print out level 1 choices
     # Read choice of level 1
@@ -31,7 +32,7 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            print(f"name: {name[0]}| wins: {name[1]}| times played: {name[2]}")
+            print(f"name: {name[0]}    wins: {name[1]}")
 
     # Print out the choice of level 2
     def lvl2(self):
@@ -51,11 +52,29 @@ class Input_output:
         self._name_player1 = input("Name of the first player: ")
         self._name_player2 = input("Name of the second player: ")
 
+    # This method is responsible printing out choices of lvl game
+    # and to read input from user when playing the game
+    def lvl_game_brain(self):
+        self.lvl_game_choices()
+        self._choice_lvl_game = self.lvl_game_input()
+        if self._choice_lvl_game == "2":
+            self.print_hacks()
+            self.hack_input()
+    # 
+    def print_hacks(self):
+        print("1 - Steal two cards from opponent")
+        # Later on we will add a second type of hack on this line.
+
+    # Read the choice of hack type from user
+    def hack_input(self):
+        self._hack_type = input("Choice: ")
+
     # Print out the choices of level Game
     def lvl_game_choices(self):
         print("1 - Show card")
+        print("2 - Use hack")
 
-    # Read the choice of level Game
+    # Read the choice of level Game from user
     def lvl_game_input(self):
         self._choice_lvl_game = input("Choice: ")
 
@@ -81,3 +100,6 @@ class Input_output:
 
     def get_choice_lvl_game(self):
         return self._choice_lvl_game
+
+    def get_hack_type(self):
+        return self._hack_type
