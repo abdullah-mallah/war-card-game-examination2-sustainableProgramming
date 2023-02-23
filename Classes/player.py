@@ -11,6 +11,7 @@ class Player:
             self._deck = self.create_deck2()
         self._temp_deck = []
         self._wins = 0
+        self._times_played = 0
 
     # Creating a deck for player 1
     def create_deck1(self):
@@ -103,3 +104,9 @@ class Player:
 
     def set_wins(self, wins):
         self._wins = wins
+
+    def get_times_played(self):
+        return self._times_played
+
+    def set_times_played(self, times_played):
+        self._times_played = times_played
