@@ -62,8 +62,8 @@ class Input_output:
             self.hack_input()
     # 
     def print_hacks(self):
-        print("1 - Steal two cards from opponent")
-        # Later on we will add a second type of hack on this line.
+        print("1 - Steal one card from opponent")
+        print("2 - put the highest card in your deck at the begining")
 
     # Read the choice of hack type from user
     def hack_input(self):

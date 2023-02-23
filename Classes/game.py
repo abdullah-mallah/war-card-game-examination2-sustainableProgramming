@@ -43,7 +43,7 @@ class Game:
                                 war_card2 = 0
                                 break
                         else:
-                            pass
+                            self.increase_chance(player1, player2, turn)
                 if war_card1 == 1 and war_card2 == 0:
                     break
             else:
@@ -65,7 +65,7 @@ class Game:
                                     war_card2 = 1
                                     break
                             else:
-                                pass
+                                self.increase_chance(player1, player2, turn)
                     if war_card1 == 0 and war_card2 == 1:
                         break
         return war_card1, war_card2
@@ -78,6 +78,12 @@ class Game:
         else:
             card = player1.steal_1_card()
             player2.add_1_card(card)
+
+    def increase_chance(self, player1: Player, player2: Player, turn):
+        if turn == 1:
+            player1.increase_chance()
+        else:
+            player2.increase_chance()
 
     def chk_player_won_round(self, war_card1, war_card2):
         if war_card1 > war_card2:

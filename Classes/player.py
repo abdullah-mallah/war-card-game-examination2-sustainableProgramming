@@ -98,6 +98,16 @@ class Player:
     def add_1_card(self, card):
         self._deck += card
 
+    def increase_chance(self):
+        max = 0
+        index = -1
+        for card in self._deck:
+            if card[1] > max:
+                max = card[1]
+                index = self._deck.index(card)
+        self._deck.insert(0, self._deck[index])
+        del self._deck[index]
+
     # Return the cards of the player
     def get_card_list(self):
         return self._deck
