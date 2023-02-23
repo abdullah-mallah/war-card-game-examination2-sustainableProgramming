@@ -31,7 +31,7 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            print(f"name: {name[0]}    wins: {name[1]}")
+            print(f"name: {name[0]}| wins: {name[1]}| times played: {name[2]}")
 
     # Print out the choice of level 2
     def lvl2(self):
