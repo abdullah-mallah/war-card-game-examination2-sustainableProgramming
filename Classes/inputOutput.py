@@ -89,7 +89,8 @@ class Input_output:
     def lvl_game_choices(self):
         print("1 - Show card")
         print("2 - Use hack")
-        print("3 - Exit")
+        print("3 - continue automatically untill a winner is found.")
+        print("4 - Exit")
 
     # Read the choice of level Game from user
     def lvl_game_input(self):
@@ -97,7 +98,7 @@ class Input_output:
 
     # Print out flipped card of level Game
     def lvl_game_flipped_card(self, war_card, name, cards_left):
-        war_cards = (str)(war_card) + " cards left"
+        war_cards = (str)(war_card) + " war card"
         card_left = (str)(cards_left) + " cards left"
         print(f"Players name is: {name:10}, {war_cards} and {card_left}")
 
