@@ -81,8 +81,9 @@ class Input_output:
 
     # Print out flipped card of level Game
     def lvl_game_flipped_card(self, war_card, name, cards_left):
-        print(f"Players name is: {name} and the flipped card is:\
-               {war_card} cards left {cards_left} ")
+        war_cards = (str)(war_card) + " cards left"
+        card_left = (str)(cards_left) + " cards left"
+        print(f"Players name is: {name:10}, {war_cards} and {card_left}")
 
     def congrats(self, turn):
         print(f"Congrats to player {turn}! You have won!")
