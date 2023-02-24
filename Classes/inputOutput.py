@@ -32,7 +32,7 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            print(f"name: {name[0]}| wins: {name[1]}| times played: {name[2]}")
+            print(f"name: {name[0]:10}| wins: {name[1]:10}| times played: {name[2]:10}")
 
     # Print out the choice of level 2
     def lvl2(self):
@@ -80,8 +80,9 @@ class Input_output:
         self._choice_lvl_game = input("Choice: ")
 
     # Print out flipped card of level Game
-    def lvl_game_flipped_card(self, war_card):
-        print(f"card is: {war_card}")
+    def lvl_game_flipped_card(self, war_card, name, cards_left):
+        print(f"Players name is: {name} and the flipped card is:\
+               {war_card} cards left {cards_left} ")
 
     def congrats(self, turn):
         print(f"Congrats to player {turn}! You have won!")
