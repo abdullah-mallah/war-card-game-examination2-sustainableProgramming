@@ -49,6 +49,13 @@ class FileRW:
                 wf.write(name[0] + "," + name[1] +
                          "," + name[2] + "\n")
 
+    def uppdate_name(self, old_name, new_name):
+        names = self.get_names()
+        for line in names:
+            if line[0] == old_name:
+                line[0] = new_name
+        self.store_names(names)
+
     def get_wins(self, name):
         names = self.get_names()
         for line in names:

@@ -6,6 +6,8 @@ class Input_output:
         self._name_player1 = ""
         self._name_player2 = "Computer"
         self._hack_type = ""
+        self._old_name = ""
+        self._new_name = ""
 
     # This will print out level 1 choices
     # Read choice of level 1
@@ -18,6 +20,14 @@ class Input_output:
         else:
             self.two_names_input()
 
+    def lvl1_brain(self):
+        self.lvl1()
+        self.lvl1_input()
+        if self._choice_lvl1 == "3":
+            self.read_old_name()
+            self.read_new_name()
+        return self._choice_lvl1
+
     # Print out the choice of level 1
     def lvl1(self):
         print("1) Play the game")
@@ -28,6 +38,12 @@ class Input_output:
     # Read the choice of the user of level 1
     def lvl1_input(self):
         self._choice_lvl1 = input("Choice: ")
+
+    def read_old_name(self):
+        self._old_name = input("old name: ")
+
+    def read_new_name(self):
+        self._new_name = input("new name: ")
 
     # Print list of names
     def print_names(self, names):
@@ -106,3 +122,9 @@ class Input_output:
 
     def get_hack_type(self):
         return self._hack_type
+    
+    def get_old_name(self):
+        return self._old_name
+    
+    def get_new_name(self):
+        return self._new_name

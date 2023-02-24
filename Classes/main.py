@@ -6,9 +6,7 @@ from game import Game
 
 def activate_lvl1(inputOutput: Input_output):
     choice = ""
-    inputOutput.lvl1()
-    inputOutput.lvl1_input()
-    choice = inputOutput.get_choice_lvl1()
+    choice = inputOutput.lvl1_brain()
     return choice
 
 
@@ -47,7 +45,8 @@ def main():
             names = fileRW.get_names()
             inputOutput.print_names(names)
         elif choice == "3":  # the player choose to change his name
-            pass
+            fileRW.uppdate_name(inputOutput.get_old_name(),
+                                inputOutput.get_new_name())
         elif choice == "4":  # the player wanted to exit
             break
 
