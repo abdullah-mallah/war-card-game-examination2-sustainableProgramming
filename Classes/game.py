@@ -19,8 +19,12 @@ class Game:
                 else:
                     war_card2 = self.flipp_once(player2)
             if loop == 3:
-                inputOutput.lvl_game_flipped_card(war_card1)
-                inputOutput.lvl_game_flipped_card(war_card2)
+                inputOutput.lvl_game_flipped_card(war_card1,
+                                                  player1.get_name(),
+                                                  self.count_cards(player1))
+                inputOutput.lvl_game_flipped_card(war_card2,
+                                                  player2.get_name(),
+                                                  self.count_cards(player2))
         return war_card1, war_card2
 
     def flip_once(self, player1: Player, player2: Player,
@@ -33,7 +37,9 @@ class Game:
                     inputOutput.lvl_game_brain()
                     if inputOutput.get_choice_lvl_game() == "1":
                         war_card1 = self.flipp_once(player1)
-                        inputOutput.lvl_game_flipped_card(war_card1)
+                        inputOutput.lvl_game_flipped_card(war_card1,
+                                                          player1.get_name(),
+                                                          self.count_cards(player1))
                         break
                     elif inputOutput.get_choice_lvl_game() == "2":
                         if inputOutput.get_hack_type() == "1":
@@ -51,13 +57,17 @@ class Game:
             else:
                 if player2.get_name() == "Computer":
                     war_card2 = self.flipp_once(player2)
-                    inputOutput.lvl_game_flipped_card(war_card2)
+                    inputOutput.lvl_game_flipped_card(war_card2,
+                                                      player2.get_name(),
+                                                      self.count_cards(player2))
                 else:
                     while inputOutput.get_choice_lvl_game != "1":
                         inputOutput.lvl_game_brain()
                         if inputOutput.get_choice_lvl_game() == "1":
                             war_card1 = self.flipp_once(player1)
-                            inputOutput.lvl_game_flipped_card(war_card1)
+                            inputOutput.lvl_game_flipped_card(war_card1,
+                                                              player1.get_name(),
+                                                              self.count_cards(player1))
                             break
                         elif inputOutput.get_choice_lvl_game() == "2":
                             if inputOutput.get_hack_type() == "1":
