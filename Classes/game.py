@@ -45,14 +45,14 @@ class Game:
                         if inputOutput.get_hack_type() == "1":
                             self.steal_1_card(player1, player2, turn)
                             if self.count_cards(player2) == 0:
-                                war_card1 = 1
+                                war_card1 = 14
                                 war_card2 = 0
                                 break
                         else:
                             self.increase_chance(player1, player2, turn)
                     else:
                         exit()
-                if war_card1 == 1 and war_card2 == 0:
+                if war_card1 == 14 and war_card2 == 0:
                     break
             else:
                 if player2.get_name() == "Computer":
@@ -74,13 +74,13 @@ class Game:
                                 self.steal_1_card(player1, player2, turn)
                                 if self.count_cards(player1) == 0:
                                     war_card1 = 0
-                                    war_card2 = 1
+                                    war_card2 = 14
                                     break
                             else:
                                 self.increase_chance(player1, player2, turn)
                         else:
                             exit()
-                    if war_card1 == 0 and war_card2 == 1:
+                    if war_card1 == 0 and war_card2 == 14:
                         break
         return war_card1, war_card2
 
