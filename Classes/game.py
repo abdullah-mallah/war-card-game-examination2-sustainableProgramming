@@ -61,7 +61,7 @@ class Game:
                 elif war_card1 == 0 and war_card2 == 0:
                     break
             else:
-                if player2.get_name() == "Computer":
+                if player2.get_name() == "computer":
                     war_card2 = self.flipp_once(player2)
                     inputOutput.lvl_game_flipped_card(war_card2,
                                                       player2.get_name(),
@@ -179,7 +179,7 @@ class Game:
                         flipp_4_times = False
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "Computer":
+                        if player2.get_name() != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins() + 1,
                                                player2.get_times_played() + 1)
@@ -194,7 +194,7 @@ class Game:
                         fileRW.update_wins(player1.get_name(),
                                            player1.get_wins() + 1,
                                            player1.get_times_played() + 1)
-                        if player2.get_name != "Computer":
+                        if player2.get_name != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins(),
                                                player2.get_times_played() + 1)
@@ -212,7 +212,7 @@ class Game:
                         elif war_card1 == 0:  # after using hack
                             winner2_found = True
                             inputOutput.congrats(2)
-                            if player2.get_name() != "Computer":
+                            if player2.get_name() != "computer":
                                 fileRW.update_wins(player2.get_name(),
                                                    player2.get_wins() + 1,
                                                    player2.get_times_played() + 1)
@@ -225,7 +225,7 @@ class Game:
                             fileRW.update_wins(player1.get_name(),
                                                player1.get_wins() + 1,
                                                player1.get_times_played() + 1)
-                            if player2.get_name != "Computer":
+                            if player2.get_name != "computer":
                                 fileRW.update_wins(player2.get_name(),
                                                    player2.get_wins(),
                                                    player2.get_times_played() + 1)
@@ -241,7 +241,7 @@ class Game:
                     elif not card_in1_found:
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "Computer":
+                        if player2.get_name() != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins() + 1,
                                                player2.get_times_played() + 1)
@@ -254,7 +254,7 @@ class Game:
                         fileRW.update_wins(player1.get_name(),
                                            player1.get_wins() + 1,
                                            player1.get_times_played() + 1)
-                        if player2.get_name != "Computer":
+                        if player2.get_name != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins(),
                                                player2.get_times_played() + 1)
@@ -297,7 +297,7 @@ class Game:
                         flipp_4_times = False
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "Computer":
+                        if player2.get_name() != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins() + 1,
                                                player2.get_times_played() + 1)
@@ -313,7 +313,7 @@ class Game:
                         fileRW.update_wins(player1.get_name(),
                                            player1.get_wins() + 1,
                                            player1.get_times_played() + 1)
-                        if player2.get_name != "Computer":
+                        if player2.get_name != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins(),
                                                player2.get_times_played() + 1)
@@ -338,7 +338,7 @@ class Game:
                     elif not card_in1_found:
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "Computer":
+                        if player2.get_name() != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins() + 1,
                                                player2.get_times_played() + 1)
@@ -352,7 +352,7 @@ class Game:
                         fileRW.update_wins(player1.get_name(),
                                            player1.get_wins() + 1,
                                            player1.get_times_played() + 1)
-                        if player2.get_name != "Computer":
+                        if player2.get_name != "computer":
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins(),
                                                player2.get_times_played() + 1)
