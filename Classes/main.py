@@ -18,16 +18,13 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
     for player in range(1, 3):
         if player == 1:
             player1 = Player(inputOutput.get_name1(), player)
-            fileRW.store_name(player1.get_name(), (str)(player1.get_wins()),
-                              (str)(player1.get_times_played()))
+            fileRW.store_name(player1.get_name(), "0", "0")
         else:
             if inputOutput.get_choice_lvl2() == "1":
                 player2 = Player(inputOutput.get_name2(), player)
             else:
                 player2 = Player(inputOutput.get_name2(), player)
-                fileRW.store_name(player2.get_name(),
-                                  (str)(player2.get_wins()),
-                                  (str)(player2.get_times_played()))
+                fileRW.store_name(player2.get_name(), "0", "0")
     return player1, player2
 
 
