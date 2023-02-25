@@ -33,22 +33,31 @@ class Input_output:
         print("1) Play the game")
         print("2) See player details")
         print("3) Change name of player")
-        print("4) Exit the game")
+        print("4) Choose level of intelligence")
+        print("5) Exit the game")
 
-    # Read the choice of the user of level 1
+    # Reads the choice of the user of level 1
+    # with added error handling
     def lvl1_input(self):
-        self._choice_lvl1 = input("Choice: ")
+        valid_choices = ["1", "2", "3", "4", "5"]
+        while valid_choices:
+            self._choice_lvl1 = input("Choice: ")
+            if self._choice_lvl1 in valid_choices:
+                break
+            else:
+                print("Invalid choice. Please choose 1, 2, 3, 4 or 5.")
 
     def read_old_name(self):
-        self._old_name = input("old name: ")
+        self._old_name = input("Old name: ")
 
     def read_new_name(self):
-        self._new_name = input("new name: ")
+        self._new_name = input("New name: ")
 
     # Print list of names
     def print_names(self, names):
         for name in names:
-            print(f"name: {name[0]:10}| wins: {name[1]:10}| times played: {name[2]:10}")
+            times = "times played: " + name[2]
+            print(f"name: {name[0]:10}| wins: {name[1]:10} | {times}")
 
     # Print out the choice of level 2
     def lvl2(self):
@@ -56,8 +65,14 @@ class Input_output:
         print("2) Two players")
 
     # Read the choice of the user of level 2
+    # with added error handling
     def lvl2_input(self):
-        self._choice_lvl2 = input("Choice: ")
+        while True:
+            self._choice_lvl2 = input("Choice: ")
+            if self._choice_lvl2 == "1" or self._choice_lvl2 == "2":
+                break
+            else:
+                print("Invalid choice. Please choose either 1 or 2.")
 
     # Read the name of one player
     def one_name_input(self):
@@ -76,14 +91,20 @@ class Input_output:
         if self._choice_lvl_game == "2":
             self.print_hacks()
             self.hack_input()
-    # 
+
     def print_hacks(self):
         print("1 - Steal one card from opponent")
         print("2 - put the highest card in your deck at the begining")
 
-    # Read the choice of hack type from user
+    # Reads the choice of hack type from user
+    # with added error handling
     def hack_input(self):
-        self._hack_type = input("Choice: ")
+        while True:
+            self._hack_type = input("Choice: ")
+            if self._hack_type == "1" or self._hack_type == "2":
+                break
+            else:
+                print("Invalid choice. Please choose either 1 or 2.")
 
     # Print out the choices of level Game
     def lvl_game_choices(self):
@@ -93,8 +114,14 @@ class Input_output:
         print("4 - Exit")
 
     # Read the choice of level Game from user
+    # with added error handling
     def lvl_game_input(self):
-        self._choice_lvl_game = input("Choice: ")
+        while True:
+            self._choice_lvl_game = input("Choice: ")
+            if self._choice_lvl_game in ["1", "2", "3"]:
+                break
+            else:
+                print("Invalid choice. Please choose either 1, 2, or 3.")
 
     # Print out flipped card of level Game
     def lvl_game_flipped_card(self, war_card, name, cards_left):
