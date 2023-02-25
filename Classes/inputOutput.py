@@ -157,10 +157,10 @@ class Input_output:
         return self._choice_lvl2
 
     def get_name1(self):
-        return self._name_player1
+        return self._name_player1.lower()
 
     def get_name2(self):
-        return self._name_player2
+        return self._name_player2.lower()
 
     def get_choice_lvl_game(self):
         return self._choice_lvl_game
@@ -169,10 +169,10 @@ class Input_output:
         return self._hack_type
 
     def get_old_name(self):
-        return self._old_name
+        return self._old_name.lower()
 
     def get_new_name(self):
-        return self._new_name
+        return self._new_name.lower()
 
     def get_lvl_intelligence(self):
         return self._lvl_intelligence
