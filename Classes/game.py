@@ -111,7 +111,7 @@ class Game:
         else:
             player2.increase_chance()
 
-    def chk_player_won_round(self, war_card1, war_card2):
+    def chk_player_won_round(self, war_card1, war_card2):  # problem here after using hack and 4 flipps
         if war_card1 > war_card2:
             return 1
         elif war_card1 < war_card2:
@@ -141,7 +141,8 @@ class Game:
         return war_card
 
     def activate_lvl_game(self, player1: Player, player2: Player,
-                          inputOutput: Input_output, fileRW: FileRW):
+                          inputOutput: Input_output, fileRW: FileRW,
+                          lvl_game_intelligence):
         card_in1_found = True
         card_in2_found = True
         cards_in1 = 0
@@ -258,6 +259,24 @@ class Game:
                             fileRW.update_wins(player2.get_name(),
                                                player2.get_wins(),
                                                player2.get_times_played() + 1)
+
+    # def store_players(self, turn, player1: Player, player2:Player, fileRw: FileRW):
+    #     if turn == 1:
+    #         fileRW.update_wins(player1.get_name(),
+    #                            player1.get_wins() + 1,
+    #                            player1.get_times_played() + 1)
+    #         if player2.get_name != "computer":
+    #             fileRW.update_wins(player2.get_name(),
+    #                                player2.get_wins(),
+    #                                player2.get_times_played() + 1)
+    #     else:
+    #         if player2.get_name() != "computer":
+    #             fileRW.update_wins(player2.get_name(),
+    #                                player2.get_wins() + 1,
+    #                                player2.get_times_played() + 1)
+    #         fileRW.update_wins(player1.get_name(),
+    #                            player1.get_wins(),
+    #                            player1.get_times_played() + 1)
 
     def continue_untill_the_end(self, player1: Player, player2: Player,
                                 inputOutput: Input_output, fileRW: FileRW):

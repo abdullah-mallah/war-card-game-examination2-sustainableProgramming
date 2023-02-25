@@ -13,7 +13,7 @@ def activate_lvl1(inputOutput: Input_output):
 def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
     # will take the choice vs_computer or not and the name of player/s
     inputOutput.brain()
-
+# check if name already exist or not
     # will creat players according to the choice of the user at main menue
     for player in range(1, 3):
         if player == 1:
@@ -37,14 +37,17 @@ def main():
         choice = activate_lvl1(inputOutput)
         if choice == "1":  # the player choose to play
             player1, player2 = activate_lvl2(inputOutput, fileRW)
-            game.activate_lvl_game(player1, player2, inputOutput, fileRW)
+            game.activate_lvl_game(player1, player2, inputOutput, fileRW,
+                                   inputOutput.get_lvl_intelligence())
         elif choice == "2":  # the player choose to see scores
             names = fileRW.get_names()
             inputOutput.print_names(names)
         elif choice == "3":  # the player choose to change his name
             fileRW.uppdate_name(inputOutput.get_old_name(),
                                 inputOutput.get_new_name())
-        elif choice == "4":  # the player wanted to exit
+        elif choice == "4":  # choose level intelligence
+            continue
+        elif choice == "5":  # the player wanted to exit
             break
 
 

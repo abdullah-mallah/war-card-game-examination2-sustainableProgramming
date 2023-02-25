@@ -96,7 +96,7 @@ class Player:
         return card
 
     def add_1_card(self, card):
-        self._deck += card
+        self._deck.append(card)
 
     def increase_chance(self):
         max = 0
