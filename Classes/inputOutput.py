@@ -8,6 +8,7 @@ class Input_output:
         self._hack_type = ""
         self._old_name = ""
         self._new_name = ""
+        self._lvl_intelligence = ""
 
     # This will print out level 1 choices
     # Read choice of level 1
@@ -26,7 +27,23 @@ class Input_output:
         if self._choice_lvl1 == "3":
             self.read_old_name()
             self.read_new_name()
+        elif self._choice_lvl1 == "4":
+            self.print_lvl_intelligence()
+            self.read_lvl_intelligence()
         return self._choice_lvl1
+
+    def print_lvl_intelligence(self):
+        print("1) Level 1 (Easy)")
+        print("2) Level 2 (Medium)")
+        print("3) Level 3 (Hard)")
+
+    def read_lvl_intelligence(self):
+        while True:
+            self._lvl_intelligence = input("Choice: ")
+            if self._lvl_intelligence in ["1", "2", "3"]:
+                break
+            else:
+                print("Invalid choice. Please choose either 1, 2 or 3.")
 
     # Print out the choice of level 1
     def lvl1(self):
@@ -150,9 +167,12 @@ class Input_output:
 
     def get_hack_type(self):
         return self._hack_type
-    
+
     def get_old_name(self):
         return self._old_name
-    
+
     def get_new_name(self):
         return self._new_name
+
+    def get_lvl_intelligence(self):
+        return self._lvl_intelligence
