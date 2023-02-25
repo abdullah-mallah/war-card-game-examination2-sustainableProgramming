@@ -35,6 +35,14 @@ class FileRW:
                     more_enteries = False
         return names
 
+    def get_name(self, name):
+        names = self.get_names()
+        name_details = []
+        for line in names:
+            if line[0] == name:
+                name_details = line.rstrip('\n').split(',')
+        return name_details
+
     def update_wins(self, name, wins, times_played):
         names = self.get_names()
         for line in names:
