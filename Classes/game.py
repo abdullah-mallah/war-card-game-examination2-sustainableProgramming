@@ -33,6 +33,7 @@ class Game:
         war_card2 = 0
         for turn in range(1, 3):
             if turn == 1:
+                print("player 1 turn")
                 while inputOutput.get_choice_lvl_game != "1":
                     inputOutput.lvl_game_brain()
                     if inputOutput.get_choice_lvl_game() == "1":
@@ -61,6 +62,7 @@ class Game:
                 elif war_card1 == 0 and war_card2 == 0:
                     break
             else:
+                print("player 2 turn")
                 if player2.get_name() == "computer":
                     war_card2 = self.flipp_once(player2)
                     inputOutput.lvl_game_flipped_card(war_card2,
@@ -70,10 +72,10 @@ class Game:
                     while inputOutput.get_choice_lvl_game != "1":
                         inputOutput.lvl_game_brain()
                         if inputOutput.get_choice_lvl_game() == "1":
-                            war_card1 = self.flipp_once(player1)
-                            inputOutput.lvl_game_flipped_card(war_card1,
+                            war_card2 = self.flipp_once(player2)
+                            inputOutput.lvl_game_flipped_card(war_card2,
                                                               player1.get_name(),
-                                                              self.count_cards(player1))
+                                                              self.count_cards(player2))
                             break
                         elif inputOutput.get_choice_lvl_game() == "2":
                             if inputOutput.get_hack_type() == "1":
@@ -122,11 +124,13 @@ class Game:
     def add_cards_to_round_winner(self, player1: Player, player2: Player,
                                   player_won_round):
         if player_won_round == 1:
+            print("player 1 won this round")
             player1.add_temp_list_to_deck(player1.get_temp(),
                                           player2.get_temp())
             player1.empty_temp()
             player2.empty_temp()
         else:
+            print("player 2 won this round")
             player2.add_temp_list_to_deck(player1.get_temp(),
                                           player2.get_temp())
             player1.empty_temp()
@@ -141,8 +145,7 @@ class Game:
         return war_card
 
     def activate_lvl_game(self, player1: Player, player2: Player,
-                          inputOutput: Input_output, fileRW: FileRW,
-                          lvl_game_intelligence):
+                          inputOutput: Input_output, fileRW: FileRW):
         card_in1_found = True
         card_in2_found = True
         cards_in1 = 0
@@ -180,25 +183,13 @@ class Game:
                         flipp_4_times = False
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins() + 1,
-                                               player2.get_times_played() + 1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins(),
-                                           player1.get_times_played() + 1)
+                        self.uppdate_wins(2, player1, player2, fileRW)
                     elif cards_in2 < 4:
                         round_finished = True
                         flipp_4_times = False
                         winner1_found = True
                         inputOutput.congrats(1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins() + 1,
-                                           player1.get_times_played() + 1)
-                        if player2.get_name != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins(),
-                                               player2.get_times_played() + 1)
+                        self.uppdate_wins(1, player1, player2, fileRW)
 
                 else:
                     # loop on turns of players to show thier hands
@@ -213,23 +204,11 @@ class Game:
                         elif war_card1 == 0:  # after using hack
                             winner2_found = True
                             inputOutput.congrats(2)
-                            if player2.get_name() != "computer":
-                                fileRW.update_wins(player2.get_name(),
-                                                   player2.get_wins() + 1,
-                                                   player2.get_times_played() + 1)
-                            fileRW.update_wins(player1.get_name(),
-                                               player1.get_wins(),
-                                               player1.get_times_played() + 1)
+                            self.uppdate_wins(2, player1, player2, fileRW)
                         elif war_card2 == 0:  # after using hack
                             winner1_found = True
                             inputOutput.congrats(1)
-                            fileRW.update_wins(player1.get_name(),
-                                               player1.get_wins() + 1,
-                                               player1.get_times_played() + 1)
-                            if player2.get_name != "computer":
-                                fileRW.update_wins(player2.get_name(),
-                                                   player2.get_wins(),
-                                                   player2.get_times_played() + 1)
+                            self.uppdate_wins(1, player1, player2, fileRW)
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
@@ -242,41 +221,11 @@ class Game:
                     elif not card_in1_found:
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins() + 1,
-                                               player2.get_times_played() + 1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins(),
-                                           player1.get_times_played() + 1)
+                        self.uppdate_wins(2, player1, player2, fileRW)
                     elif not card_in2_found:
                         winner1_found = True
                         inputOutput.congrats(1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins() + 1,
-                                           player1.get_times_played() + 1)
-                        if player2.get_name != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins(),
-                                               player2.get_times_played() + 1)
-
-    # def store_players(self, turn, player1: Player, player2:Player, fileRw: FileRW):
-    #     if turn == 1:
-    #         fileRW.update_wins(player1.get_name(),
-    #                            player1.get_wins() + 1,
-    #                            player1.get_times_played() + 1)
-    #         if player2.get_name != "computer":
-    #             fileRW.update_wins(player2.get_name(),
-    #                                player2.get_wins(),
-    #                                player2.get_times_played() + 1)
-    #     else:
-    #         if player2.get_name() != "computer":
-    #             fileRW.update_wins(player2.get_name(),
-    #                                player2.get_wins() + 1,
-    #                                player2.get_times_played() + 1)
-    #         fileRW.update_wins(player1.get_name(),
-    #                            player1.get_wins(),
-    #                            player1.get_times_played() + 1)
+                        self.uppdate_wins(1, player1, player2, fileRW)
 
     def continue_untill_the_end(self, player1: Player, player2: Player,
                                 inputOutput: Input_output, fileRW: FileRW):
@@ -316,26 +265,14 @@ class Game:
                         flipp_4_times = False
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins() + 1,
-                                               player2.get_times_played() + 1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins(),
-                                           player1.get_times_played() + 1)
+                        self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     elif cards_in2 < 4:
                         round_finished = True
                         flipp_4_times = False
                         winner1_found = True
                         inputOutput.congrats(1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins() + 1,
-                                           player1.get_times_played() + 1)
-                        if player2.get_name != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins(),
-                                               player2.get_times_played() + 1)
+                        self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
 
                 else:
@@ -357,25 +294,36 @@ class Game:
                     elif not card_in1_found:
                         winner2_found = True
                         inputOutput.congrats(2)
-                        if player2.get_name() != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins() + 1,
-                                               player2.get_times_played() + 1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins(),
-                                           player1.get_times_played() + 1)
+                        self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     elif not card_in2_found:
                         winner1_found = True
                         inputOutput.congrats(1)
-                        fileRW.update_wins(player1.get_name(),
-                                           player1.get_wins() + 1,
-                                           player1.get_times_played() + 1)
-                        if player2.get_name != "computer":
-                            fileRW.update_wins(player2.get_name(),
-                                               player2.get_wins(),
-                                               player2.get_times_played() + 1)
+                        self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
+
+    def uppdate_wins(self, turn, player1: Player, player2: Player,
+                     fileRW: FileRW):
+        wins1 = (int)(player1.get_wins())
+        times_played1 = (int)(player1.get_times_played())
+        wins2 = (int)(player2.get_wins())
+        times_played2 = (int)(player2.get_times_played())
+        if turn == 1:
+            fileRW.update_wins(player1.get_name(),
+                               wins1 + 1,
+                               times_played1 + 1)
+            if player2.get_name() != "computer":
+                fileRW.update_wins(player2.get_name(),
+                                   wins2,
+                                   times_played2 + 1)
+        else:
+            if player2.get_name() != "computer":
+                fileRW.update_wins(player2.get_name(),
+                                   wins2 + 1,
+                                   times_played2 + 1)
+            fileRW.update_wins(player1.get_name(),
+                               wins1,
+                               times_played1 + 1)
 
     def flip_once_auto(self, player1: Player, player2: Player):
         war_card1 = 0
@@ -385,6 +333,7 @@ class Game:
                 war_card1 = self.flipp_once(player1)
             else:
                 war_card2 = self.flipp_once(player2)
+        print("filped once")
         return war_card1, war_card2
 
     def flip_4_auto(self, player1: Player, player2: Player):
@@ -396,4 +345,5 @@ class Game:
                     war_card1 = self.flipp_once(player1)
                 else:
                     war_card2 = self.flipp_once(player2)
+        print("filped 4 times")
         return war_card1, war_card2

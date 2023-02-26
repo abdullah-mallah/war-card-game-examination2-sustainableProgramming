@@ -4,7 +4,7 @@ class Input_output:
         self._choice_lvl2 = ""
         self._choice_lvl_game = ""
         self._name_player1 = ""
-        self._name_player2 = "Computer"
+        self._name_player2 = "computer"
         self._hack_type = ""
         self._old_name = ""
         self._new_name = ""
@@ -18,6 +18,8 @@ class Input_output:
         self.lvl2_input()
         if self._choice_lvl2 == "1":
             self.one_name_input()
+            self.print_lvl_intelligence()
+            self.read_lvl_intelligence()
         else:
             self.two_names_input()
 
@@ -27,9 +29,6 @@ class Input_output:
         if self._choice_lvl1 == "3":
             self.read_old_name()
             self.read_new_name()
-        elif self._choice_lvl1 == "4":
-            self.print_lvl_intelligence()
-            self.read_lvl_intelligence()
         return self._choice_lvl1
 
     def print_lvl_intelligence(self):
@@ -50,19 +49,18 @@ class Input_output:
         print("1) Play the game")
         print("2) See player details")
         print("3) Change name of player")
-        print("4) Choose level of intelligence")
-        print("5) Exit the game")
+        print("4) Exit the game")
 
     # Reads the choice of the user of level 1
     # with added error handling
     def lvl1_input(self):
-        valid_choices = ["1", "2", "3", "4", "5"]
+        valid_choices = ["1", "2", "3", "4"]
         while valid_choices:
             self._choice_lvl1 = input("Choice: ")
             if self._choice_lvl1 in valid_choices:
                 break
             else:
-                print("Invalid choice. Please choose 1, 2, 3, 4 or 5.")
+                print("Invalid choice. Please choose 1, 2, 3 or 4.")
 
     def read_old_name(self):
         self._old_name = input("Old name: ")

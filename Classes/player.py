@@ -3,15 +3,39 @@ import random
 
 class Player:
 
-    def __init__(self, name, player):
+    def __init__(self, name, player, wins, times_played):
         self._name = name
         if player == 1:
             self._deck = self.create_deck1()
         else:
             self._deck = self.create_deck2()
         self._temp_deck = []
-        self._wins = 0
-        self._times_played = 0
+        self._wins = wins
+        self._times_played = times_played
+
+    def activate_intelligence_2(self):
+        max = 0
+        index = -1
+        for card in self._deck:
+            if card[1] > max:
+                max = card[1]
+                index = self._deck.index(card)
+        self._deck.insert(0, self._deck[index])
+        del self._deck[index]
+
+    def activate_intelligence_3(self):
+        self.activate_intelligence_2()
+        max = 13
+        max_counter = 0
+        index = -1
+        for card in self._deck:
+            if card[1] == max and max_counter == 0:
+                max_counter += 1
+            elif card[1] == max and max_counter == 1:
+                max = card[1]
+                index = self._deck.index(card)
+        self._deck.insert(1, self._deck[index])
+        del self._deck[index]
 
     # Creating a deck for player 1
     def create_deck1(self):
