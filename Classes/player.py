@@ -3,7 +3,7 @@ import random
 
 class Player:
 
-    def __init__(self, name, player, wins, times_played):
+    def __init__(self, name, player, wins, times_played, percentage):
         self._name = name
         if player == 1:
             self._deck = self.create_deck1()
@@ -12,6 +12,7 @@ class Player:
         self._temp_deck = []
         self._wins = wins
         self._times_played = times_played
+        self._percentage = percentage
 
     def activate_intelligence_2(self):
         max = 0
@@ -155,3 +156,6 @@ class Player:
 
     def set_times_played(self, times_played):
         self._times_played = times_played
+
+    def get_percentage(self):
+        return self._percentage

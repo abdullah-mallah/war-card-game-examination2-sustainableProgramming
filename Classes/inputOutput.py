@@ -71,8 +71,9 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            times = "times played: " + name[2]
-            print(f"name: {name[0]:10}| wins: {name[1]:10} | {times}")
+            times = " | times played: " + name[2]
+            percentage = " | winning's percentage: " + name[3]
+            print(f"name: {name[0]:10}| wins: {name[1]:10}{times}{percentage}")
 
     # Print out the choice of level 2
     def lvl2(self):

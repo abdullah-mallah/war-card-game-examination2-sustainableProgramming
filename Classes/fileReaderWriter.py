@@ -12,10 +12,11 @@ class FileRW:
         return name_found
 
     # Store the players name and score in a text file
-    def store_name(self, name, wins, times_played):
+    def store_name(self, name, wins, times_played, percentage):
         if not self.check_name(name):
             with open(self._file_name, 'a') as wf:
-                wf.write(name + "," + wins + "," + times_played + "\n")
+                wf.write(name + "," + wins + "," + times_played + "," +
+                         percentage + "\n")
 
     # Retrieving names and score from the text file
     def get_names(self):
@@ -43,19 +44,21 @@ class FileRW:
                 name_details = line.rstrip('\n').split(',')
         return name_details
 
-    def update_wins(self, name, wins, times_played):
+    def update_wins(self, name, wins, times_played, percentage):
         names = self.get_names()
         for line in names:
             if line[0] == name:
                 line[1] = (str)(wins)  # Updating the score of the player
                 line[2] = (str)(times_played)
+                percentage = (wins / times_played) * 100
+                line[3] = (str)(percentage)
         self.store_names(names)
 
     def store_names(self, names):
         with open(self._file_name, "w") as wf:
             for name in names:
                 wf.write(name[0] + "," + name[1] +
-                         "," + name[2] + "\n")
+                         "," + name[2] + "," + name[3] + "\n")
 
     def uppdate_name(self, old_name, new_name):
         names = self.get_names()
@@ -75,3 +78,9 @@ class FileRW:
         for line in names:
             if line[0] == name:
                 return line[2]
+
+    def get_percentage(self, name):
+        names = self.get_names()
+        for line in names:
+            if line[0] == name:
+                return line[3]

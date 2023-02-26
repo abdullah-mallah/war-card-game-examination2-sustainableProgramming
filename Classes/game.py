@@ -306,24 +306,30 @@ class Game:
                      fileRW: FileRW):
         wins1 = (int)(player1.get_wins())
         times_played1 = (int)(player1.get_times_played())
+        percentage1 = (float)(player1.get_percentage())
         wins2 = (int)(player2.get_wins())
         times_played2 = (int)(player2.get_times_played())
+        percentage2 = (float)(player2.get_percentage())
         if turn == 1:
             fileRW.update_wins(player1.get_name(),
                                wins1 + 1,
-                               times_played1 + 1)
+                               times_played1 + 1,
+                               percentage1)
             if player2.get_name() != "computer":
                 fileRW.update_wins(player2.get_name(),
                                    wins2,
-                                   times_played2 + 1)
+                                   times_played2 + 1,
+                                   percentage2)
         else:
             if player2.get_name() != "computer":
                 fileRW.update_wins(player2.get_name(),
                                    wins2 + 1,
-                                   times_played2 + 1)
+                                   times_played2 + 1,
+                                   percentage2)
             fileRW.update_wins(player1.get_name(),
                                wins1,
-                               times_played1 + 1)
+                               times_played1 + 1,
+                               percentage1)
 
     def flip_once_auto(self, player1: Player, player2: Player):
         war_card1 = 0

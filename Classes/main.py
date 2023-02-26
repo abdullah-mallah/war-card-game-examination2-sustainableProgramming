@@ -18,18 +18,20 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
     if name1_exist:
         player1 = Player(inputOutput.get_name1(), 1,
                          fileRW.get_wins(inputOutput.get_name1()),
-                         fileRW.get_times_played(inputOutput.get_name1()))
+                         fileRW.get_times_played(inputOutput.get_name1()),
+                         fileRW.get_percentage(inputOutput.get_name1()))
     else:
-        player1 = Player(inputOutput.get_name1(), 1, "0", "0")
-        fileRW.store_name(inputOutput.get_name1(), "0", "0")
+        player1 = Player(inputOutput.get_name1(), 1, "0", "0", "0")
+        fileRW.store_name(inputOutput.get_name1(), "0", "0", "0")
     if name2_exist:
         player2 = Player(inputOutput.get_name2(), 2,
                          fileRW.get_wins(inputOutput.get_name1()),
-                         fileRW.get_times_played(inputOutput.get_name1()))
+                         fileRW.get_times_played(inputOutput.get_name1()),
+                         fileRW.get_percentage(inputOutput.get_name1()))
     else:
-        player2 = Player(inputOutput.get_name2(), 2, "0", "0")
+        player2 = Player(inputOutput.get_name2(), 2, "0", "0", "0")
         if inputOutput.get_name2() != "computer":
-            fileRW.store_name(inputOutput.get_name2(), "0", "0")
+            fileRW.store_name(inputOutput.get_name2(), "0", "0", "0")
     return player1, player2
 
 
