@@ -42,7 +42,7 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
 def main():
     inputOutput = Input_output()
     game = Game()
-    fileRW = FileRW("C:\\Users\\a\\Desktop\\war-card-game-examination2-sustainableProgramming\\Classes\\score.txt")
+    fileRW = FileRW("C:\\Users\\Hampus\\OneDrive - Högskolan Kristianstad\\Skrivbordet\\HKR\\VT-23\\DA115B - Methods for Sustainable Programming\\Examination 2\\war-card-game-examination2-sustainableProgramming\\Classes\\score.txt")
     choice = ""
     while choice != "1":
         choice = activate_lvl1(inputOutput)

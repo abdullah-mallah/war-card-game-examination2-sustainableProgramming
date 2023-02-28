@@ -34,7 +34,7 @@ class Game:
         war_card2 = 0
         for turn in range(1, 3):
             if turn == 1:
-                print("player 1 turn")
+                print("Player 1 turn")
                 while inputOutput.get_choice_lvl_game != "1":
                     inputOutput.lvl_game_brain()
                     if inputOutput.get_choice_lvl_game() == "1":
@@ -63,7 +63,7 @@ class Game:
                 elif war_card1 == 0 and war_card2 == 0:
                     break
             else:
-                print("player 2 turn")
+                print("Player 2 turn")
                 if player2.get_name() == "computer":
                     war_card2 = self.flipp_once(player2)
                     inputOutput.lvl_game_flipped_card(war_card2,
@@ -131,13 +131,13 @@ class Game:
     def add_cards_to_round_winner(self, player1: Player, player2: Player,
                                   player_won_round):
         if player_won_round == 1:
-            print("player 1 won this round")
+            print("Player 1 won this round")
             player1.add_temp_list_to_deck(player1.get_temp(),
                                           player2.get_temp())
             player1.empty_temp()
             player2.empty_temp()
         else:
-            print("player 2 won this round")
+            print("Player 2 won this round")
             player2.add_temp_list_to_deck(player1.get_temp(),
                                           player2.get_temp())
             player1.empty_temp()
@@ -346,7 +346,7 @@ class Game:
                 war_card1 = self.flipp_once(player1)
             else:
                 war_card2 = self.flipp_once(player2)
-        print("filped once")
+        print("Flipped once")
         return war_card1, war_card2
 
     def flip_4_auto(self, player1: Player, player2: Player):
@@ -358,5 +358,5 @@ class Game:
                     war_card1 = self.flipp_once(player1)
                 else:
                     war_card2 = self.flipp_once(player2)
-        print("filped 4 times")
+        print("Flipped 4 times")
         return war_card1, war_card2
