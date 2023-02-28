@@ -1,6 +1,7 @@
 from player import Player
 from inputOutput import Input_output
 from fileReaderWriter import FileRW
+import random
 
 
 class Game:
@@ -100,10 +101,16 @@ class Game:
 
     def steal_1_card(self, player1: Player, player2: Player, turn):
         card = []
+        length = 0
+        rand_num = 0
         if turn == 1:
-            card = player2.steal_1_card()
+            length = player2.count_cards() - 1
+            rand_num = random.randint(0, length)
+            card = player2.steal_1_card(rand_num)
             player1.add_1_card(card)
         else:
+            length = player2.count_cards() - 1
+            rand_num = random.randint(0, length)
             card = player1.steal_1_card()
             player2.add_1_card(card)
 

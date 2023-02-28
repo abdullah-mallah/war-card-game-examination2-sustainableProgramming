@@ -17,12 +17,12 @@ class Player:
     def activate_intelligence_2(self):
         max = 0
         index = -1
-        for card in self._deck:
+        for index_card, card in enumerate(self._deck):
             if card[1] > max:
                 max = card[1]
-                index = self._deck.index(card)
+                index = index_card
         self._deck.insert(0, self._deck[index])
-        del self._deck[index]
+        del self._deck[index + 1]
 
     def activate_intelligence_3(self):
         self.activate_intelligence_2()
@@ -36,20 +36,18 @@ class Player:
                 max = card[1]
                 index = self._deck.index(card)
         self._deck.insert(1, self._deck[index])
-        del self._deck[index]
+        del self._deck[index + 1]
 
     # Creating a deck for player 1
     def create_deck1(self):
         deck = []
         deck = self.create_deck_clubs() + self.create_deck_diamonds()
-        random.shuffle(deck)
         return deck
 
     # Creating a deck for player 2
     def create_deck2(self):
         deck = []
         deck = self.create_deck_hearts() + self.create_deck_spades()
-        random.shuffle(deck)
         return deck
 
     # Creating a club deck
@@ -103,7 +101,10 @@ class Player:
 
     # Add the cards on the floor to the player's hand
     def add_temp_list_to_deck(self, temp_list1, temp_list2):
-        self._deck += temp_list1 + temp_list2
+        for card in temp_list1:
+            self._deck.append(card)
+        for card1 in temp_list2:
+            self._deck.append(card1)
 
     # Empty the cards on the floor
     def empty_temp(self):
@@ -112,11 +113,10 @@ class Player:
     def count_cards(self):
         return len(self._deck)
 
-    def steal_1_card(self):
-        card = []
-        length = len(self._deck) - 1
-        rand_num = random.randint(0, length)
-        card += self._deck[rand_num]
+    def steal_1_card(self, rand_num):
+        card = self._deck[rand_num]
+        #  length = len(self._deck) - 1
+        #  rand_num = random.randint(0, length)
         del self._deck[rand_num]
         return card
 
@@ -131,7 +131,7 @@ class Player:
                 max = card[1]
                 index = self._deck.index(card)
         self._deck.insert(0, self._deck[index])
-        del self._deck[index]
+        del self._deck[index + 1]
 
     # Return the cards of the player
     def get_card_list(self):
@@ -159,3 +159,12 @@ class Player:
 
     def get_percentage(self):
         return self._percentage
+
+    def set_deck(self, deck):
+        self._deck = deck
+
+    def set_temp_deck(self, temp_deck):
+        self._temp_deck = temp_deck
+
+    def shuffel(self):
+        random.shuffle(self._deck)
