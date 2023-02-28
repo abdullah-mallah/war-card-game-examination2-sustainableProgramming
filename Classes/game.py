@@ -172,7 +172,7 @@ class Game:
                 if flipp_4_times:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
-                    if cards_in1 >= 4 and cards_in2 >= 4:
+                    if cards_in1 > 4 and cards_in2 > 4:
                         war_card1, war_card2 = self.flip_4_times(player1,
                                                                  player2,
                                                                  inputOutput)
@@ -185,13 +185,13 @@ class Game:
                             flipp_4_times = False
                         else:
                             continue
-                    elif cards_in1 < 4:
+                    elif cards_in1 <= 4:
                         round_finished = True
                         flipp_4_times = False
                         winner2_found = True
                         inputOutput.congrats(2)
                         self.uppdate_wins(2, player1, player2, fileRW)
-                    elif cards_in2 < 4:
+                    elif cards_in2 <= 4:
                         round_finished = True
                         flipp_4_times = False
                         winner1_found = True
@@ -255,7 +255,7 @@ class Game:
                 if flipp_4_times:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
-                    if cards_in1 >= 4 and cards_in2 >= 4:
+                    if cards_in1 > 4 and cards_in2 > 4:
                         war_card1, war_card2 = self.flip_4_auto(player1,
                                                                 player2)
                         player_won_round = self.chk_player_won_round(war_card1,
@@ -267,14 +267,14 @@ class Game:
                             flipp_4_times = False
                         else:
                             continue
-                    elif cards_in1 < 4:
+                    elif cards_in1 <= 4:
                         round_finished = True
                         flipp_4_times = False
                         winner2_found = True
                         inputOutput.congrats(2)
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
-                    elif cards_in2 < 4:
+                    elif cards_in2 <= 4:
                         round_finished = True
                         flipp_4_times = False
                         winner1_found = True
@@ -288,7 +288,7 @@ class Game:
                     card_in2_found = self.check_card(player2)
                     if card_in1_found and card_in2_found:
                         war_card1, war_card2 = self.flip_once_auto(player1,
-                                                                   player2)
+                                                                   player2)  #  add inputoutput
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)

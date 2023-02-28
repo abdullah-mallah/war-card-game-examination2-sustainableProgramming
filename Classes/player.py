@@ -85,7 +85,7 @@ class Player:
     # Check if the player has cards in his hand
     def check_cards_left(self, cards_list):
         cards_left = False
-        if len(cards_list) > 0:
+        if len(cards_list) > 1:
             cards_left = True
         return cards_left
 
