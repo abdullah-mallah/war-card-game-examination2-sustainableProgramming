@@ -1,14 +1,10 @@
-import random
 
 
 class Player:
 
-    def __init__(self, name, player, wins, times_played, percentage):
+    def __init__(self, name, wins, times_played, percentage):
         self._name = name
-        if player == 1:
-            self._deck = self.create_deck1()
-        else:
-            self._deck = self.create_deck2()
+        self._deck = []
         self._temp_deck = []
         self._wins = wins
         self._times_played = times_played
@@ -37,50 +33,6 @@ class Player:
                 index = self._deck.index(card)
         self._deck.insert(1, self._deck[index])
         del self._deck[index + 1]
-
-    # Creating a deck for player 1
-    def create_deck1(self):
-        deck = []
-        deck = self.create_deck_clubs() + self.create_deck_diamonds()
-        return deck
-
-    # Creating a deck for player 2
-    def create_deck2(self):
-        deck = []
-        deck = self.create_deck_hearts() + self.create_deck_spades()
-        return deck
-
-    # Creating a club deck
-    def create_deck_clubs(self):
-        type = "clubs"
-        deck_clubs = []
-        for number in range(1, 14):
-            deck_clubs.append([type, number])
-        return deck_clubs
-
-    # Creating a diamond deck
-    def create_deck_diamonds(self):
-        type = "diamonds"
-        deck_diamond = []
-        for number in range(1, 14):
-            deck_diamond.append([type, number])
-        return deck_diamond
-
-    # Creating a heart deck
-    def create_deck_hearts(self):
-        type = "hearts"
-        deck_hearts = []
-        for number in range(1, 14):
-            deck_hearts.append([type, number])
-        return deck_hearts
-
-    # Creating a spade deck
-    def create_deck_spades(self):
-        type = "spades"
-        deck_spades = []
-        for number in range(1, 14):
-            deck_spades.append([type, number])
-        return deck_spades
 
     # Check if the player has cards in his hand
     def check_cards_left(self, cards_list):
@@ -165,6 +117,3 @@ class Player:
 
     def set_temp_deck(self, temp_deck):
         self._temp_deck = temp_deck
-
-    def shuffel(self):
-        random.shuffle(self._deck)
