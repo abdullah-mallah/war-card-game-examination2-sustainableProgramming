@@ -22,22 +22,19 @@ class Player:
 
     def activate_intelligence_3(self):
         self.activate_intelligence_2()
-        max = 13
-        max_counter = 0
+        max = 0
         index = -1
-        for card in self._deck:
-            if card[1] == max and max_counter == 0:
-                max_counter += 1
-            elif card[1] == max and max_counter == 1:
+        for index_card, card in enumerate(self._deck):
+            if card[1] > max:
                 max = card[1]
-                index = self._deck.index(card)
+                index = index_card
         self._deck.insert(1, self._deck[index])
         del self._deck[index + 1]
 
     # Check if the player has cards in his hand
     def check_cards_left(self, cards_list):
         cards_left = False
-        if len(cards_list) > 1:
+        if len(cards_list) > 0:
             cards_left = True
         return cards_left
 

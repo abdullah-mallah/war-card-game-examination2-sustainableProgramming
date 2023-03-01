@@ -121,12 +121,19 @@ class Game:
             player2.increase_chance()
 
     def chk_player_won_round(self, war_card1, war_card2):
-        if war_card1 > war_card2:
+        if war_card1 == 1 and war_card2 != 1:
             return 1
-        elif war_card1 < war_card2:
+        elif war_card2 == 1 and war_card1 != 1:
             return 2
-        else:
+        elif war_card1 == 1 and war_card2 == 1:
             return 0
+        else:
+            if war_card1 > war_card2:
+                return 1
+            elif war_card1 < war_card2:
+                return 2
+            else:
+                return 0
 
     def add_cards_to_round_winner(self, player1: Player, player2: Player,
                                   player_won_round):
@@ -186,16 +193,10 @@ class Game:
                         else:
                             continue
                     if cards_in1 < 4:
-                        round_finished = True
-                        flipp_4_times = False
-                        winner2_found = True
                         inputOutput.congrats(2)
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     if cards_in2 < 4:
-                        round_finished = True
-                        flipp_4_times = False
-                        winner1_found = True
                         inputOutput.congrats(1)
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
@@ -228,15 +229,13 @@ class Game:
                             round_finished = True
                         else:
                             flipp_4_times = True
-                    card_in1_found = self.check_card(player1)
-                    card_in2_found = self.check_card(player2)
-                    if not card_in1_found:
-                        winner2_found = True
+                    cards_in1 = self.count_cards(player1)
+                    cards_in2 = self.count_cards(player2)
+                    if cards_in1 < 1:
                         inputOutput.congrats(2)
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
-                    if not card_in2_found:
-                        winner1_found = True
+                    if cards_in2 < 1:
                         inputOutput.congrats(1)
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
@@ -277,16 +276,10 @@ class Game:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
                     if cards_in1 < 4:
-                        round_finished = True
-                        flipp_4_times = False
-                        winner2_found = True
                         inputOutput.congrats(2)
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     if cards_in2 < 4:
-                        round_finished = True
-                        flipp_4_times = False
-                        winner1_found = True
                         inputOutput.congrats(1)
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
@@ -308,15 +301,13 @@ class Game:
                             round_finished = True
                         else:
                             flipp_4_times = True
-                    card_in1_found = self.check_card(player1)
-                    card_in2_found = self.check_card(player2)
-                    if not card_in1_found:
-                        winner2_found = True
+                    cards_in1 = self.count_cards(player1)
+                    cards_in2 = self.count_cards(player2)
+                    if cards_in1 < 1:
                         inputOutput.congrats(2)
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
-                    if not card_in2_found:
-                        winner1_found = True
+                    if cards_in2 < 1:
                         inputOutput.congrats(1)
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
@@ -358,13 +349,13 @@ class Game:
             if turn == 1:
                 war_card1 = self.flipp_once(player1)
                 inputOutput.flipped_card(war_card1,
-                                                  player1.get_name(),
-                                                  self.count_cards(player1))
+                                         player1.get_name(),
+                                         self.count_cards(player1))
             else:
                 war_card2 = self.flipp_once(player2)
                 inputOutput.flipped_card(war_card2,
-                                                  player2.get_name(),
-                                                  self.count_cards(player2))
+                                         player2.get_name(),
+                                         self.count_cards(player2))
         print("Flipped once")
         return war_card1, war_card2
 
