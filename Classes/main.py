@@ -42,7 +42,8 @@ def create_deck_spades():
 
 
 def creat_deck():
-    deck = create_deck_clubs() + create_deck_diamonds() + create_deck_hearts() + create_deck_spades()
+    deck = create_deck_clubs() + create_deck_diamonds() + create_deck_hearts()\
+        + create_deck_spades()
     random.shuffle(deck)
     middle = 26
     first_half = deck[:middle]

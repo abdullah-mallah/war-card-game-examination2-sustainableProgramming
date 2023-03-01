@@ -140,7 +140,7 @@ class Input_output:
                 print("Invalid choice. Please choose either 1, 2, or 3.")
 
     # Print out flipped card of level Game
-    def lvl_game_flipped_card(self, war_card, name, cards_left):
+    def flipped_card(self, war_card, name, cards_left):
         war_cards = (str)(war_card) + " war card"
         card_left = (str)(cards_left) + " cards left"
         print(f"Players name is: {name:10}, {war_cards} and {card_left}")

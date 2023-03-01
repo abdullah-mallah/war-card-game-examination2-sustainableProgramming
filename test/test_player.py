@@ -61,7 +61,7 @@ class TestPlayer(unittest.TestCase):
                       ["clubs", 5], ["clubs", 6], ["clubs", 7], ["clubs", 8],
                       ["clubs", 9], ["clubs", 10], ["clubs", 11],
                       ["clubs", 12], ["clubs", 13]]
-        self.assertEqual(Player.create_deck_clubs(self), test_clubs)
+        self.assertEqual(Player.create_deck_club(self), test_clubs)
 
     def test_create_deck_diamonds(self):
         test_diamonds = [["diamonds", 1], ["diamonds", 2], ["diamonds", 3],

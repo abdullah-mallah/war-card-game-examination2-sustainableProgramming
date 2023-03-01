@@ -20,12 +20,12 @@ class Game:
                 else:
                     war_card2 = self.flipp_once(player2)
             if loop == 3:
-                inputOutput.lvl_game_flipped_card(war_card1,
-                                                  player1.get_name(),
-                                                  self.count_cards(player1))
-                inputOutput.lvl_game_flipped_card(war_card2,
-                                                  player2.get_name(),
-                                                  self.count_cards(player2))
+                inputOutput.flipped_card(war_card1,
+                                         player1.get_name(),
+                                         self.count_cards(player1))
+                inputOutput.flipped_card(war_card2,
+                                         player2.get_name(),
+                                         self.count_cards(player2))
         return war_card1, war_card2
 
     def flip_once(self, player1: Player, player2: Player,
@@ -39,9 +39,9 @@ class Game:
                     inputOutput.lvl_game_brain()
                     if inputOutput.get_choice_lvl_game() == "1":
                         war_card1 = self.flipp_once(player1)
-                        inputOutput.lvl_game_flipped_card(war_card1,
-                                                          player1.get_name(),
-                                                          self.count_cards(player1))
+                        inputOutput.flipped_card(war_card1,
+                                                 player1.get_name(),
+                                                 self.count_cards(player1))
                         break
                     elif inputOutput.get_choice_lvl_game() == "2":
                         if inputOutput.get_hack_type() == "1":
@@ -66,17 +66,17 @@ class Game:
                 print("Player 2 turn")
                 if player2.get_name() == "computer":
                     war_card2 = self.flipp_once(player2)
-                    inputOutput.lvl_game_flipped_card(war_card2,
-                                                      player2.get_name(),
-                                                      self.count_cards(player2))
+                    inputOutput.flipped_card(war_card2,
+                                             player2.get_name(),
+                                             self.count_cards(player2))
                 else:
                     while inputOutput.get_choice_lvl_game != "1":
                         inputOutput.lvl_game_brain()
                         if inputOutput.get_choice_lvl_game() == "1":
                             war_card2 = self.flipp_once(player2)
-                            inputOutput.lvl_game_flipped_card(war_card2,
-                                                              player1.get_name(),
-                                                              self.count_cards(player2))
+                            inputOutput.flipped_card(war_card2,
+                                                     player1.get_name(),
+                                                     self.count_cards(player2))
                             break
                         elif inputOutput.get_choice_lvl_game() == "2":
                             if inputOutput.get_hack_type() == "1":
@@ -120,7 +120,7 @@ class Game:
         else:
             player2.increase_chance()
 
-    def chk_player_won_round(self, war_card1, war_card2):  # problem here after using hack and 4 flipps
+    def chk_player_won_round(self, war_card1, war_card2):
         if war_card1 > war_card2:
             return 1
         elif war_card1 < war_card2:
@@ -210,11 +210,12 @@ class Game:
                         if war_card1 == 0 and war_card2 == 0:
                             self.continue_untill_the_end(player1, player2,
                                                          inputOutput, fileRW)
-                        if war_card1 == 0 and war_card2 == 14:  # after using hack
+                        # after using hack
+                        if war_card1 == 0 and war_card2 == 14:
                             winner2_found = True
                             inputOutput.congrats(2)
                             self.uppdate_wins(2, player1, player2, fileRW)
-                        if war_card1 == 14 and war_card2 == 0:  # after using hack
+                        if war_card1 == 14 and war_card2 == 0:
                             winner1_found = True
                             inputOutput.congrats(1)
                             self.uppdate_wins(1, player1, player2, fileRW)
@@ -273,6 +274,8 @@ class Game:
                             flipp_4_times = False
                         else:
                             continue
+                    cards_in1 = self.count_cards(player1)
+                    cards_in2 = self.count_cards(player2)
                     if cards_in1 < 4:
                         round_finished = True
                         flipp_4_times = False
@@ -295,7 +298,7 @@ class Game:
                     if card_in1_found and card_in2_found:
                         war_card1, war_card2 = self.flip_once_auto(player1,
                                                                    player2,
-                                                                   inputOutput)  #  add inputoutput
+                                                                   inputOutput)
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
@@ -347,18 +350,19 @@ class Game:
                                times_played1 + 1,
                                percentage1)
 
-    def flip_once_auto(self, player1: Player, player2: Player, inputOutput: Input_output):
+    def flip_once_auto(self, player1: Player, player2: Player,
+                       inputOutput: Input_output):
         war_card1 = 0
         war_card2 = 0
         for turn in range(1, 3):
             if turn == 1:
                 war_card1 = self.flipp_once(player1)
-                inputOutput.lvl_game_flipped_card(war_card1,
+                inputOutput.flipped_card(war_card1,
                                                   player1.get_name(),
                                                   self.count_cards(player1))
             else:
                 war_card2 = self.flipp_once(player2)
-                inputOutput.lvl_game_flipped_card(war_card2,
+                inputOutput.flipped_card(war_card2,
                                                   player2.get_name(),
                                                   self.count_cards(player2))
         print("Flipped once")
