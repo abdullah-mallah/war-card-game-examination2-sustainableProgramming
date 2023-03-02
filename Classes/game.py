@@ -75,7 +75,7 @@ class Game:
                         if inputOutput.get_choice_lvl_game() == "1":
                             war_card2 = self.flipp_once(player2)
                             inputOutput.flipped_card(war_card2,
-                                                     player1.get_name(),
+                                                     player2.get_name(),
                                                      self.count_cards(player2))
                             break
                         elif inputOutput.get_choice_lvl_game() == "2":
