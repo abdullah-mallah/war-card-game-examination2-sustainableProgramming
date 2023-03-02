@@ -71,9 +71,9 @@ class Input_output:
     # Print list of names
     def print_names(self, names):
         for name in names:
-            times = " | times played: " + name[2]
-            percentage = " | winning's percentage: " + name[3]
-            print(f"name: {name[0]:10}| wins: {name[1]:10}{times}{percentage}")
+            times = " | Times played: " + name[2]
+            percentage = " | Winning's percentage: " + name[3]
+            print(f"Name: {name[0]:10}| Wins: {name[1]:10}{times}{percentage}")
 
     # Print out the choice of level 2
     def lvl2(self):
@@ -134,19 +134,19 @@ class Input_output:
     def lvl_game_input(self):
         while True:
             self._choice_lvl_game = input("Choice: ")
-            if self._choice_lvl_game in ["1", "2", "3"]:
+            if self._choice_lvl_game in ["1", "2", "3", "4"]:
                 break
             else:
-                print("Invalid choice. Please choose either 1, 2, or 3.")
+                print("Invalid choice. Please choose either 1, 2, 3, or 4.")
 
     # Print out flipped card of level Game
     def flipped_card(self, war_card, name, cards_left):
-        war_cards = (str)(war_card) + " war card"
+        war_cards = "flipped war card " + (str)(war_card)
         card_left = (str)(cards_left) + " cards left"
-        print(f"Players name is: {name:10}, {war_cards} and {card_left}")
+        print(f"\nPlayer: {name:10} - {war_cards} and has {card_left}")
 
     def congrats(self, turn):
-        print(f"Congrats to player {turn}! You have won!")
+        print(f"Congrats to player {turn}! You have won the game!")
 
     # Getters
     def get_choice_lvl1(self):
