@@ -63,10 +63,10 @@ class Input_output:
                 print("Invalid choice. Please choose 1, 2, 3 or 4.")
 
     def read_old_name(self):
-        self._old_name = input("Old name: ")
+        self._old_name = self.get_input("Old name: ")
 
     def read_new_name(self):
-        self._new_name = input("New name: ")
+        self._new_name = self.get_input("New name: ")
 
     # Print list of names
     def print_names(self, names):
@@ -92,12 +92,12 @@ class Input_output:
 
     # Read the name of one player
     def one_name_input(self):
-        self._name_player1 = input("Name of the first player: ")
+        self._name_player1 = self.get_input("Name of the first player: ")
 
     # Read the names of two players
     def two_names_input(self):
-        self._name_player1 = input("Name of the first player: ")
-        self._name_player2 = input("Name of the second player: ")
+        self._name_player1 = self.get_input("Name of the first player: ")
+        self._name_player2 = self.get_input("Name of the second player: ")
 
     # This method is responsible printing out choices of lvl game
     # and to read input from user when playing the game
@@ -175,3 +175,6 @@ class Input_output:
 
     def get_new_name(self):
         return self._new_name.lower()
+
+    def get_input(text):
+        return input(text)
