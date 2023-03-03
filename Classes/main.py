@@ -3,6 +3,7 @@ from inputOutput import Input_output
 from fileReaderWriter import FileRW
 from game import Game
 import random
+import sys
 
 
 # Creating a club deck
@@ -88,27 +89,32 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
 
 
 def main():
-    inputOutput = Input_output()
-    game = Game()
-    fileRW = FileRW("C:\\Users\\hampu\\OneDrive - Högskolan Kristianstad\\Skrivbordet\\HKR\\VT-23\\DA115B - Methods for Sustainable Programming\\Examination 2\\V10\\war-card-game-examination2-sustainableProgramming\\Classes\\score.txt")
-    choice = ""
-    while choice != "1":
-        choice = activate_lvl1(inputOutput)
-        if choice == "1":  # the player choose to play
-            player1, player2 = activate_lvl2(inputOutput, fileRW)
-            if inputOutput.get_lvl_intelligence() == "2":
-                player2.activate_intelligence_2()
-            elif inputOutput.get_lvl_intelligence() == "3":
-                player2.activate_intelligence_3()
-            game.activate_lvl_game(player1, player2, inputOutput, fileRW)
-        elif choice == "2":  # the player choose to see scores
-            names = fileRW.get_names()
-            inputOutput.print_names(names)
-        elif choice == "3":  # the player choose to change his name
-            fileRW.uppdate_name(inputOutput.get_old_name(),
-                                inputOutput.get_new_name())
-        elif choice == "4":  # the player wanted to exit
-            break
+    try:
+        file_path_1 = sys.argv[1]
+        inputOutput = Input_output()
+        game = Game()
+        fileRW = FileRW(file_path_1)
+        choice = ""
+        while choice != "1":
+            choice = activate_lvl1(inputOutput)
+            if choice == "1":  # the player choose to play
+                player1, player2 = activate_lvl2(inputOutput, fileRW)
+                if inputOutput.get_lvl_intelligence() == "2":
+                    player2.activate_intelligence_2()
+                elif inputOutput.get_lvl_intelligence() == "3":
+                    player2.activate_intelligence_3()
+                game.activate_lvl_game(player1, player2, inputOutput,
+                                       fileRW)
+            elif choice == "2":  # the player choose to see scores
+                names = fileRW.get_names()
+                inputOutput.print_names(names)
+            elif choice == "3":  # the player choose to change his name
+                fileRW.uppdate_name(inputOutput.get_old_name(),
+                                    inputOutput.get_new_name())
+            elif choice == "4":  # the player wanted to exit
+                break
+    except FileNotFoundError:
+        print('Error: The file given as arguments are not valid.')
 
 
 if __name__ == "__main__":

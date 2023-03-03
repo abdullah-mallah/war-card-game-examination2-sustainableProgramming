@@ -9,6 +9,7 @@ class Player:
         self._wins = wins
         self._times_played = times_played
         self._percentage = percentage
+        self._chance_index = 0
 
     def activate_intelligence_2(self):
         max = 0
@@ -25,9 +26,12 @@ class Player:
         max = 0
         index = -1
         for index_card, card in enumerate(self._deck):
-            if card[1] > max:
-                max = card[1]
-                index = index_card
+            if index_card == 0:
+                continue
+            else:
+                if card[1] > max:
+                    max = card[1]
+                    index = index_card
         self._deck.insert(1, self._deck[index])
         del self._deck[index + 1]
 
@@ -74,13 +78,19 @@ class Player:
 
     def increase_chance(self):
         max = 0
-        index = -1
-        for card in self._deck:
-            if card[1] > max:
-                max = card[1]
-                index = self._deck.index(card)
-        self._deck.insert(0, self._deck[index])
-        del self._deck[index + 1]
+        indexx = -1
+        if self._chance_index < len(self._deck):
+            for index, card in enumerate(self._deck):
+                if index >= self._chance_index:
+                    if card[1] > max:
+                        max = card[1]
+                        indexx = self._deck.index(card)
+            self._deck.insert(self._chance_index, self._deck[indexx])
+            self._chance_index += 1
+            del self._deck[indexx + 1]
+        else:
+            self._chance_index = 0
+            self.increase_chance()
 
     # Return the cards of the player
     def get_card_list(self):
