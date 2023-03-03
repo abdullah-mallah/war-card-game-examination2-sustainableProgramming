@@ -90,10 +90,10 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
 
 def main():
     try:
-        file_path_1 = sys.argv[1]
+        file_name = sys.argv[1]
         inputOutput = Input_output()
         game = Game()
-        fileRW = FileRW(file_path_1)
+        fileRW = FileRW(file_name)
         choice = ""
         while choice != "1":
             choice = activate_lvl1(inputOutput)
