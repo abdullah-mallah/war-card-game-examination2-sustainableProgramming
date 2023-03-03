@@ -78,7 +78,6 @@ class Test_player(unittest.TestCase):
         self.player2.set_deck(deck)
         temp_list1 = [["spades", 1]]
         temp_list2 = [["spades", 2]]
-        self.player2.set_deck(deck)
         deck2 = [["spades", 3], ["spades", 4], ["spades", 1], ["spades", 2]]
         self.player2.add_temp_list_to_deck(temp_list1, temp_list2)
         self.assertEqual(self.player2.get_card_list(), deck2)
