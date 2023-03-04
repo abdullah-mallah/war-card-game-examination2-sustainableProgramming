@@ -109,8 +109,8 @@ class Input_output:
             self.hack_input()
 
     def print_hacks(self):
-        print("1 - Steal one card from opponent")
-        print("2 - Put the highest card in your deck at the beginning")
+        print("1) Steal one card from opponent")
+        print("2) Put the highest card in your deck at the beginning")
 
     # Reads the choice of hack type from user
     # with added error handling
@@ -124,10 +124,10 @@ class Input_output:
 
     # Print out the choices of level Game
     def lvl_game_choices(self):
-        print("1 - Show card")
-        print("2 - Use hack")
-        print("3 - Continue automatically until a winner is found")
-        print("4 - Exit")
+        print("1) Flip card")
+        print("2) Use hack")
+        print("3) Continue automatically until a winner is found")
+        print("4) Exit")
 
     # Read the choice of level Game from user
     # with added error handling
