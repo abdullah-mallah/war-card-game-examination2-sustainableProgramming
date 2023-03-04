@@ -176,5 +176,5 @@ class Input_output:
     def get_new_name(self):
         return self._new_name.lower()
 
-    def get_input(text):
+    def get_input(self, text):
         return input(text)
