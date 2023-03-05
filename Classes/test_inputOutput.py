@@ -8,13 +8,6 @@ class Test_inputoutput(unittest.TestCase):
     def setUp(self):
         self.inOut = Input_output()
 
-    # def test_brain(self):
-    #     self.inOut.brain()
-    #     if self.inOut.get_choice_lvl2() == "1":
-    #         self.assertEqual(self.inOut.get_choice_lvl2(), "1")
-    #     else:
-    #         self.assertEqual(self.inOut.get_choice_lvl2(), "2")
-
     def test_lvl1(self):
         with unittest.mock.patch('builtins.print') as mock_print:
             self.inOut.lvl1()
@@ -63,29 +56,39 @@ class Test_inputoutput(unittest.TestCase):
                                    "deck at the beginning"),
             ])
 
-    def lvl_game_choices(self):
+    def test_lvl_game_choices(self):
         with unittest.mock.patch('builtins.print') as mock_print:
             self.inOut.lvl_game_choices()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) Flip card"),
                 unittest.mock.call("2) Use hack"),
                 unittest.mock.call("3) Continue automatically until "
-                                   " asda winner is found"),
+                                   "a winner is found"),
                 unittest.mock.call("4) Exit"),
             ])
 
     def test_flipped_card(self):
-        war_card = 10
-        name = "Test"
-        cards_left = 20
+        war_card = "10"
+        name = "Test name"
+        cards_left = 10
+
         with unittest.mock.patch('builtins.print') as mock_print:
             self.inOut.flipped_card(war_card, name, cards_left)
-            expected_output = (f"\nPlayer: {name:10} - flipped war card "
-                               f"{war_card} and has {cards_left} cards left")
-            mock_print.assert_called_once_with(expected_output)
+            mock_print.assert_has_calls([
+                unittest.mock.call(f"\nPlayer: {name:10} - flipped war card "
+                                   f"{war_card} and has {cards_left} cards "
+                                   f"left"),
+            ])
 
     def test_congrats(self):
-        pass
+        turn = 1
+
+        with unittest.mock.patch('builtins.print') as mock_print:
+            self.inOut.congrats(turn)
+            mock_print.assert_has_calls([
+                unittest.mock.call(f"Congrats to player {turn}! "
+                                   f"You have won the game!")
+            ])
 
     def test_get_choice_lvl1(self):
         self.inOut._choice_lvl1 = "1"
