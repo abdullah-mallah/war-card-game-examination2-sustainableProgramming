@@ -193,11 +193,11 @@ class Game:
                         else:
                             continue
                     if cards_in1 < 4:
-                        inputOutput.congrats(2)
+                        inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     if cards_in2 < 4:
-                        inputOutput.congrats(1)
+                        inputOutput.congrats(player1.get_name())
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
 
@@ -214,11 +214,11 @@ class Game:
                         # after using hack
                         if war_card1 == 0 and war_card2 == 14:
                             winner2_found = True
-                            inputOutput.congrats(2)
+                            inputOutput.congrats(player2.get_name())
                             self.uppdate_wins(2, player1, player2, fileRW)
                         if war_card1 == 14 and war_card2 == 0:
                             winner1_found = True
-                            inputOutput.congrats(1)
+                            inputOutput.congrats(player1.get_name())
                             self.uppdate_wins(1, player1, player2, fileRW)
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
@@ -232,11 +232,11 @@ class Game:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
                     if cards_in1 < 1:
-                        inputOutput.congrats(2)
+                        inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     if cards_in2 < 1:
-                        inputOutput.congrats(1)
+                        inputOutput.congrats(player1.get_name())
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
 
@@ -276,11 +276,11 @@ class Game:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
                     if cards_in1 < 4:
-                        inputOutput.congrats(2)
+                        inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     if cards_in2 < 4:
-                        inputOutput.congrats(1)
+                        inputOutput.congrats(player1.get_name())
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
 
@@ -304,11 +304,11 @@ class Game:
                     cards_in1 = self.count_cards(player1)
                     cards_in2 = self.count_cards(player2)
                     if cards_in1 < 1:
-                        inputOutput.congrats(2)
+                        inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
                         exit()
                     if cards_in2 < 1:
-                        inputOutput.congrats(1)
+                        inputOutput.congrats(player1.get_name())
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
 

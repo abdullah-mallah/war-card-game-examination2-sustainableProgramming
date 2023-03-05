@@ -144,8 +144,8 @@ class Input_output:
         print(f"\nPlayer: {name:10} - flipped war card {war_card} "
               f"and has {cards_left} cards left")
 
-    def congrats(self, turn):
-        print(f"Congrats to player {turn}! You have won the game!")
+    def congrats(self, name):
+        print(f"Congrats to {name}! You have won the game!")
 
     # Getters
     def get_choice_lvl1(self):
