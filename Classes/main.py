@@ -61,7 +61,7 @@ def activate_lvl1(inputOutput: Input_output):
 def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
     first_half, second_half = creat_deck()
     # will take the choice vs_computer or not and the name of player/s
-    inputOutput.brain()
+    inputOutput.lvl2_brain()
     name1_exist = fileRW.check_name(inputOutput.get_name1())
     name2_exist = fileRW.check_name(inputOutput.get_name2())
     if name1_exist:
@@ -107,7 +107,7 @@ def main():
                                        fileRW)
             elif choice == "2":  # the player choose to see scores
                 names = fileRW.get_names()
-                inputOutput.print_names(names)
+                inputOutput.scores(names)
             elif choice == "3":  # the player choose to change his name
                 fileRW.uppdate_name(inputOutput.get_old_name(),
                                     inputOutput.get_new_name())

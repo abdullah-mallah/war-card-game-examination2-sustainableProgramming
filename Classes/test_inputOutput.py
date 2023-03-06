@@ -10,7 +10,7 @@ class Test_inputoutput(unittest.TestCase):
 
     def test_lvl1(self):
         with unittest.mock.patch('builtins.print') as mock_print:
-            self.inOut.lvl1()
+            self.inOut.print_lvl1_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) Play the game"),
                 unittest.mock.call("2) See player details"),
@@ -20,7 +20,7 @@ class Test_inputoutput(unittest.TestCase):
 
     def test_lvl2(self):
         with unittest.mock.patch('builtins.print') as mock_print:
-            self.inOut.lvl2()
+            self.inOut.print_lvl2_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) VS. Computer"),
                 unittest.mock.call("2) Two players"),
@@ -58,7 +58,7 @@ class Test_inputoutput(unittest.TestCase):
 
     def test_lvl_game_choices(self):
         with unittest.mock.patch('builtins.print') as mock_print:
-            self.inOut.lvl_game_choices()
+            self.inOut.lvl_game_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) Flip card"),
                 unittest.mock.call("2) Use hack"),
