@@ -81,12 +81,12 @@ class Test_inputoutput(unittest.TestCase):
             ])
 
     def test_congrats(self):
-        turn = 1
+        name = "Test name"
 
         with unittest.mock.patch('builtins.print') as mock_print:
-            self.inOut.congrats(turn)
+            self.inOut.congrats(name)
             mock_print.assert_has_calls([
-                unittest.mock.call(f"Congrats to player {turn}! "
+                unittest.mock.call(f"Congrats to {name}! "
                                    f"You have won the game!")
             ])
 
