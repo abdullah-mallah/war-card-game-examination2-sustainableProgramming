@@ -75,7 +75,7 @@ class Test_inputoutput(unittest.TestCase):
         with unittest.mock.patch('builtins.print') as mock_print:
             self.inOut.flipped_card(war_card, name, cards_left)
             mock_print.assert_has_calls([
-                unittest.mock.call(f"\nPlayer: {name:10} - flipped war card "
+                unittest.mock.call(f"\nPlayer: {name:9} - flipped war card "
                                    f"{war_card} and has {cards_left} cards "
                                    f"left"),
             ])
