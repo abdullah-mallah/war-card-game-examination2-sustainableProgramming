@@ -232,7 +232,3 @@ class Input_output:
     # Setters
     def set_choice_lvl_game(self, choice):
         self._choice_lvl_game = choice
-
-    def aaa(self):
-        pass
- 

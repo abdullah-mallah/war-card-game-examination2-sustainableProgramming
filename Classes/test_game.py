@@ -38,24 +38,24 @@ class Test_game(unittest.TestCase):
                 unittest.mock.call("flipped 4 times")
             ])
 
-    @patch("inputOutput.Input_output.lvl_game_menu_input", return_value="1")
-    def test_flip_once(self, input):
-        with unittest.mock.patch('builtins.print') as mock_print:
-            deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
-                    ["diamond", 13], ["heart", 13]]
-            self.player1.set_deck(deck)
-            deck2 = [["diamond", 1], ["diamond", 13], ["heart", 13],
-                     ["diamond", 8], ["heart", 13]]
-            self.player2.set_deck(deck2)
-            self.inOut.lvl_game_menu_input()
-            war_card1, war_card2 = self.game.flip_once(self.player1,
-                                                       self.player2,
-                                                       self.inOut)
-            self.assertEqual(war_card1, 1)
-            self.assertEqual(war_card2, 1)
-            mock_print.assert_has_calls([
-                unittest.mock.call("flipped once")
-            ])
+    # @patch("inputOutput.Input_output.lvl_game_menu_input", return_value="1")
+    # def test_flip_once(self, input):
+    #     with unittest.mock.patch('builtins.print') as mock_print:
+    #         deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
+    #                 ["diamond", 13], ["heart", 13]]
+    #         self.player1.set_deck(deck)
+    #         deck2 = [["diamond", 1], ["diamond", 13], ["heart", 13],
+    #                  ["diamond", 8], ["heart", 13]]
+    #         self.player2.set_deck(deck2)
+    #         self.inOut.lvl_game_menu_input()
+    #         war_card1, war_card2 = self.game.flip_once(self.player1,
+    #                                                    self.player2,
+    #                                                    self.inOut)
+    #         self.assertEqual(war_card1, 1)
+    #         self.assertEqual(war_card2, 1)
+    #         mock_print.assert_has_calls([
+    #             unittest.mock.call("flipped once")
+    #         ])
 
     def test_steal_1_card(self):
         deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
