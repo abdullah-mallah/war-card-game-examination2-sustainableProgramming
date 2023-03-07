@@ -7,7 +7,7 @@ import unittest
 from player import Player
 
 
-class Test_player(unittest.TestCase):
+class TestPlayer(unittest.TestCase):
     """Responsible for tests of class Player."""
 
     def setUp(self):
@@ -110,22 +110,22 @@ class Test_player(unittest.TestCase):
 
     def test_get_name(self):
         """Test the get_name method of the Player class.."""
-        self.player1._name = "test_name"
+        self.player1.set_name("test_name")
         self.assertEqual(self.player1.get_name(), "test_name")
 
     def test_get_wins(self):
         """Test the get_wins method of the Player class."""
-        self.player1._wins = "5"
+        self.player1.set_wins("5")
         self.assertEqual(self.player1.get_wins(), "5")
 
     def test_get_percentage(self):
         """Test the get_percentage method of the Player class."""
-        self.player1._percentage = "6"
+        self.player1.set_percentage("6")
         self.assertEqual(self.player1.get_percentage(), "6")
 
     def test_get_times_played(self):
         """Test the get_times_played method of the Player class."""
-        self.player1._times_played = "7"
+        self.player1.set_times_played("7")
         self.assertEqual(self.player1.get_times_played(), "7")
 
     def test_set_times_played(self):
@@ -149,6 +149,16 @@ class Test_player(unittest.TestCase):
         deck = [["spades", 3], ["spades", 4]]
         self.player1.set_temp_deck(deck)
         self.assertEqual(self.player1.get_temp(), deck)
+
+    def test_set_name(self):
+        """Test the set_wins method of the Player class."""
+        self.player1.set_name("test_name")
+        self.assertEqual(self.player1.get_name(), "test_name")
+
+    def test_set_percentage(self):
+        """Test the set_wins method of the Player class."""
+        self.player1.set_percentage("50.0")
+        self.assertEqual(self.player1.get_percentage(), "50.0")
 
 
 if __name__ == "__main__":

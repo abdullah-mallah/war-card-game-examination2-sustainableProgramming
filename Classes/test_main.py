@@ -7,7 +7,7 @@ import unittest
 import main
 
 
-class Test_main(unittest.TestCase):
+class TestMain(unittest.TestCase):
     """Responsible for tests of methods in main.py."""
 
     def test_create_deck_clubs(self):

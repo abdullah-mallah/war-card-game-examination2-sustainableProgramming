@@ -20,11 +20,11 @@ class Player:
 
     def activate_intelligence_2(self):
         """Responsible of cards order of computer player."""
-        max = 0
+        max_num = 0
         index = -1
         for index_card, card in enumerate(self._deck):
-            if card[1] > max:
-                max = card[1]
+            if card[1] > max_num:
+                max_num = card[1]
                 index = index_card
         self._deck.insert(0, self._deck[index])
         del self._deck[index + 1]
@@ -32,14 +32,14 @@ class Player:
     def activate_intelligence_3(self):
         """Responsible for cards order of computer player."""
         self.activate_intelligence_2()
-        max = 0
+        max_num = 0
         index = -1
         for index_card, card in enumerate(self._deck):
             if index_card == 0:
                 continue
             else:
-                if card[1] > max:
-                    max = card[1]
+                if card[1] > max_num:
+                    max_num = card[1]
                     index = index_card
         self._deck.insert(1, self._deck[index])
         del self._deck[index + 1]
@@ -93,7 +93,7 @@ class Player:
 
     def increase_chance(self):
         """Responsible of cards order of human player."""
-        max = 0
+        max_num = 0
         indexx = -1
         max_found = False
         if self._chance_index < len(self._deck):
@@ -101,7 +101,7 @@ class Player:
                 for index, card in enumerate(self._deck):
                     if index >= self._chance_index:
                         if card[1] == 1:
-                            max = card[1]
+                            max_num = card[1]
                             indexx = self._deck.index(card)
                             self._deck.insert(self._chance_index,
                                               self._deck[indexx])
@@ -110,11 +110,11 @@ class Player:
                             max_found = True
                             break
                         else:
-                            if card[1] > max:
-                                max = card[1]
+                            if card[1] > max_num:
+                                max_num = card[1]
                                 indexx = self._deck.index(card)
                 max_found = True
-            if max != 1:
+            if max_num != 1:
                 self._deck.insert(self._chance_index, self._deck[indexx])
                 self._chance_index += 1
                 del self._deck[indexx + 1]
@@ -177,3 +177,19 @@ class Player:
         Set variable _temp_deck to the parameter's list.
         """
         self._temp_deck = temp_deck
+
+    def set_name(self, name):
+        """
+        Take a string.
+
+        Set variable _name to the string parameter.
+        """
+        self._name = name
+
+    def set_percentage(self, percentage):
+        """
+        Take a string.
+
+        Set variable _percentage to the string parameter.
+        """
+        self._percentage = percentage

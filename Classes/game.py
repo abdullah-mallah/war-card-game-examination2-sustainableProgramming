@@ -4,17 +4,18 @@ This script is used to display the needed menues and options during the game.
 Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 """
 
+import random
+import sys
 from player import Player
 from inputOutput import Input_output
 from fileReaderWriter import FileRW
-import random
 
 
 class Game:
     """Responsible for playing the game."""
 
     def flip_4_times(self, player1: Player, player2: Player,
-                     inputOutput: Input_output):
+                     input_output: Input_output):
         """
         Take 2 objects of the type Player and 1 of the type Input_output.
 
@@ -29,17 +30,17 @@ class Game:
                 else:
                     war_card2 = self.flipp_once(player2)
             if loop == 3:
-                inputOutput.flipped_card(war_card1,
-                                         player1.get_name(),
-                                         player1.count_cards())
-                inputOutput.flipped_card(war_card2,
-                                         player2.get_name(),
-                                         player2.count_cards())
+                input_output.flipped_card(war_card1,
+                                          player1.get_name(),
+                                          player1.count_cards())
+                input_output.flipped_card(war_card2,
+                                          player2.get_name(),
+                                          player2.count_cards())
         print("flipped 4 times")
         return war_card1, war_card2
 
     def flip_once(self, player1: Player, player2: Player,
-                  inputOutput: Input_output):
+                  input_output: Input_output):
         """
         Take 2 objects of the type Player and 1 of the type Input_output.
 
@@ -50,17 +51,17 @@ class Game:
         for turn in range(1, 3):
             if turn == 1:
                 print(f"\n{player1.get_name().capitalize()}'s turn")
-                inputOutput.set_choice_game_menu("")
-                while inputOutput.get_choice_game_menu() != "1":
-                    inputOutput.game_menu_controller()
-                    if inputOutput.get_choice_game_menu() == "1":
+                input_output.set_choice_game_menu("")
+                while input_output.get_choice_game_menu() != "1":
+                    input_output.game_menu_controller()
+                    if input_output.get_choice_game_menu() == "1":
                         war_card1 = self.flipp_once(player1)
-                        inputOutput.flipped_card(war_card1,
-                                                 player1.get_name(),
-                                                 player1.count_cards())
+                        input_output.flipped_card(war_card1,
+                                                  player1.get_name(),
+                                                  player1.count_cards())
                         break
-                    elif inputOutput.get_choice_game_menu() == "2":
-                        if inputOutput.get_hack_type() == "1":
+                    elif input_output.get_choice_game_menu() == "2":
+                        if input_output.get_hack_type() == "1":
                             self.steal_1_card(player1, player2, turn)
                             if player2.count_cards() == 0:
                                 war_card1 = 14
@@ -68,12 +69,12 @@ class Game:
                                 break
                         else:
                             self.increase_chance(player1, player2, turn)
-                    elif inputOutput.get_choice_game_menu() == "3":
+                    elif input_output.get_choice_game_menu() == "3":
                         war_card1 = 0
                         war_card2 = 0
                         break
                     else:
-                        exit()
+                        sys.exit()
                 if war_card1 == 14 and war_card2 == 0:
                     break
                 elif war_card1 == 0 and war_card2 == 0:
@@ -82,21 +83,21 @@ class Game:
                 print(f"\n{player2.get_name().capitalize()}'s turn")
                 if player2.get_name() == "computer":
                     war_card2 = self.flipp_once(player2)
-                    inputOutput.flipped_card(war_card2,
-                                             player2.get_name(),
-                                             player2.count_cards())
+                    input_output.flipped_card(war_card2,
+                                              player2.get_name(),
+                                              player2.count_cards())
                 else:
-                    inputOutput.set_choice_game_menu("")
-                    while inputOutput.get_choice_game_menu != "1":
-                        inputOutput.game_menu_controller()
-                        if inputOutput.get_choice_game_menu() == "1":
+                    input_output.set_choice_game_menu("")
+                    while input_output.get_choice_game_menu != "1":
+                        input_output.game_menu_controller()
+                        if input_output.get_choice_game_menu() == "1":
                             war_card2 = self.flipp_once(player2)
-                            inputOutput.flipped_card(war_card2,
-                                                     player2.get_name(),
-                                                     player2.count_cards())
+                            input_output.flipped_card(war_card2,
+                                                      player2.get_name(),
+                                                      player2.count_cards())
                             break
-                        elif inputOutput.get_choice_game_menu() == "2":
-                            if inputOutput.get_hack_type() == "1":
+                        elif input_output.get_choice_game_menu() == "2":
+                            if input_output.get_hack_type() == "1":
                                 self.steal_1_card(player1, player2, turn)
                                 if player1.count_cards() == 0:
                                     war_card1 = 0
@@ -104,12 +105,12 @@ class Game:
                                     break
                             else:
                                 self.increase_chance(player1, player2, turn)
-                        elif inputOutput.get_choice_game_menu() == "3":
+                        elif input_output.get_choice_game_menu() == "3":
                             war_card1 = 0
                             war_card2 = 0
                             break
                         else:
-                            exit()
+                            sys.exit()
                     if war_card1 == 0 and war_card2 == 14:
                         break
                     elif war_card1 == 0 and war_card2 == 0:
@@ -198,7 +199,7 @@ class Game:
         return war_card
 
     def activate_lvl_game(self, player1: Player, player2: Player,
-                          inputOutput: Input_output, fileRW: FileRW):
+                          input_output: Input_output, file_r_w: FileRW):
         """
         Take two objects of the type Player.
 
@@ -225,7 +226,7 @@ class Game:
                     if cards_in1 >= 4 and cards_in2 >= 4:
                         war_card1, war_card2 = self.flip_4_times(player1,
                                                                  player2,
-                                                                 inputOutput)
+                                                                 input_output)
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
                         if player_won_round != 0:
@@ -236,32 +237,33 @@ class Game:
                         else:
                             continue
                     if cards_in1 < 4:
-                        inputOutput.congrats(player2.get_name())
-                        self.uppdate_wins(2, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player2.get_name())
+                        self.uppdate_wins(2, player1, player2, file_r_w)
+                        sys.exit()
                     if cards_in2 < 4:
-                        inputOutput.congrats(player1.get_name())
-                        self.uppdate_wins(1, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player1.get_name())
+                        self.uppdate_wins(1, player1, player2, file_r_w)
+                        sys.exit()
                 else:
                     # loop on turns of players to show thier hands
                     cards_in1 = player1.count_cards()
                     cards_in2 = player2.count_cards()
                     if cards_in1 >= 1 and cards_in2 >= 1:
                         war_card1, war_card2 = self.flip_once(player1, player2,
-                                                              inputOutput)
+                                                              input_output)
                         if war_card1 == 0 and war_card2 == 0:
                             self.continue_untill_the_end(player1, player2,
-                                                         inputOutput, fileRW)
+                                                         input_output,
+                                                         file_r_w)
                         # after using hack
                         if war_card1 == 0 and war_card2 == 14:
-                            inputOutput.congrats(player2.get_name())
-                            self.uppdate_wins(2, player1, player2, fileRW)
-                            exit()
+                            input_output.congrats(player2.get_name())
+                            self.uppdate_wins(2, player1, player2, file_r_w)
+                            sys.exit()
                         if war_card1 == 14 and war_card2 == 0:
-                            inputOutput.congrats(player1.get_name())
-                            self.uppdate_wins(1, player1, player2, fileRW)
-                            exit()
+                            input_output.congrats(player1.get_name())
+                            self.uppdate_wins(1, player1, player2, file_r_w)
+                            sys.exit()
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
@@ -272,16 +274,16 @@ class Game:
                         else:
                             flipp_4_times = True
                     if cards_in1 < 1:
-                        inputOutput.congrats(player2.get_name())
-                        self.uppdate_wins(2, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player2.get_name())
+                        self.uppdate_wins(2, player1, player2, file_r_w)
+                        sys.exit()
                     if cards_in2 < 1:
-                        inputOutput.congrats(player1.get_name())
-                        self.uppdate_wins(1, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player1.get_name())
+                        self.uppdate_wins(1, player1, player2, file_r_w)
+                        sys.exit()
 
     def continue_untill_the_end(self, player1: Player, player2: Player,
-                                inputOutput: Input_output, fileRW: FileRW):
+                                input_output: Input_output, file_r_w: FileRW):
         """
         Take two objects of the type Player.
 
@@ -308,7 +310,7 @@ class Game:
                     if cards_in1 >= 4 and cards_in2 >= 4:
                         war_card1, war_card2 = self.flip_4_times(player1,
                                                                  player2,
-                                                                 inputOutput)
+                                                                 input_output)
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
                         if player_won_round != 0:
@@ -319,21 +321,21 @@ class Game:
                         else:
                             continue
                     if cards_in1 < 4:
-                        inputOutput.congrats(player2.get_name())
-                        self.uppdate_wins(2, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player2.get_name())
+                        self.uppdate_wins(2, player1, player2, file_r_w)
+                        sys.exit()
                     if cards_in2 < 4:
-                        inputOutput.congrats(player1.get_name())
-                        self.uppdate_wins(1, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player1.get_name())
+                        self.uppdate_wins(1, player1, player2, file_r_w)
+                        sys.exit()
                 else:
                     # loop on turns of players to show thier hands
                     cards_in1 = player1.count_cards()
                     cards_in2 = player2.count_cards()
                     if cards_in1 >= 1 and cards_in2 >= 1:
-                        war_card1, war_card2 = self.flip_once_auto(player1,
-                                                                   player2,
-                                                                   inputOutput)
+                        war_card1, war_card2 = self.flip_1_auto(player1,
+                                                                player2,
+                                                                input_output)
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
@@ -344,16 +346,16 @@ class Game:
                         else:
                             flipp_4_times = True
                     if cards_in1 < 1:
-                        inputOutput.congrats(player2.get_name())
-                        self.uppdate_wins(2, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player2.get_name())
+                        self.uppdate_wins(2, player1, player2, file_r_w)
+                        sys.exit()
                     if cards_in2 < 1:
-                        inputOutput.congrats(player1.get_name())
-                        self.uppdate_wins(1, player1, player2, fileRW)
-                        exit()
+                        input_output.congrats(player1.get_name())
+                        self.uppdate_wins(1, player1, player2, file_r_w)
+                        sys.exit()
 
     def uppdate_wins(self, turn, player1: Player, player2: Player,
-                     fileRW: FileRW):
+                     file_r_w: FileRW):
         """
         Take one integer.
 
@@ -368,28 +370,28 @@ class Game:
         times_played2 = (int)(player2.get_times_played())
         percentage2 = (float)(player2.get_percentage())
         if turn == 1:
-            fileRW.update_wins(player1.get_name(),
-                               wins1 + 1,
-                               times_played1 + 1,
-                               percentage1)
+            file_r_w.update_wins(player1.get_name(),
+                                 wins1 + 1,
+                                 times_played1 + 1,
+                                 percentage1)
             if player2.get_name() != "computer":
-                fileRW.update_wins(player2.get_name(),
-                                   wins2,
-                                   times_played2 + 1,
-                                   percentage2)
+                file_r_w.update_wins(player2.get_name(),
+                                     wins2,
+                                     times_played2 + 1,
+                                     percentage2)
         else:
             if player2.get_name() != "computer":
-                fileRW.update_wins(player2.get_name(),
-                                   wins2 + 1,
-                                   times_played2 + 1,
-                                   percentage2)
-            fileRW.update_wins(player1.get_name(),
-                               wins1,
-                               times_played1 + 1,
-                               percentage1)
+                file_r_w.update_wins(player2.get_name(),
+                                     wins2 + 1,
+                                     times_played2 + 1,
+                                     percentage2)
+            file_r_w.update_wins(player1.get_name(),
+                                 wins1,
+                                 times_played1 + 1,
+                                 percentage1)
 
-    def flip_once_auto(self, player1: Player, player2: Player,
-                       inputOutput: Input_output):
+    def flip_1_auto(self, player1: Player, player2: Player,
+                    input_output: Input_output):
         """
         Take two objects of the type Player.
 
@@ -402,14 +404,14 @@ class Game:
             if turn == 1:
                 print(f"\n{player1.get_name().capitalize()}'s turn")
                 war_card1 = self.flipp_once(player1)
-                inputOutput.flipped_card(war_card1,
-                                         player1.get_name(),
-                                         player1.count_cards())
+                input_output.flipped_card(war_card1,
+                                          player1.get_name(),
+                                          player1.count_cards())
             else:
                 print(f"\n{player2.get_name().capitalize()}'s turn")
                 war_card2 = self.flipp_once(player2)
-                inputOutput.flipped_card(war_card2,
-                                         player2.get_name(),
-                                         player2.count_cards())
+                input_output.flipped_card(war_card2,
+                                          player2.get_name(),
+                                          player2.count_cards())
         print("Flipped once")
         return war_card1, war_card2

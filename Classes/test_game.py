@@ -3,24 +3,22 @@ This script is used to test class Game.
 
 Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 """
+import unittest
 from player import Player
 from inputOutput import Input_output
 from unittest.mock import patch
-from fileReaderWriter import FileRW
 from game import Game
-import unittest
 
 
-class Test_game(unittest.TestCase):
+class TestGame(unittest.TestCase):
     """Responsible for tests of class Game."""
 
     def setUp(self):
         """Create objects before each test method."""
         self.player1 = Player("player1", "0", "0", "0.0")
         self.player2 = Player("player2", "0", "0", "0.0")
-        self.inOut = Input_output()
+        self.in_out = Input_output()
         self.game = Game()
-        self.fileRW = FileRW("score.txt")
 
     def test_flip_4_times(self):
         """Test the method to check the 4'th flipped card's number."""
@@ -33,13 +31,13 @@ class Test_game(unittest.TestCase):
             self.player2.set_deck(deck2)
             war_card1, war_card2 = self.game.flip_4_times(self.player1,
                                                           self.player2,
-                                                          self.inOut)
-            self.inOut.flipped_card(war_card1,
-                                    self.player1.get_name(),
-                                    self.player1.count_cards())
-            self.inOut.flipped_card(war_card1,
-                                    self.player2.get_name(),
-                                    self.player2.count_cards())
+                                                          self.in_out)
+            self.in_out.flipped_card(war_card1,
+                                     self.player1.get_name(),
+                                     self.player1.count_cards())
+            self.in_out.flipped_card(war_card1,
+                                     self.player2.get_name(),
+                                     self.player2.count_cards())
             self.assertEqual(war_card1, 13)
             self.assertEqual(war_card2, 8)
             mock_print.assert_has_calls([
@@ -118,7 +116,7 @@ class Test_game(unittest.TestCase):
             self.player1.set_deck(deck)
             deck2 = [["diamond", 2]]
             self.player2.set_deck(deck2)
-            self.game.flip_once_auto(self.player1, self.player2, self.inOut)
+            self.game.flip_1_auto(self.player1, self.player2, self.in_out)
             test_list = [["diamond", 13], ["heart", 13], ["spades", 13],
                          ["diamonds", 11], ["diamond", 1], ["diamond", 2]]
             self.game.add_cards_to_round_winner(self.player1, self.player2, 1)
@@ -143,7 +141,7 @@ class Test_game(unittest.TestCase):
             self.player1.set_deck(deck)
             deck2 = [["diamond", 2]]
             self.player2.set_deck(deck2)
-            self.game.flip_once_auto(self.player1, self.player2, self.inOut)
+            self.game.flip_1_auto(self.player1, self.player2, self.in_out)
             test_list = [["diamond", 13], ["heart", 13], ["spades", 13],
                          ["diamonds", 11], ["diamond", 1], ["diamond", 2]]
             self.game.add_cards_to_round_winner(self.player1, self.player2, 1)
