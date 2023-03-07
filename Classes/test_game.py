@@ -3,7 +3,6 @@ from inputOutput import Input_output
 from unittest.mock import patch
 from fileReaderWriter import FileRW
 from game import Game
-import random
 import unittest
 
 
