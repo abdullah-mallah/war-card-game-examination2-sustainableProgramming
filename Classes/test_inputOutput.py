@@ -1,3 +1,8 @@
+"""
+This script is used to test class Input_output.
+
+Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
+"""
 import unittest
 from unittest.mock import patch
 from inputOutput import Input_output

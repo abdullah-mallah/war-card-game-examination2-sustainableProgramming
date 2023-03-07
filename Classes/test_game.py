@@ -1,3 +1,8 @@
+"""
+This script is used to test class Game.
+
+Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
+"""
 from player import Player
 from inputOutput import Input_output
 from unittest.mock import patch
@@ -7,8 +12,10 @@ import unittest
 
 
 class Test_game(unittest.TestCase):
+    """Responsible for tests of class Game."""
 
     def setUp(self):
+        """Create objects before each test method."""
         self.player1 = Player("player1", "0", "0", "0.0")
         self.player2 = Player("player2", "0", "0", "0.0")
         self.inOut = Input_output()
@@ -16,6 +23,7 @@ class Test_game(unittest.TestCase):
         self.fileRW = FileRW("score.txt")
 
     def test_flip_4_times(self):
+        """Test the method to check the 4'th flipped card's number."""
         with unittest.mock.patch('builtins.print') as mock_print:
             deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
                     ["diamond", 13], ["heart", 13]]
@@ -58,6 +66,7 @@ class Test_game(unittest.TestCase):
     #         ])
 
     def test_steal_1_card(self):
+        """Test the method to check player's deck stealing one card."""
         deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
                 ["diamond", 13], ["heart", 13]]
         self.player1.set_deck(deck)
@@ -79,6 +88,7 @@ class Test_game(unittest.TestCase):
         self.assertEqual(self.player2.get_card_list(), test_list2)
 
     def test_increase_chance(self):
+        """Test the method to check the order of player's deck."""
         deck = [["diamond", 1], ["diamond", 10], ["heart", 13],
                 ["spades", 13], ["diamonds", 11]]
         self.player1.set_deck(deck)
@@ -92,6 +102,7 @@ class Test_game(unittest.TestCase):
         self.assertEqual(self.player1.get_card_list(), test_1)
 
     def test_chk_player_won_round(self):
+        """Test the method to check which player won the war flipp."""
         self.assertEqual(self.game.chk_player_won_round(1, 2), 1)
         self.assertEqual(self.game.chk_player_won_round(1, 1), 0)
         self.assertEqual(self.game.chk_player_won_round(2, 1), 2)
@@ -100,6 +111,7 @@ class Test_game(unittest.TestCase):
         self.assertEqual(self.game.chk_player_won_round(3, 3), 0)
 
     def test_add_cards_to_round_winner(self):
+        """Test the method to check deck of a player after add cards to it."""
         with unittest.mock.patch('builtins.print') as mock_print:
             deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
                     ["spades", 13], ["diamonds", 11]]
@@ -117,12 +129,14 @@ class Test_game(unittest.TestCase):
             self.assertEqual(self.player1.get_card_list(), test_list)
 
     def test_flipp_once(self):
+        """Test the method to check the flipped card from the player's deck."""
         deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
                 ["spades", 13], ["diamonds", 11]]
         self.player1.set_deck(deck)
         self.assertEqual(self.game.flipp_once(self.player1), 1)
 
     def test_flip_once_auto(self):
+        """Test the method to check player's deck after a flipp."""
         with unittest.mock.patch('builtins.print') as mock_print:
             deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
                     ["spades", 13], ["diamonds", 11]]

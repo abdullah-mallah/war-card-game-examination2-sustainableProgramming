@@ -1,3 +1,10 @@
+"""
+This script is used to print to user and read from the user.
+
+Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
+"""
+
+
 class Input_output:
     """A class for handling input and output operations in the game."""
 
