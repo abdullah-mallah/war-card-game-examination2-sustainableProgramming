@@ -13,7 +13,7 @@ class Input_output:
         self._new_name = ""
         self._difficulty_level = ""
 
-    def menu_menu_controller(self):
+    def main_menu_controller(self):
         """
         Control the flow of the main menu.
 
