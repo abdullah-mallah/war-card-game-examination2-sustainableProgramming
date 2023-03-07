@@ -11,6 +11,11 @@ class Input_output:
         self._lvl_intelligence = ""
 
     def lvl1_brain(self):
+        """
+        This method prints out level 1 choices, read choice from the user,
+        if choice was 3, it will read old and new name and it will return
+        the choice
+        """
         self.print_lvl1_menu()
         self.lvl1_menu_input()
         if self._choice_lvl1 == "3":
@@ -40,15 +45,23 @@ class Input_output:
                 print("Invalid choice. Please choose 1, 2, 3 or 4.")
 
     def read_old_name(self):
+        """
+        This method reads the old name from the user
+        """
         self._old_name = self.get_input("Old name: ")
 
     def read_new_name(self):
+        """
+        This method reads the new name from the user
+        """
         self._new_name = self.get_input("New name: ")
 
-    # This will print out level 1 choices
-    # Read choice of level 1
-    # and decide if its going to read the name of one player or two players
     def lvl2_brain(self):
+        """
+        This method prints out level 2 choices, read choice from the user
+        and it decides according to the choice if it will read one name
+        or two names
+        """
         self.print_lvl2_menu()
         self.lvl2_menu_input()
         if self._choice_lvl2 == "1":
@@ -118,24 +131,34 @@ class Input_output:
             else:
                 print("Invalid choice. Please choose either 1, 2, 3, or 4.")
 
-    # Print list of names
     def scores(self, names):
+        """
+        This method takes a list of names and prints out each name
+        """
         for name in names:
             print(f"Name: {name[0]:10} | Wins: {name[1]:10} | Times played: "
                   f"{name[2]} | Winning's percentage: {name[3]} %")
 
-    # Read the name of one player
     def one_name_input(self):
+        """
+        This method reads the name of first player from the user and
+        stores it in a private variable
+        """
         self._name_player1 = self.get_input("Name of the first player: ")
 
-    # Read the names of two players
     def two_names_input(self):
+        """
+        This method reads the name of first and second player from the user and
+        stores them in private variables
+        """
         self._name_player1 = self.get_input("Name of the first player: ")
         self._name_player2 = self.get_input("Name of the second player: ")
 
-    # This method is responsible printing out choices of lvl game
-    # and to read input from user when playing the game
     def lvl_game_brain(self):
+        """
+        This method prints out choices of level game and reads input
+        from the user when playing the game
+        """
         self.lvl_game_menu()
         self.lvl_game_menu_input()
         if self._choice_lvl_game == "2":
@@ -143,12 +166,16 @@ class Input_output:
             self.hack_input()
 
     def print_hacks(self):
+        """
+        This method prints out choices of hack types
+        """
         print("1) Steal one card from opponent")
         print("2) Put the highest card in your deck at the beginning")
 
-    # Reads the choice of hack type from user
-    # with added error handling
     def hack_input(self):
+        """
+        This method reads the choice of hack type from the user
+        """
         while True:
             self._hack_type = input("Choice: ")
             if self._hack_type == "1" or self._hack_type == "2":
@@ -156,12 +183,19 @@ class Input_output:
             else:
                 print("Invalid choice. Please choose either 1 or 2.")
 
-    # Print out flipped card of level Game
     def flipped_card(self, war_card, name, cards_left):
+        """
+        This method prints out the name of the player, his flipped card and
+        how many cards left in the player hand
+        """
         print(f"\nPlayer: {name.capitalize():9} - flipped war card {war_card} "
               f"and has {cards_left} cards left")
 
     def congrats(self, name):
+        """
+        This method prints out a congratulation massage
+        with the name of the winner
+        """
         print(f"Congrats to {name.capitalize()}! You have won the game!")
 
     # Getters
@@ -194,3 +228,7 @@ class Input_output:
 
     def get_input(self, text):
         return input(text)
+
+    # Setters
+    def set_choice_lvl_game(self, choice):
+        self._choice_lvl_game = choice

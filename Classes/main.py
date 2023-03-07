@@ -52,13 +52,14 @@ def creat_deck():
     return first_half, second_half
 
 
-def activate_lvl1(inputOutput: Input_output):
-    choice = ""
-    choice = inputOutput.lvl1_brain()
-    return choice
-
-
 def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
+    """Takes two objects of two classes in its parameters. It uses the object
+    of class Input_output to print to the user and read choice and store the
+    input from the user. It uses the object of class FileRW to check if the
+    name exists in the text file, if the name exist then it will retrieve the
+    details of that name and use them when the player object is created, if it
+    does not exist then it will store the details of that name in the text
+    file"""
     first_half, second_half = creat_deck()
     # will take the choice vs_computer or not and the name of player/s
     inputOutput.lvl2_brain()
@@ -71,9 +72,9 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
                          fileRW.get_percentage(inputOutput.get_name1()))
         player1.set_deck(first_half)
     else:
-        player1 = Player(inputOutput.get_name1(), "0", "0", "0")
+        player1 = Player(inputOutput.get_name1(), "0", "0", "0.0")
         player1.set_deck(first_half)
-        fileRW.store_name(inputOutput.get_name1(), "0", "0", "0")
+        fileRW.store_name(inputOutput.get_name1(), "0", "0", "0.0")
     if name2_exist:
         player2 = Player(inputOutput.get_name2(),
                          fileRW.get_wins(inputOutput.get_name1()),
@@ -81,10 +82,10 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
                          fileRW.get_percentage(inputOutput.get_name1()))
         player2.set_deck(second_half)
     else:
-        player2 = Player(inputOutput.get_name2(), "0", "0", "0")
+        player2 = Player(inputOutput.get_name2(), "0", "0", "0.0")
         player2.set_deck(second_half)
         if inputOutput.get_name2() != "computer":
-            fileRW.store_name(inputOutput.get_name2(), "0", "0", "0")
+            fileRW.store_name(inputOutput.get_name2(), "0", "0", "0.0")
     return player1, player2
 
 
@@ -96,8 +97,8 @@ def main():
         fileRW = FileRW(file_name)
         choice = ""
         while choice != "1":
-            choice = activate_lvl1(inputOutput)
-            if choice == "1":  # the player choose to play
+            choice = inputOutput.lvl1_brain()
+            if choice == "1":  # The user choose to play
                 player1, player2 = activate_lvl2(inputOutput, fileRW)
                 if inputOutput.get_lvl_intelligence() == "2":
                     player2.activate_intelligence_2()
@@ -105,13 +106,13 @@ def main():
                     player2.activate_intelligence_3()
                 game.activate_lvl_game(player1, player2, inputOutput,
                                        fileRW)
-            elif choice == "2":  # the player choose to see scores
+            elif choice == "2":  # The user choose to print player's details
                 names = fileRW.get_names()
                 inputOutput.scores(names)
-            elif choice == "3":  # the player choose to change his name
+            elif choice == "3":  # The user choose to change a name
                 fileRW.uppdate_name(inputOutput.get_old_name(),
                                     inputOutput.get_new_name())
-            elif choice == "4":  # the player wanted to exit
+            elif choice == "4":  # the use choose to exit
                 break
     except FileNotFoundError:
         print('Error: The file given as arguments are not valid.')

@@ -5,9 +5,6 @@ import random
 
 
 class Game:
-    def count_cards(self, player: Player):
-        cards_in_hand = player.count_cards()
-        return cards_in_hand
 
     def flip_4_times(self, player1: Player, player2: Player,
                      inputOutput: Input_output):
@@ -22,10 +19,11 @@ class Game:
             if loop == 3:
                 inputOutput.flipped_card(war_card1,
                                          player1.get_name(),
-                                         self.count_cards(player1))
+                                         player1.count_cards())
                 inputOutput.flipped_card(war_card2,
                                          player2.get_name(),
-                                         self.count_cards(player2))
+                                         player2.count_cards())
+        print("flipped 4 times")
         return war_card1, war_card2
 
     def flip_once(self, player1: Player, player2: Player,
@@ -35,18 +33,19 @@ class Game:
         for turn in range(1, 3):
             if turn == 1:
                 print(f"\n{player1.get_name().capitalize()}'s turn")
-                while inputOutput.get_choice_lvl_game != "1":
+                inputOutput.set_choice_lvl_game("")
+                while inputOutput.get_choice_lvl_game() != "1":
                     inputOutput.lvl_game_brain()
                     if inputOutput.get_choice_lvl_game() == "1":
                         war_card1 = self.flipp_once(player1)
                         inputOutput.flipped_card(war_card1,
                                                  player1.get_name(),
-                                                 self.count_cards(player1))
+                                                 player1.count_cards())
                         break
                     elif inputOutput.get_choice_lvl_game() == "2":
                         if inputOutput.get_hack_type() == "1":
                             self.steal_1_card(player1, player2, turn)
-                            if self.count_cards(player2) == 0:
+                            if player2.count_cards() == 0:
                                 war_card1 = 14
                                 war_card2 = 0
                                 break
@@ -68,20 +67,21 @@ class Game:
                     war_card2 = self.flipp_once(player2)
                     inputOutput.flipped_card(war_card2,
                                              player2.get_name(),
-                                             self.count_cards(player2))
+                                             player2.count_cards())
                 else:
+                    inputOutput.set_choice_lvl_game("")
                     while inputOutput.get_choice_lvl_game != "1":
                         inputOutput.lvl_game_brain()
                         if inputOutput.get_choice_lvl_game() == "1":
                             war_card2 = self.flipp_once(player2)
                             inputOutput.flipped_card(war_card2,
                                                      player2.get_name(),
-                                                     self.count_cards(player2))
+                                                     player2.count_cards())
                             break
                         elif inputOutput.get_choice_lvl_game() == "2":
                             if inputOutput.get_hack_type() == "1":
                                 self.steal_1_card(player1, player2, turn)
-                                if self.count_cards(player1) == 0:
+                                if player1.count_cards() == 0:
                                     war_card1 = 0
                                     war_card2 = 14
                                     break
@@ -97,6 +97,7 @@ class Game:
                         break
                     elif war_card1 == 0 and war_card2 == 0:
                         break
+        print("flipped once")
         return war_card1, war_card2
 
     def steal_1_card(self, player1: Player, player2: Player, turn):
@@ -109,9 +110,9 @@ class Game:
             card = player2.steal_1_card(rand_num)
             player1.add_1_card(card)
         else:
-            length = player2.count_cards() - 1
+            length = player1.count_cards() - 1
             rand_num = random.randint(0, length)
-            card = player1.steal_1_card()
+            card = player1.steal_1_card(rand_num)
             player2.add_1_card(card)
 
     def increase_chance(self, player1: Player, player2: Player, turn):
@@ -123,7 +124,7 @@ class Game:
     def chk_player_won_round(self, war_card1, war_card2):
         if war_card1 == 1 and war_card2 != 1:
             return 1
-        elif war_card2 == 1 and war_card1 != 1:
+        elif war_card1 != 1 and war_card2 == 1:
             return 2
         elif war_card1 == 1 and war_card2 == 1:
             return 0
@@ -150,18 +151,12 @@ class Game:
             player1.empty_temp()
             player2.empty_temp()
 
-    def check_card(self, player: Player):
-        card_found = player.check_cards_left(player.get_card_list())
-        return card_found
-
     def flipp_once(self, player: Player):
         war_card = player.get_next_card()
         return war_card
 
     def activate_lvl_game(self, player1: Player, player2: Player,
                           inputOutput: Input_output, fileRW: FileRW):
-        card_in1_found = True
-        card_in2_found = True
         cards_in1 = 0
         cards_in2 = 0
         round_finished = False
@@ -177,8 +172,8 @@ class Game:
             round_finished = False
             while not round_finished:
                 if flipp_4_times:
-                    cards_in1 = self.count_cards(player1)
-                    cards_in2 = self.count_cards(player2)
+                    cards_in1 = player1.count_cards()
+                    cards_in2 = player2.count_cards()
                     if cards_in1 >= 4 and cards_in2 >= 4:
                         war_card1, war_card2 = self.flip_4_times(player1,
                                                                  player2,
@@ -203,9 +198,9 @@ class Game:
 
                 else:
                     # loop on turns of players to show thier hands
-                    card_in1_found = self.check_card(player1)
-                    card_in2_found = self.check_card(player2)
-                    if card_in1_found and card_in2_found:
+                    cards_in1 = player1.count_cards()
+                    cards_in2 = player2.count_cards()
+                    if cards_in1 >= 1 and cards_in2 >= 1:
                         war_card1, war_card2 = self.flip_once(player1, player2,
                                                               inputOutput)
                         if war_card1 == 0 and war_card2 == 0:
@@ -213,13 +208,13 @@ class Game:
                                                          inputOutput, fileRW)
                         # after using hack
                         if war_card1 == 0 and war_card2 == 14:
-                            winner2_found = True
                             inputOutput.congrats(player2.get_name())
                             self.uppdate_wins(2, player1, player2, fileRW)
+                            exit()
                         if war_card1 == 14 and war_card2 == 0:
-                            winner1_found = True
                             inputOutput.congrats(player1.get_name())
                             self.uppdate_wins(1, player1, player2, fileRW)
+                            exit()
                         # if the card on floor big
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
@@ -229,8 +224,6 @@ class Game:
                             round_finished = True
                         else:
                             flipp_4_times = True
-                    cards_in1 = self.count_cards(player1)
-                    cards_in2 = self.count_cards(player2)
                     if cards_in1 < 1:
                         inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
@@ -242,8 +235,6 @@ class Game:
 
     def continue_untill_the_end(self, player1: Player, player2: Player,
                                 inputOutput: Input_output, fileRW: FileRW):
-        card_in1_found = True
-        card_in2_found = True
         cards_in1 = 0
         cards_in2 = 0
         round_finished = False
@@ -253,17 +244,17 @@ class Game:
         war_card2 = 0
         player_won_round = 0
         flipp_4_times = False
-
         # will keep looping untill one player has no more cards
         while not winner1_found and not winner2_found:
             round_finished = False
             while not round_finished:
                 if flipp_4_times:
-                    cards_in1 = self.count_cards(player1)
-                    cards_in2 = self.count_cards(player2)
+                    cards_in1 = player1.count_cards()
+                    cards_in2 = player2.count_cards()
                     if cards_in1 >= 4 and cards_in2 >= 4:
-                        war_card1, war_card2 = self.flip_4_auto(player1,
-                                                                player2)
+                        war_card1, war_card2 = self.flip_4_times(player1,
+                                                                 player2,
+                                                                 inputOutput)
                         player_won_round = self.chk_player_won_round(war_card1,
                                                                      war_card2)
                         if player_won_round != 0:
@@ -273,8 +264,6 @@ class Game:
                             flipp_4_times = False
                         else:
                             continue
-                    cards_in1 = self.count_cards(player1)
-                    cards_in2 = self.count_cards(player2)
                     if cards_in1 < 4:
                         inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
@@ -283,12 +272,11 @@ class Game:
                         inputOutput.congrats(player1.get_name())
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
-
                 else:
                     # loop on turns of players to show thier hands
-                    card_in1_found = self.check_card(player1)
-                    card_in2_found = self.check_card(player2)
-                    if card_in1_found and card_in2_found:
+                    cards_in1 = player1.count_cards()
+                    cards_in2 = player2.count_cards()
+                    if cards_in1 >= 1 and cards_in2 >= 1:
                         war_card1, war_card2 = self.flip_once_auto(player1,
                                                                    player2,
                                                                    inputOutput)
@@ -301,8 +289,6 @@ class Game:
                             round_finished = True
                         else:
                             flipp_4_times = True
-                    cards_in1 = self.count_cards(player1)
-                    cards_in2 = self.count_cards(player2)
                     if cards_in1 < 1:
                         inputOutput.congrats(player2.get_name())
                         self.uppdate_wins(2, player1, player2, fileRW)
@@ -347,26 +333,16 @@ class Game:
         war_card2 = 0
         for turn in range(1, 3):
             if turn == 1:
+                print(f"\n{player1.get_name().capitalize()}'s turn")
                 war_card1 = self.flipp_once(player1)
                 inputOutput.flipped_card(war_card1,
                                          player1.get_name(),
-                                         self.count_cards(player1))
+                                         player1.count_cards())
             else:
+                print(f"\n{player2.get_name().capitalize()}'s turn")
                 war_card2 = self.flipp_once(player2)
                 inputOutput.flipped_card(war_card2,
                                          player2.get_name(),
-                                         self.count_cards(player2))
+                                         player2.count_cards())
         print("Flipped once")
-        return war_card1, war_card2
-
-    def flip_4_auto(self, player1: Player, player2: Player):
-        war_card1 = 0
-        war_card2 = 0
-        for loop in range(4):
-            for turn in range(1, 3):
-                if turn == 1:
-                    war_card1 = self.flipp_once(player1)
-                else:
-                    war_card2 = self.flipp_once(player2)
-        print("Flipped 4 times")
         return war_card1, war_card2

@@ -35,13 +35,6 @@ class Player:
         self._deck.insert(1, self._deck[index])
         del self._deck[index + 1]
 
-    # Check if the player has cards in his hand
-    def check_cards_left(self, cards_list):
-        cards_left = False
-        if len(cards_list) > 0:
-            cards_left = True
-        return cards_left
-
     # It will take one card from the hand deck and add it to the floor deck
     def get_next_card(self):
         self._temp_deck.append(self._deck[0])
@@ -51,6 +44,7 @@ class Player:
             # check if the list is in the last place of the floor list
             if card == self._temp_deck[len(self._temp_deck) - 1]:
                 return card[1]  # return only the number of the card
+        self._chance_index = 0
 
     # Add the cards on the floor to the player's hand
     def add_temp_list_to_deck(self, temp_list1, temp_list2):
@@ -79,15 +73,29 @@ class Player:
     def increase_chance(self):
         max = 0
         indexx = -1
+        max_found = False
         if self._chance_index < len(self._deck):
-            for index, card in enumerate(self._deck):
-                if index >= self._chance_index:
-                    if card[1] > max:
-                        max = card[1]
-                        indexx = self._deck.index(card)
-            self._deck.insert(self._chance_index, self._deck[indexx])
-            self._chance_index += 1
-            del self._deck[indexx + 1]
+            while not max_found:
+                for index, card in enumerate(self._deck):
+                    if index >= self._chance_index:
+                        if card[1] == 1:
+                            max = card[1]
+                            indexx = self._deck.index(card)
+                            self._deck.insert(self._chance_index,
+                                              self._deck[indexx])
+                            self._chance_index += 1
+                            del self._deck[indexx + 1]
+                            max_found = True
+                            break
+                        else:
+                            if card[1] > max:
+                                max = card[1]
+                                indexx = self._deck.index(card)
+                max_found = True
+            if max != 1:
+                self._deck.insert(self._chance_index, self._deck[indexx])
+                self._chance_index += 1
+                del self._deck[indexx + 1]
         else:
             self._chance_index = 0
             self.increase_chance()
