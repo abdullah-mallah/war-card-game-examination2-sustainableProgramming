@@ -33,16 +33,16 @@ class Game:
         for turn in range(1, 3):
             if turn == 1:
                 print(f"\n{player1.get_name().capitalize()}'s turn")
-                inputOutput.set_choice_lvl_game("")
-                while inputOutput.get_choice_lvl_game() != "1":
-                    inputOutput.lvl_game_brain()
-                    if inputOutput.get_choice_lvl_game() == "1":
+                inputOutput.set_choice_game_menu("")
+                while inputOutput.get_choice_game_menu() != "1":
+                    inputOutput.game_menu_controller()
+                    if inputOutput.get_choice_game_menu() == "1":
                         war_card1 = self.flipp_once(player1)
                         inputOutput.flipped_card(war_card1,
                                                  player1.get_name(),
                                                  player1.count_cards())
                         break
-                    elif inputOutput.get_choice_lvl_game() == "2":
+                    elif inputOutput.get_choice_game_menu() == "2":
                         if inputOutput.get_hack_type() == "1":
                             self.steal_1_card(player1, player2, turn)
                             if player2.count_cards() == 0:
@@ -51,7 +51,7 @@ class Game:
                                 break
                         else:
                             self.increase_chance(player1, player2, turn)
-                    elif inputOutput.get_choice_lvl_game() == "3":
+                    elif inputOutput.get_choice_game_menu() == "3":
                         war_card1 = 0
                         war_card2 = 0
                         break
@@ -69,16 +69,16 @@ class Game:
                                              player2.get_name(),
                                              player2.count_cards())
                 else:
-                    inputOutput.set_choice_lvl_game("")
-                    while inputOutput.get_choice_lvl_game != "1":
-                        inputOutput.lvl_game_brain()
-                        if inputOutput.get_choice_lvl_game() == "1":
+                    inputOutput.set_choice_game_menu("")
+                    while inputOutput.get_choice_game_menu != "1":
+                        inputOutput.game_menu_controller()
+                        if inputOutput.get_choice_game_menu() == "1":
                             war_card2 = self.flipp_once(player2)
                             inputOutput.flipped_card(war_card2,
                                                      player2.get_name(),
                                                      player2.count_cards())
                             break
-                        elif inputOutput.get_choice_lvl_game() == "2":
+                        elif inputOutput.get_choice_game_menu() == "2":
                             if inputOutput.get_hack_type() == "1":
                                 self.steal_1_card(player1, player2, turn)
                                 if player1.count_cards() == 0:
@@ -87,7 +87,7 @@ class Game:
                                     break
                             else:
                                 self.increase_chance(player1, player2, turn)
-                        elif inputOutput.get_choice_lvl_game() == "3":
+                        elif inputOutput.get_choice_game_menu() == "3":
                             war_card1 = 0
                             war_card2 = 0
                             break

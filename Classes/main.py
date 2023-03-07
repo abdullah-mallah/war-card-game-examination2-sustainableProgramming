@@ -100,9 +100,9 @@ def main():
             choice = inputOutput.lvl1_brain()
             if choice == "1":  # The user choose to play
                 player1, player2 = activate_lvl2(inputOutput, fileRW)
-                if inputOutput.get_lvl_intelligence() == "2":
+                if inputOutput.get_difficulty_level() == "2":
                     player2.activate_intelligence_2()
-                elif inputOutput.get_lvl_intelligence() == "3":
+                elif inputOutput.get_difficulty_level() == "3":
                     player2.activate_intelligence_3()
                 game.activate_lvl_game(player1, player2, inputOutput,
                                        fileRW)
