@@ -1,3 +1,9 @@
+"""
+This script is used as controll panel of the entire game program.
+
+Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
+"""
+
 from player import Player
 from inputOutput import Input_output
 from fileReaderWriter import FileRW
@@ -6,8 +12,8 @@ import random
 import sys
 
 
-# Creating a club deck
 def create_deck_clubs():
+    """This method creates clubs deck list."""
     type = "clubs"
     deck_clubs = []
     for number in range(1, 14):
@@ -15,8 +21,8 @@ def create_deck_clubs():
     return deck_clubs
 
 
-# Creating a diamond deck
 def create_deck_diamonds():
+    """This method creates diamonds deck list."""
     type = "diamonds"
     deck_diamond = []
     for number in range(1, 14):
@@ -24,8 +30,8 @@ def create_deck_diamonds():
     return deck_diamond
 
 
-# Creating a heart deck
 def create_deck_hearts():
+    """This method creates hearts deck list."""
     type = "hearts"
     deck_hearts = []
     for number in range(1, 14):
@@ -33,8 +39,8 @@ def create_deck_hearts():
     return deck_hearts
 
 
-# Creating a spade deck
 def create_deck_spades():
+    """This method creates spades deck list."""
     type = "spades"
     deck_spades = []
     for number in range(1, 14):
@@ -43,6 +49,7 @@ def create_deck_spades():
 
 
 def creat_deck():
+    """This method creates a 52 cards deck list."""
     deck = create_deck_clubs() + create_deck_diamonds() + create_deck_hearts()\
         + create_deck_spades()
     random.shuffle(deck)
@@ -53,15 +60,15 @@ def creat_deck():
 
 
 def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
-    """Takes two objects of two classes in its parameters. It uses the object
-    of class Input_output to print to the user and read choice and store the
-    input from the user. It uses the object of class FileRW to check if the
-    name exists in the text file, if the name exist then it will retrieve the
-    details of that name and use them when the player object is created, if it
-    does not exist then it will store the details of that name in the text
-    file"""
+    """
+    It takes 1 object of the type Input_output.
+
+    It takes 1 object of the type FileRW.
+    It uses Input_output object to print to the user and read choices.
+    It uses FileRW object to check if the name exists in the text file.
+    If the name exist then it will retrieve the details of that name.
+    it creates two objects of the type Player."""
     first_half, second_half = creat_deck()
-    # will take the choice vs_computer or not and the name of player/s
     inputOutput.lvl2_brain()
     name1_exist = fileRW.check_name(inputOutput.get_name1())
     name2_exist = fileRW.check_name(inputOutput.get_name2())
@@ -90,6 +97,9 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
 
 
 def main():
+    """
+    It acts as the controller of the entire game program.
+    """
     try:
         file_name = sys.argv[1]
         inputOutput = Input_output()

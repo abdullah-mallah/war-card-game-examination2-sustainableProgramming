@@ -1,3 +1,9 @@
+"""
+This script is used to display the needed menues and options during the game.
+
+Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
+"""
+
 from player import Player
 from inputOutput import Input_output
 from fileReaderWriter import FileRW
@@ -5,9 +11,15 @@ import random
 
 
 class Game:
+    """This class is responsible for playing the game."""
 
     def flip_4_times(self, player1: Player, player2: Player,
                      inputOutput: Input_output):
+        """
+        It takes 2 objects of the type Player and 1 of the type Input_output.
+
+        It returns two integers after it flipps four times.
+        """
         war_card1 = 0
         war_card2 = 0
         for loop in range(4):
@@ -28,6 +40,11 @@ class Game:
 
     def flip_once(self, player1: Player, player2: Player,
                   inputOutput: Input_output):
+        """
+        It takes 2 objects of the type Player and 1 of the type Input_output.
+
+        It returns two integers after it flipps one time.
+        """
         war_card1 = 0
         war_card2 = 0
         for turn in range(1, 3):
@@ -101,6 +118,11 @@ class Game:
         return war_card1, war_card2
 
     def steal_1_card(self, player1: Player, player2: Player, turn):
+        """
+        It takes two objects of the type Player and one integer.
+
+        It moves a card from one object to the other.
+        """
         card = []
         length = 0
         rand_num = 0
@@ -116,12 +138,22 @@ class Game:
             player2.add_1_card(card)
 
     def increase_chance(self, player1: Player, player2: Player, turn):
+        """
+        It takes two objects of the type Player and one integer.
+
+        It puts the highest card in the Player object at the begining.
+        """
         if turn == 1:
             player1.increase_chance()
         else:
             player2.increase_chance()
 
     def chk_player_won_round(self, war_card1, war_card2):
+        """
+        It takes two integers.
+
+        It checks integer is bigger and returns 0, 1 or 2.
+        """
         if war_card1 == 1 and war_card2 != 1:
             return 1
         elif war_card1 != 1 and war_card2 == 1:
@@ -138,6 +170,11 @@ class Game:
 
     def add_cards_to_round_winner(self, player1: Player, player2: Player,
                                   player_won_round):
+        """
+        It takes two objects of the type Player and one integer.
+
+        It adds the cards on the floor to the hand of the winner.
+        """
         if player_won_round == 1:
             print(f"\n{player1.get_name().capitalize()} won this round")
             player1.add_temp_list_to_deck(player1.get_temp(),
@@ -152,11 +189,23 @@ class Game:
             player2.empty_temp()
 
     def flipp_once(self, player: Player):
+        """
+        It takes one object of the type Player.
+
+        It takes one card of that object and returns an integer.
+        """
         war_card = player.get_next_card()
         return war_card
 
     def activate_lvl_game(self, player1: Player, player2: Player,
                           inputOutput: Input_output, fileRW: FileRW):
+        """
+        It takes two objects of the type Player.
+
+        It takes one object of the type Input_output.
+        It takes one object of the typer FileRW.
+        It calls other methods in order to play the game.
+        """
         cards_in1 = 0
         cards_in2 = 0
         round_finished = False
@@ -166,7 +215,6 @@ class Game:
         war_card2 = 0
         player_won_round = 0
         flipp_4_times = False
-
         # will keep looping untill one player has no more cards
         while not winner1_found and not winner2_found:
             round_finished = False
@@ -195,7 +243,6 @@ class Game:
                         inputOutput.congrats(player1.get_name())
                         self.uppdate_wins(1, player1, player2, fileRW)
                         exit()
-
                 else:
                     # loop on turns of players to show thier hands
                     cards_in1 = player1.count_cards()
@@ -235,6 +282,13 @@ class Game:
 
     def continue_untill_the_end(self, player1: Player, player2: Player,
                                 inputOutput: Input_output, fileRW: FileRW):
+        """
+        It takes two objects of the type Player.
+
+        It takes one object of the type Input_output.
+        It takes one object of the typer FileRW.
+        It calls other methods in order to continue automatically.
+        """
         cards_in1 = 0
         cards_in2 = 0
         round_finished = False
@@ -300,6 +354,13 @@ class Game:
 
     def uppdate_wins(self, turn, player1: Player, player2: Player,
                      fileRW: FileRW):
+        """
+        It takes one integer.
+
+        It takes 2 objects of the type Player.
+        It takes 1 object of the type FileRW.
+        It stores the score of the players.
+        """
         wins1 = (int)(player1.get_wins())
         times_played1 = (int)(player1.get_times_played())
         percentage1 = (float)(player1.get_percentage())
@@ -329,6 +390,12 @@ class Game:
 
     def flip_once_auto(self, player1: Player, player2: Player,
                        inputOutput: Input_output):
+        """
+        It takes two objects of the type Player.
+
+        It takes one object of the type Input_output.
+        It returns two integers after it flipps one time.
+        """
         war_card1 = 0
         war_card2 = 0
         for turn in range(1, 3):
