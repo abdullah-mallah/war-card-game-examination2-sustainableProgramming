@@ -96,6 +96,60 @@ class Test_player(unittest.TestCase):
         self.player2.increase_chance()
         self.assertEqual(self.player2.get_card_list(), test_deck3)
 
+    def test_get_card_list(self):
+        """Test the get_card_list method of the Input_output class."""
+        deck = [["spades", 3], ["spades", 4]]
+        self.player1.set_deck(deck)
+        self.assertEqual(self.player1.get_card_list(), deck)
+
+    def test_get_temp(self):
+        """Test the get_temp method of the Player class."""
+        deck = [["spades", 3], ["spades", 4]]
+        self.player1.set_temp_deck(deck)
+        self.assertEqual(self.player1.get_temp(), deck)
+
+    def test_get_name(self):
+        """Test the get_name method of the Player class.."""
+        self.player1._name = "test_name"
+        self.assertEqual(self.player1.get_name(), "test_name")
+
+    def test_get_wins(self):
+        """Test the get_wins method of the Player class."""
+        self.player1._wins = "5"
+        self.assertEqual(self.player1.get_wins(), "5")
+
+    def test_get_percentage(self):
+        """Test the get_percentage method of the Player class."""
+        self.player1._percentage = "6"
+        self.assertEqual(self.player1.get_percentage(), "6")
+
+    def test_get_times_played(self):
+        """Test the get_times_played method of the Player class."""
+        self.player1._times_played = "7"
+        self.assertEqual(self.player1.get_times_played(), "7")
+
+    def test_set_times_played(self):
+        """Test the set_times_played method of the Player class."""
+        self.player1.set_times_played("6")
+        self.assertEqual(self.player1.get_times_played(), "6")
+
+    def test_set_wins(self):
+        """Test the set_wins method of the Player class."""
+        self.player1.set_wins("6")
+        self.assertEqual(self.player1.get_wins(), "6")
+
+    def test_set_deck(self):
+        """Test the set_deck method of the Player class."""
+        deck = [["spades", 3], ["spades", 4]]
+        self.player1.set_deck(deck)
+        self.assertEqual(self.player1.get_card_list(), deck)
+
+    def test_set_temp_deck(self):
+        """Test the set_temp_deck method of the Player class."""
+        deck = [["spades", 3], ["spades", 4]]
+        self.player1.set_temp_deck(deck)
+        self.assertEqual(self.player1.get_temp(), deck)
+
 
 if __name__ == "__main__":
     unittest.main()
