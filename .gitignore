@@ -1,4 +1,7 @@
 .coverage
 .venv/
 __pycache__
+htmlcov/
 *.pyc
+Classes/doc
+build/
