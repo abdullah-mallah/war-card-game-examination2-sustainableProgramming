@@ -23,7 +23,7 @@ class Test_inputoutput(unittest.TestCase):
             self.inOut.print_lvl2_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) VS. Computer"),
-                unittest.mock.call("2) Two players"),
+                unittest.mock.call("2) VS. Another player"),
             ])
 
     @patch("inputOutput.Input_output.get_input", return_value="name1")
@@ -49,7 +49,7 @@ class Test_inputoutput(unittest.TestCase):
 
     def test_print_hacks(self):
         with unittest.mock.patch('builtins.print') as mock_print:
-            self.inOut.print_hacks()
+            self.inOut.hack_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) Steal one card from opponent"),
                 unittest.mock.call("2) Put the highest card in your "
@@ -58,7 +58,7 @@ class Test_inputoutput(unittest.TestCase):
 
     def test_lvl_game_choices(self):
         with unittest.mock.patch('builtins.print') as mock_print:
-            self.inOut.lvl_game_menu()
+            self.inOut.game_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) Flip card"),
                 unittest.mock.call("2) Use hack"),
@@ -91,20 +91,20 @@ class Test_inputoutput(unittest.TestCase):
             ])
 
     def test_get_choice_lvl1(self):
-        self.inOut._choice_lvl1 = "1"
-        self.assertEqual(self.inOut.get_choice_lvl1(), "1")
+        self.inOut._choice_main_menu = "1"
+        self.assertEqual(self.inOut.get_choice_main_menu(), "1")
 
     def test_get_choice_lvl2(self):
-        self.inOut._choice_lvl2 = "1"
-        self.assertEqual(self.inOut.get_choice_lvl2(), "1")
+        self.inOut._choice_versus = "1"
+        self.assertEqual(self.inOut.get_choice_versus_menu(), "1")
 
     def test_get_choice_lvl_game(self):
-        self.inOut._choice_lvl_game = "1"
-        self.assertEqual(self.inOut.get_choice_lvl_game(), "1")
+        self.inOut._choice_game_menu = "1"
+        self.assertEqual(self.inOut.get_choice_game_menu(), "1")
 
     def test_get_lvl_intelligence(self):
-        self.inOut._lvl_intelligence = "1"
-        self.assertEqual(self.inOut.get_lvl_intelligence(), "1")
+        self.inOut._difficulty_level = "1"
+        self.assertEqual(self.inOut.get_difficulty_level(), "1")
 
     def test_get_hack_type(self):
         self.inOut._hack_type = "1"

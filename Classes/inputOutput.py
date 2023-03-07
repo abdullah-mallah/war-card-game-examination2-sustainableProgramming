@@ -1,181 +1,153 @@
 class Input_output:
+    """A class for handling input and output operations in the game."""
+
     def __init__(self) -> None:
-        self._choice_lvl1 = ""
-        self._choice_lvl2 = ""
-        self._choice_lvl_game = ""
+        """Initialize a new instance of the class."""
+        self._choice_main_menu = ""
+        self._choice_versus = ""
+        self._choice_game_menu = ""
         self._name_player1 = ""
         self._name_player2 = "computer"
         self._hack_type = ""
         self._old_name = ""
         self._new_name = ""
-        self._lvl_intelligence = ""
+        self._difficulty_level = ""
 
-    def lvl1_brain(self):
+    def menu_menu_controller(self):
         """
-        This method prints out level 1 choices, read choice from the user,
-        if choice was 3, it will read old and new name and it will return
-        the choice
+        Control the flow of the main menu.
+
+        This method displays the main menu, prompts the user for input,
+        and then either proceeds to the appropriate submenu.
         """
-        self.print_lvl1_menu()
-        self.lvl1_menu_input()
-        if self._choice_lvl1 == "3":
+        self.main_menu()
+        self.main_menu_input()
+        if self._choice_main_menu == "3":
             self.read_old_name()
             self.read_new_name()
-        return self._choice_lvl1
+        return self._choice_main_menu
 
-    def print_lvl1_menu(self):
-        """
-        This method prints the available choices for level 1 of the game.
-        """
+    def main_menu(self):
+        """Print the available choices for the main menu of the game."""
         print("1) Play the game")
         print("2) See player details")
         print("3) Change name of player")
         print("4) Exit the game")
 
-    def lvl1_menu_input(self):
-        """
-        Prompt the user to choose an option for level 1 of the game.
-        """
+    def main_menu_input(self):
+        """Prompt the user to choose an option for the main menu."""
         valid_choices = ["1", "2", "3", "4"]
         while valid_choices:
-            self._choice_lvl1 = input("Choice: ")
-            if self._choice_lvl1 in valid_choices:
+            self._choice_main_menu = input("Choice: ")
+            if self._choice_main_menu in valid_choices:
                 break
             else:
                 print("Invalid choice. Please choose 1, 2, 3 or 4.")
 
     def read_old_name(self):
-        """
-        This method reads the old name from the user
-        """
+        """Read the old name from the user."""
         self._old_name = self.get_input("Old name: ")
 
     def read_new_name(self):
-        """
-        This method reads the new name from the user
-        """
+        """Read the new name from the user."""
         self._new_name = self.get_input("New name: ")
 
-    def lvl2_brain(self):
+    def scores(self, names):
+        """Display the scores for a list of player names."""
+        for name in names:
+            print(f"Name: {name[0]:10} | Wins: {name[1]:10} | Times played: "
+                  f"{name[2]} | Winning's percentage: {name[3]} %")
+
+    def versus_menu_controller(self):
         """
-        This method prints out level 2 choices, read choice from the user
-        and it decides according to the choice if it will read one name
-        or two names
+        Control the flow fo the versus menu.
+
+        This method displays the versus menu, prompts the user for input,
+        and then either proceeds to the one-player or two-player game modes.
         """
-        self.print_lvl2_menu()
-        self.lvl2_menu_input()
-        if self._choice_lvl2 == "1":
+        self.versus_menu()
+        self.versus_menu_input()
+        if self._choice_versus == "1":
             self.one_name_input()
-            self.print_lvl_intelligence_menu()
-            self.lvl_intelligence_menu_input()
+            self.difficulty_level_menu()
+            self.difficulty_level_menu_input()
         else:
             self.two_names_input()
 
-    def print_lvl2_menu(self):
-        """
-        This method prints out the available choices for level 2 of the game.
-        """
+    def versus_menu(self):
+        """Print menu to play against either the computer or another player."""
         print("1) VS. Computer")
-        print("2) Two players")
+        print("2) VS. Another player")
 
-    def lvl2_menu_input(self):
-        """
-        Prompt the user to choose an option for level 2 of the game.
-        """
+    def versus_menu_input(self):
+        """Prompt the user to choose an option for versus menu of the game."""
         while True:
-            self._choice_lvl2 = input("Choice: ")
-            if self._choice_lvl2 == "1" or self._choice_lvl2 == "2":
+            self._choice_versus = input("Choice: ")
+            if self._choice_versus == "1" or self._choice_versus == "2":
                 break
             else:
                 print("Invalid choice. Please choose either 1 or 2.")
 
-    def print_lvl_intelligence_menu(self):
-        """
-        This method prints the available levels of intelligence
-        (difficulty) when playing against the computer.
-        """
+    def one_name_input(self):
+        """Read and store the name of the first player from the user."""
+        self._name_player1 = self.get_input("Name of the first player: ")
+
+    def two_names_input(self):
+        """Read and store the name of first and second player from the user."""
+        self._name_player1 = self.get_input("Name of the first player: ")
+        self._name_player2 = self.get_input("Name of the second player: ")
+
+    def difficulty_level_menu(self):
+        """Print the difficulty levels when playing against the computer."""
         print("1) Level 1 (Easy)")
         print("2) Level 2 (Medium)")
         print("3) Level 3 (Hard)")
 
-    def lvl_intelligence_menu_input(self):
-        """
-        Prompt the user to choose a level of intelligence (difficulty).
-        """
+    def difficulty_level_menu_input(self):
+        """Prompt the user to choose a level of difficulty."""
         while True:
-            self._lvl_intelligence = input("Choice: ")
-            if self._lvl_intelligence in ["1", "2", "3"]:
+            self._difficulty_level = input("Choice: ")
+            if self._difficulty_level in ["1", "2", "3"]:
                 break
             else:
                 print("Invalid choice. Please choose either 1, 2 or 3.")
 
-    def lvl_game_menu(self):
+    def game_menu_controller(self):
         """
-        This method prints the first available choices once
-        the game has started.
+        Control the flow of the game menu.
+
+        This method displays the game menu, prompts the user for input,
+        and if the user chooses to hack, proceeds to the hacking menu.
         """
+        self.game_menu()
+        self.game_menu_input()
+        if self._choice_game_menu == "2":
+            self.hack_menu()
+            self.hack_menu_input()
+
+    def game_menu(self):
+        """Print the available choices once the game has started."""
         print("1) Flip card")
         print("2) Use hack")
         print("3) Continue automatically until a winner is found")
         print("4) Exit")
 
-    def lvl_game_menu_input(self):
-        """
-        Prompt the user to choose an option what to do
-        once the game has started.
-        """
+    def game_menu_input(self):
+        """Prompt the user to choose an option once the game has started."""
         while True:
-            self._choice_lvl_game = input("Choice: ")
-            if self._choice_lvl_game in ["1", "2", "3", "4"]:
+            self._choice_game_menu = input("Choice: ")
+            if self._choice_game_menu in ["1", "2", "3", "4"]:
                 break
             else:
                 print("Invalid choice. Please choose either 1, 2, 3, or 4.")
 
-    def scores(self, names):
-        """
-        This method takes a list of names and prints out each name
-        """
-        for name in names:
-            print(f"Name: {name[0]:10} | Wins: {name[1]:10} | Times played: "
-                  f"{name[2]} | Winning's percentage: {name[3]} %")
-
-    def one_name_input(self):
-        """
-        This method reads the name of first player from the user and
-        stores it in a private variable
-        """
-        self._name_player1 = self.get_input("Name of the first player: ")
-
-    def two_names_input(self):
-        """
-        This method reads the name of first and second player from the user and
-        stores them in private variables
-        """
-        self._name_player1 = self.get_input("Name of the first player: ")
-        self._name_player2 = self.get_input("Name of the second player: ")
-
-    def lvl_game_brain(self):
-        """
-        This method prints out choices of level game and reads input
-        from the user when playing the game
-        """
-        self.lvl_game_menu()
-        self.lvl_game_menu_input()
-        if self._choice_lvl_game == "2":
-            self.print_hacks()
-            self.hack_input()
-
-    def print_hacks(self):
-        """
-        This method prints out choices of hack types
-        """
+    def hack_menu(self):
+        """Print out the choices of hack types to the user."""
         print("1) Steal one card from opponent")
         print("2) Put the highest card in your deck at the beginning")
 
-    def hack_input(self):
-        """
-        This method reads the choice of hack type from the user
-        """
+    def hack_menu_input(self):
+        """Read the choice of hack type from the user."""
         while True:
             self._hack_type = input("Choice: ")
             if self._hack_type == "1" or self._hack_type == "2":
@@ -184,51 +156,54 @@ class Input_output:
                 print("Invalid choice. Please choose either 1 or 2.")
 
     def flipped_card(self, war_card, name, cards_left):
-        """
-        This method prints out the name of the player, his flipped card and
-        how many cards left in the player hand
-        """
+        """Print a message showing that a player has flipped a war card."""
         print(f"\nPlayer: {name.capitalize():9} - flipped war card {war_card} "
               f"and has {cards_left} cards left")
 
     def congrats(self, name):
-        """
-        This method prints out a congratulation massage
-        with the name of the winner
-        """
+        """Print out a congratulation message with the name of the winner."""
         print(f"Congrats to {name.capitalize()}! You have won the game!")
 
-    # Getters
-    def get_choice_lvl1(self):
-        return self._choice_lvl1
+    def get_choice_main_menu(self):
+        """Return the user's choice from the main menu."""
+        return self._choice_main_menu
 
-    def get_choice_lvl2(self):
-        return self._choice_lvl2
+    def get_choice_versus_menu(self):
+        """Return the user's choice from the versus menu."""
+        return self._choice_versus
 
-    def get_choice_lvl_game(self):
-        return self._choice_lvl_game
+    def get_choice_game_menu(self):
+        """Return the user's choice from the game menu."""
+        return self._choice_game_menu
 
-    def get_lvl_intelligence(self):
-        return self._lvl_intelligence
+    def get_difficulty_level(self):
+        """Return the user's choice of difficulty VS computer."""
+        return self._difficulty_level
 
     def get_name1(self):
+        """Return the name of the first player."""
         return self._name_player1.lower()
 
     def get_name2(self):
+        """Return the name of the second player."""
         return self._name_player2.lower()
 
     def get_hack_type(self):
+        """Return the user's choice of which hack type they've chosen."""
         return self._hack_type
 
     def get_old_name(self):
+        """Return the old name of the player."""
         return self._old_name.lower()
 
     def get_new_name(self):
+        """Return the new name of the player."""
         return self._new_name.lower()
 
     def get_input(self, text):
+        """Prompt the user for input and returns the text."""
         return input(text)
 
-    # Setters
-    def set_choice_lvl_game(self, choice):
-        self._choice_lvl_game = choice
+    def set_choice_game_menu(self, choice):
+        """Set the user's choice in the game menu."""
+        self._choice_game_menu = choice
