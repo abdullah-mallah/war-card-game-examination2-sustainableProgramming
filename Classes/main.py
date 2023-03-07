@@ -13,7 +13,7 @@ import sys
 
 
 def create_deck_clubs():
-    """This method creates clubs deck list."""
+    """Create clubs deck list."""
     type = "clubs"
     deck_clubs = []
     for number in range(1, 14):
@@ -22,7 +22,7 @@ def create_deck_clubs():
 
 
 def create_deck_diamonds():
-    """This method creates diamonds deck list."""
+    """Create diamonds deck list."""
     type = "diamonds"
     deck_diamond = []
     for number in range(1, 14):
@@ -31,7 +31,7 @@ def create_deck_diamonds():
 
 
 def create_deck_hearts():
-    """This method creates hearts deck list."""
+    """Create hearts deck list."""
     type = "hearts"
     deck_hearts = []
     for number in range(1, 14):
@@ -40,7 +40,7 @@ def create_deck_hearts():
 
 
 def create_deck_spades():
-    """This method creates spades deck list."""
+    """Create spades deck list."""
     type = "spades"
     deck_spades = []
     for number in range(1, 14):
@@ -49,7 +49,7 @@ def create_deck_spades():
 
 
 def creat_deck():
-    """This method creates a 52 cards deck list."""
+    """Create a 52 cards deck list."""
     deck = create_deck_clubs() + create_deck_diamonds() + create_deck_hearts()\
         + create_deck_spades()
     random.shuffle(deck)
@@ -61,13 +61,14 @@ def creat_deck():
 
 def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
     """
-    It takes 1 object of the type Input_output.
+    Take 1 object of the type Input_output.
 
-    It takes 1 object of the type FileRW.
-    It uses Input_output object to print to the user and read choices.
-    It uses FileRW object to check if the name exists in the text file.
+    Take 1 object of the type FileRW.
+    Use Input_output object to print to the user and read choices.
+    Use FileRW object to check if the name exists in the text file.
     If the name exist then it will retrieve the details of that name.
-    it creates two objects of the type Player."""
+    Create two objects of the type Player.
+    """
     first_half, second_half = creat_deck()
     inputOutput.lvl2_brain()
     name1_exist = fileRW.check_name(inputOutput.get_name1())
@@ -97,9 +98,7 @@ def activate_lvl2(inputOutput: Input_output, fileRW: FileRW):
 
 
 def main():
-    """
-    It acts as the controller of the entire game program.
-    """
+    """Act like a controller of the entire game program."""
     try:
         file_name = sys.argv[1]
         inputOutput = Input_output()
