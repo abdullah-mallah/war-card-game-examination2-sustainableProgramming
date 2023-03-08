@@ -8,7 +8,7 @@ import random
 import sys
 from player import Player
 from input_output import InputOutput
-from fileReaderWriter import FileRW
+from file_reader_writer import FileRW
 
 
 class Game:

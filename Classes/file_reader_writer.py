@@ -1,12 +1,23 @@
+"""
+This script is used to deal with the text file.
+
+Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
+"""
+
+
 class FileRW:
-    """This class stores and retrieves players'
-    information from a text file"""
+    """This class stores and retrieves players'information from text file."""
+
     def __init__(self, file_name):
+        """Store file name."""
         self._file_name = file_name
 
     def check_name(self, name) -> bool:
-        """Takes a name and if name is found in text file it returns True
-        else, it returns False"""
+        """
+        Take a string as parameter.
+
+        If name is found in text file return True else return False.
+        """
         if self._file_name == "score.txt":
             name_found = False
             names = self.get_names()
@@ -18,9 +29,11 @@ class FileRW:
             raise FileNotFoundError
 
     def store_name(self, name, wins, times_played, percentage):
-        """Takes a name, the number of wins, the number of times
-        played by the player, and the percentage of wins,
-        then stores them in a text file"""
+        """
+        Take 4 strings as parameter.
+
+        Store them in one line in text file.
+        """
         if self._file_name == "score.txt":
             if not self.check_name(name):
                 with open(self._file_name, 'a') as wf:
@@ -30,8 +43,7 @@ class FileRW:
             raise FileNotFoundError
 
     def get_names(self):
-        """Retreives the names of players from a text file,
-        and returns them as a list"""
+        """Return the names of players from a text file as list."""
         if self._file_name == "score.txt":
             names = []
             name_list = []
@@ -49,7 +61,7 @@ class FileRW:
             raise FileNotFoundError
 
     def get_name(self, name):
-        """Takes a name and returns it from a text file"""
+        """Take a string as parameter and return it from a text file."""
         if self._file_name == "score.txt":
             names = self.get_names()
             name_details = []
@@ -61,9 +73,11 @@ class FileRW:
             raise FileNotFoundError
 
     def update_wins(self, name, wins, times_played, percentage):
-        """Takes a name, the number of wins, the number of times
-        played by the player, and the percentage of wins,
-        then updates the information in a text file"""
+        """
+        Take 4 strings as parameter.
+
+        Update a name's information in text file.
+        """
         if self._file_name == "score.txt":
             names = self.get_names()
             for line in names:
@@ -77,7 +91,7 @@ class FileRW:
             raise FileNotFoundError
 
     def store_names(self, names):
-        """Takes names and stores them in a text file"""
+        """Take a list as parameter and store it in text file."""
         if self._file_name == "score.txt":
             with open(self._file_name, "w") as wf:
                 for name in names:
@@ -87,8 +101,11 @@ class FileRW:
             raise FileNotFoundError
 
     def uppdate_name(self, old_name, new_name):
-        """Takes the player's old name, and new name
-        to update it in a text file"""
+        """
+        Take 2 strings as parameter.
+
+        Update a name in text file.
+        """
         if self._file_name == "score.txt":
             names = self.get_names()
             for line in names:
@@ -99,8 +116,11 @@ class FileRW:
             raise FileNotFoundError
 
     def get_wins(self, name):
-        """Takes a name and retreives the number
-        of times the player has won and returns it"""
+        """
+        Take 1 string as parameter.
+
+        Retrieve the wins of a name from text file.
+        """
         if self._file_name == "score.txt":
             names = self.get_names()
             for line in names:
@@ -110,8 +130,11 @@ class FileRW:
             raise FileNotFoundError
 
     def get_times_played(self, name):
-        """Takes a name and retreives the number
-        of times the player has played and returns it"""
+        """
+        Take 1 string as parameter.
+
+        Retrieve times played of a name from text file.
+        """
         if self._file_name == "score.txt":
             names = self.get_names()
             for line in names:
@@ -121,8 +144,11 @@ class FileRW:
             raise FileNotFoundError
 
     def get_percentage(self, name):
-        """Takes a name and retreives the percentage
-        of times the player has won and returns it"""
+        """
+        Take 1 string as parameter.
+
+        Retrieve percentage of wins of a name from text file.
+        """
         if self._file_name == "score.txt":
             names = self.get_names()
             for line in names:
@@ -130,3 +156,15 @@ class FileRW:
                     return line[3]
         else:
             raise FileNotFoundError
+
+    def get_file_name(self):
+        """Return _file_name variable."""
+        return self._file_name
+
+    def set_file_name(self, file_name):
+        """
+        Take a string.
+
+        Set variable _file_name to the string parameter.
+        """
+        self._file_name = file_name
