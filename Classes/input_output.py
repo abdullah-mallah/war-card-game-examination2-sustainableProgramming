@@ -89,10 +89,9 @@ class InputOutput:
         """Prompt the user to choose an option for versus menu of the game."""
         while True:
             self._choice_versus = input("Choice: ")
-            if self._choice_versus == "1" or self._choice_versus == "2":
+            if self._choice_versus in ("1", "2"):
                 break
-            else:
-                print("Invalid choice. Please choose either 1 or 2.")
+            print("Invalid choice. Please choose either 1 or 2.")
 
     def one_name_input(self):
         """Read and store the name of the first player from the user."""
@@ -115,8 +114,7 @@ class InputOutput:
             self._difficulty_level = input("Choice: ")
             if self._difficulty_level in ["1", "2", "3"]:
                 break
-            else:
-                print("Invalid choice. Please choose either 1, 2 or 3.")
+            print("Invalid choice. Please choose either 1, 2 or 3.")
 
     def game_menu_controller(self):
         """
@@ -144,8 +142,7 @@ class InputOutput:
             self._choice_game_menu = input("Choice: ")
             if self._choice_game_menu in ["1", "2", "3", "4"]:
                 break
-            else:
-                print("Invalid choice. Please choose either 1, 2, 3, or 4.")
+            print("Invalid choice. Please choose either 1, 2, 3, or 4.")
 
     def hack_menu(self):
         """Print out the choices of hack types to the user."""
@@ -156,10 +153,9 @@ class InputOutput:
         """Read the choice of hack type from the user."""
         while True:
             self._hack_type = input("Choice: ")
-            if self._hack_type == "1" or self._hack_type == "2":
+            if self._hack_type in ("1", "2"):
                 break
-            else:
-                print("Invalid choice. Please choose either 1 or 2.")
+            print("Invalid choice. Please choose either 1 or 2.")
 
     def flipped_card(self, war_card, name, cards_left):
         """Print a message showing that a player has flipped a war card."""

@@ -52,13 +52,13 @@ class TestInputOutput(unittest.TestCase):
     def test_read_old_name(self, input):
         """Test the read_old_name method using unittest.mock patch."""
         self.in_out.read_old_name()
-        self.assertEqual(self.in_out.get_old_name, "old name")
+        self.assertEqual(self.in_out.get_old_name(), "old name")
 
     @patch("input_output.InputOutput.get_input", return_value="new name")
     def test_read_new_name(self, input):
         """Test the read_new_name method using unittest.mock patch."""
         self.in_out.read_new_name()
-        self.assertEqual(self.in_out.get_new_name, "new name")
+        self.assertEqual(self.in_out.get_new_name(), "new name")
 
     def test_hack_menu(self):
         """Verify that the hack menu method displays the correct options."""
