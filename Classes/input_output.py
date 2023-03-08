@@ -5,7 +5,7 @@ Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 """
 
 
-class Input_output:
+class InputOutput:
     """A class for handling input and output operations in the game."""
 
     def __init__(self) -> None:
@@ -48,8 +48,7 @@ class Input_output:
             self._choice_main_menu = input("Choice: ")
             if self._choice_main_menu in valid_choices:
                 break
-            else:
-                print("Invalid choice. Please choose 1, 2, 3 or 4.")
+            print("Invalid choice. Please choose 1, 2, 3 or 4.")
 
     def read_old_name(self):
         """Read the old name from the user."""
@@ -211,6 +210,38 @@ class Input_output:
         """Prompt the user for input and returns the text."""
         return input(text)
 
-    def set_choice_game_menu(self, choice):
-        """Set the user's choice in the game menu."""
-        self._choice_game_menu = choice
+    def set_choice_main_menu(self, choice_main_menu):
+        """Set the user's choice for the main menu."""
+        self._choice_main_menu = choice_main_menu
+
+    def set_choice_versus_menu(self, choice_versus):
+        """Set the user's choice for the versus menu."""
+        self._choice_versus = choice_versus
+
+    def set_choice_game_menu(self, choice_game_menu):
+        """Set the user's choice for the game menu."""
+        self._choice_game_menu = choice_game_menu
+
+    def set_difficulty_level(self, difficulty_level):
+        """Set the user's choice for the difficulty level vs computer."""
+        self._difficulty_level = difficulty_level
+
+    def set_name1(self, name_player1):
+        """Set the name of the first player."""
+        self._name_player1 = name_player1.lower()
+
+    def set_name2(self, name_player2):
+        """Set the name of the second player."""
+        self._name_player2 = name_player2.lower()
+
+    def set_hack_type(self, hack_type):
+        """Set the user's choice for the hack type."""
+        self._hack_type = hack_type
+
+    def set_old_name(self, old_name):
+        """Set the old name of the player."""
+        self._old_name = old_name.lower()
+
+    def set_new_name(self, new_name):
+        """Set the new name of the player."""
+        self._new_name = new_name.lower()

@@ -97,7 +97,7 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(self.player2.get_card_list(), test_deck3)
 
     def test_get_card_list(self):
-        """Test the get_card_list method of the Input_output class."""
+        """Test the get_card_list method of the InputOutput class."""
         deck = [["spades", 3], ["spades", 4]]
         self.player1.set_deck(deck)
         self.assertEqual(self.player1.get_card_list(), deck)

@@ -5,7 +5,7 @@ Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 """
 import unittest
 from player import Player
-from inputOutput import Input_output
+from input_output import InputOutput
 from unittest.mock import patch
 from game import Game
 
@@ -17,7 +17,7 @@ class TestGame(unittest.TestCase):
         """Create objects before each test method."""
         self.player1 = Player("player1", "0", "0", "0.0")
         self.player2 = Player("player2", "0", "0", "0.0")
-        self.in_out = Input_output()
+        self.in_out = InputOutput()
         self.game = Game()
 
     def test_flip_4_times(self):
@@ -41,7 +41,7 @@ class TestGame(unittest.TestCase):
             self.assertEqual(war_card1, 13)
             self.assertEqual(war_card2, 8)
             mock_print.assert_has_calls([
-                unittest.mock.call("flipped 4 times")
+                unittest.mock.call("Flipped 4 times")
             ])
 
     # @patch("inputOutput.Input_output.lvl_game_menu_input", return_value="1")

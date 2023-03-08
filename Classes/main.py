@@ -7,7 +7,7 @@ Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 import random
 import sys
 from player import Player
-from inputOutput import Input_output
+from input_output import InputOutput
 from fileReaderWriter import FileRW
 from game import Game
 
@@ -59,7 +59,7 @@ def creat_deck():
     return first_half, second_half
 
 
-def activate_lvl2(input_output: Input_output, file_r_w: FileRW):
+def activate_lvl2(input_output: InputOutput, file_r_w: FileRW):
     """
     Take 1 object of the type Input_output.
 
@@ -101,7 +101,7 @@ def main():
     """Act like a controller of the entire game program."""
     try:
         file_name = sys.argv[1]
-        input_output = Input_output()
+        input_output = InputOutput()
         game = Game()
         file_r_w = FileRW(file_name)
         choice = ""

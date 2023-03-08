@@ -7,7 +7,7 @@ Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 import random
 import sys
 from player import Player
-from inputOutput import Input_output
+from input_output import InputOutput
 from fileReaderWriter import FileRW
 
 
@@ -15,9 +15,9 @@ class Game:
     """Responsible for playing the game."""
 
     def flip_4_times(self, player1: Player, player2: Player,
-                     input_output: Input_output):
+                     input_output: InputOutput):
         """
-        Take 2 objects of the type Player and 1 of the type Input_output.
+        Take 2 objects of the type Player and 1 of the type InputOutput.
 
         Return two integers after it flipps four times.
         """
@@ -36,13 +36,13 @@ class Game:
                 input_output.flipped_card(war_card2,
                                           player2.get_name(),
                                           player2.count_cards())
-        print("flipped 4 times")
+        print("Flipped 4 times")
         return war_card1, war_card2
 
     def flip_once(self, player1: Player, player2: Player,
-                  input_output: Input_output):
+                  input_output: InputOutput):
         """
-        Take 2 objects of the type Player and 1 of the type Input_output.
+        Take 2 objects of the type Player and 1 of the type InputOutput.
 
         Return two integers after it flipps one time.
         """
@@ -115,7 +115,7 @@ class Game:
                         break
                     elif war_card1 == 0 and war_card2 == 0:
                         break
-        print("flipped once")
+        print("Flipped once")
         return war_card1, war_card2
 
     def steal_1_card(self, player1: Player, player2: Player, turn):
@@ -199,11 +199,11 @@ class Game:
         return war_card
 
     def activate_lvl_game(self, player1: Player, player2: Player,
-                          input_output: Input_output, file_r_w: FileRW):
+                          input_output: InputOutput, file_r_w: FileRW):
         """
         Take two objects of the type Player.
 
-        Take one object of the type Input_output.
+        Take one object of the type InputOutput.
         Take one object of the typer FileRW.
         Call other methods in order to play the game.
         """
@@ -283,11 +283,11 @@ class Game:
                         sys.exit()
 
     def continue_untill_the_end(self, player1: Player, player2: Player,
-                                input_output: Input_output, file_r_w: FileRW):
+                                input_output: InputOutput, file_r_w: FileRW):
         """
         Take two objects of the type Player.
 
-        Take one object of the type Input_output.
+        Take one object of the type InputOutput.
         Take one object of the typer FileRW.
         Call other methods in order to continue automatically.
         """
@@ -391,11 +391,11 @@ class Game:
                                  percentage1)
 
     def flip_1_auto(self, player1: Player, player2: Player,
-                    input_output: Input_output):
+                    input_output: InputOutput):
         """
         Take two objects of the type Player.
 
-        Take one object of the type Input_output.
+        Take one object of the type InputOutput.
         Return two integers after it flipps one time.
         """
         war_card1 = 0
