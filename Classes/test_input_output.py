@@ -60,6 +60,13 @@ class TestInputOutput(unittest.TestCase):
         self.in_out.read_new_name()
         self.assertEqual(self.in_out.get_new_name(), "new name")
 
+    @patch('input_output.InputOutput.get_input', return_value='test_input')
+    def test_get_input(self, mock_input):
+        """Test the get_input method using unittest.mock patch."""
+        user_input = self.in_out.get_input("Enter some text: ")
+        self.assertEqual(user_input, 'test_input')
+        mock_input.assert_called_once_with("Enter some text: ")
+
     def test_hack_menu(self):
         """Verify that the hack menu method displays the correct options."""
         with unittest.mock.patch('builtins.print') as mock_print:
@@ -80,6 +87,16 @@ class TestInputOutput(unittest.TestCase):
                 unittest.mock.call("3) Continue automatically until "
                                    "a winner is found"),
                 unittest.mock.call("4) Exit"),
+            ])
+
+    def test_difficulty_level_menu(self):
+        """Verify that the difficulty menu displays the correct options."""
+        with unittest.mock.patch('builtins.print') as mock_print:
+            self.in_out.difficulty_level_menu()
+            mock_print.assert_has_calls([
+                unittest.mock.call("1) Level 1 (Easy)"),
+                unittest.mock.call("2) Level 2 (Medium)"),
+                unittest.mock.call("3) Level 3 (Hard)"),
             ])
 
     def test_flipped_card(self):
