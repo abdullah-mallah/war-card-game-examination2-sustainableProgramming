@@ -56,7 +56,7 @@ class TestFileReaderWriter(unittest.TestCase):
 
     def test_get_name(self):
         """
-        Test the method to check if player's info retrieved as list from txt file.
+        Test the method to check if player's info returned as list from txt.
 
         Test the method to check if error FileNotFound raised.
         """
@@ -127,7 +127,7 @@ class TestFileReaderWriter(unittest.TestCase):
 
     def test_get_times_played(self):
         """
-        Test the method to check if player's times played retrieved from txt file.
+        Test the method to check if times played retrieved from txt file.
 
         Test the method to check if error FileNotFound raised.
         """
@@ -140,7 +140,7 @@ class TestFileReaderWriter(unittest.TestCase):
 
     def test_get_percentage(self):
         """
-        Test the method to check if player's percentage retrieved from txt file.
+        Test the method to check if player's % retrieved from txt file.
 
         Test the method to check if error FileNotFound raised.
         """

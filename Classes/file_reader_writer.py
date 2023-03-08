@@ -36,9 +36,9 @@ class FileRW:
         """
         if self._file_name == "score.txt":
             if not self.check_name(name):
-                with open(self._file_name, 'a') as wf:
-                    wf.write(name + "," + wins + "," + times_played + "," +
-                             percentage + "\n")
+                with open(self._file_name, 'a', encoding="utf-8") as w_f:
+                    w_f.write(name + "," + wins + "," + times_played + "," +
+                              percentage + "\n")
         else:
             raise FileNotFoundError
 
@@ -48,9 +48,9 @@ class FileRW:
             names = []
             name_list = []
             more_enteries = True
-            with open(self._file_name, 'r') as rf:
+            with open(self._file_name, 'r', encoding="utf-8") as r_f:
                 while more_enteries:
-                    line = rf.readline().rstrip('\n')
+                    line = r_f.readline().rstrip('\n')
                     if line != '':
                         name_list = line.split(',')
                         names.append(name_list)
@@ -93,10 +93,10 @@ class FileRW:
     def store_names(self, names):
         """Take a list as parameter and store it in text file."""
         if self._file_name == "score.txt":
-            with open(self._file_name, "w") as wf:
+            with open(self._file_name, "w", encoding="utf-8") as w_f:
                 for name in names:
-                    wf.write(name[0] + "," + name[1] +
-                             "," + name[2] + "," + name[3] + "\n")
+                    w_f.write(name[0] + "," + name[1] +
+                              "," + name[2] + "," + name[3] + "\n")
         else:
             raise FileNotFoundError
 
