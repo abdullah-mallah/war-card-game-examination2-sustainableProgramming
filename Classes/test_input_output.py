@@ -39,26 +39,26 @@ class TestInputOutput(unittest.TestCase):
     def test_one_name_input(self, input):
         """Test the one_name_input method using unittest.mock patch."""
         self.in_out.one_name_input()
-        self.assertEqual(self.in_out._name_player1, "name1")
+        self.assertEqual(self.in_out.get_name1(), "name1")
 
     @patch("input_output.InputOutput.get_input", return_value="name1")
     def test_two_names_input(self, input):
         """Test the two_names_input method using unittest.mock patch."""
         self.in_out.two_names_input()
-        self.assertEqual(self.in_out._name_player1, "name1")
-        self.assertEqual(self.in_out._name_player2, "name1")
+        self.assertEqual(self.in_out.get_name1(), "name1")
+        self.assertEqual(self.in_out.get_name2(), "name1")
 
     @patch("input_output.InputOutput.get_input", return_value="old name")
     def test_read_old_name(self, input):
         """Test the read_old_name method using unittest.mock patch."""
         self.in_out.read_old_name()
-        self.assertEqual(self.in_out._old_name, "old name")
+        self.assertEqual(self.in_out.get_old_name, "old name")
 
     @patch("input_output.InputOutput.get_input", return_value="new name")
     def test_read_new_name(self, input):
         """Test the read_new_name method using unittest.mock patch."""
         self.in_out.read_new_name()
-        self.assertEqual(self.in_out._new_name, "new name")
+        self.assertEqual(self.in_out.get_new_name, "new name")
 
     def test_hack_menu(self):
         """Verify that the hack menu method displays the correct options."""
