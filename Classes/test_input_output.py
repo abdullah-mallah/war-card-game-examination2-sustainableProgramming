@@ -109,64 +109,109 @@ class TestInputOutput(unittest.TestCase):
 
     def test_get_choice_main_menu(self):
         """Test the method to get the user's choice from the main menu."""
-        self.in_out._choice_main_menu = "1"
+        self.in_out.set_choice_main_menu("1")
         self.assertEqual(self.in_out.get_choice_main_menu(), "1")
 
     def test_get_choice_versus_menu(self):
         """Test the method to get the user's choice from the versus menu."""
-        self.in_out._choice_versus = "1"
+        self.in_out.set_choice_versus_menu("1")
         self.assertEqual(self.in_out.get_choice_versus_menu(), "1")
 
     def test_get_choice_game_menu(self):
         """Test the method to get the user's choice from the game menu."""
-        self.in_out._choice_game_menu = "1"
+        self.in_out.set_choice_game_menu("1")
         self.assertEqual(self.in_out.get_choice_game_menu(), "1")
 
     def test_get_difficulty_level(self):
         """Test the method to get the user's choice of difficulty level."""
-        self.in_out._difficulty_level = "1"
+        self.in_out.set_difficulty_level("1")
         self.assertEqual(self.in_out.get_difficulty_level(), "1")
 
     def test_get_hack_type(self):
         """Test the method to get the user's choice on the hack type."""
-        self.in_out._hack_type = "1"
+        self.in_out.set_hack_type("1")
         self.assertEqual(self.in_out.get_hack_type(), "1")
 
     def test_get_name1(self):
-        """Test the get_name1 method of the Input_output class."""
-        self.in_out._name_player1 = "TEST_NAME1"
+        """Test the get_name1 method of the InputOutput class."""
+        self.in_out.set_name1("TEST_NAME1")
         self.assertEqual(self.in_out.get_name1(), "test_name1")
-        self.in_out._name_player1 = "test_NAME1"
+        self.in_out.set_name1("test_NAME1")
         self.assertEqual(self.in_out.get_name1(), "test_name1")
-        self.in_out._name_player1 = "TEST_name1"
+        self.in_out.set_name1("TEST_name1")
         self.assertEqual(self.in_out.get_name1(), "test_name1")
 
     def test_get_name2(self):
-        """Test the get_name2 method of the Input_output class."""
-        self.in_out._name_player2 = "TEST_NAME2"
+        """Test the get_name2 method of the InputOutput class."""
+        self.in_out.set_name2("TEST_NAME2")
         self.assertEqual(self.in_out.get_name2(), "test_name2")
-        self.in_out._name_player2 = "test_NAME2"
+        self.in_out.set_name2("test_NAME2")
         self.assertEqual(self.in_out.get_name2(), "test_name2")
-        self.in_out._name_player2 = "TEST_name2"
+        self.in_out.set_name2("TEST_name2")
         self.assertEqual(self.in_out.get_name2(), "test_name2")
 
     def test_get_old_name(self):
-        """Test the get_old_name method of the Input_output class."""
-        self.in_out._old_name = "OLD_NAME"
+        """Test the get_old_name method of the InputOutput class."""
+        self.in_out.set_old_name("OLD_NAME")
         self.assertEqual(self.in_out.get_old_name(), "old_name")
-        self.in_out._old_name = "old_NAME"
+        self.in_out.set_old_name("old_NAME")
         self.assertEqual(self.in_out.get_old_name(), "old_name")
-        self.in_out._old_name = "OLD_name"
+        self.in_out.set_old_name("OLD_name")
         self.assertEqual(self.in_out.get_old_name(), "old_name")
 
     def test_get_new_name(self):
         """Test the get_new_name method of the Input_output class."""
-        self.in_out._new_name = "NEW_NAME"
+        self.in_out.set_new_name("NEW_NAME")
         self.assertEqual(self.in_out.get_new_name(), "new_name")
-        self.in_out._new_name = "new_NAME"
+        self.in_out.set_new_name("new_NAME")
         self.assertEqual(self.in_out.get_new_name(), "new_name")
-        self.in_out._new_name = "NEW_name"
+        self.in_out.set_new_name("NEW_name")
         self.assertEqual(self.in_out.get_new_name(), "new_name")
+
+    def test_set_choice_main_menu(self):
+        """Test the set_choice_main_menu method of the InputOutput class."""
+        self.in_out.set_choice_main_menu("1")
+        self.assertEqual(self.in_out.get_choice_main_menu(), "1")
+
+    def test_set_choice_versus_menu(self):
+        """Test the set_choice_versus_menu method of the InputOutput class."""
+        self.in_out.set_choice_versus_menu("2")
+        self.assertEqual(self.in_out.get_choice_versus_menu(), "2")
+
+    def test_set_choice_game_menu(self):
+        """Test the set_choice_game_menu method of the InputOutput class."""
+        self.in_out.set_choice_game_menu("3")
+        self.assertEqual(self.in_out.get_choice_game_menu(), "3")
+
+    def test_set_difficulty_level(self):
+        """Test the set_difficulty_level method of the InputOutput class."""
+        self.in_out.set_difficulty_level("hard")
+        self.assertEqual(self.in_out.get_difficulty_level(), "hard")
+
+    def test_set_name1(self):
+        """Test the set_name1 method of the InputOutput class."""
+        self.in_out.set_name1("Name1")
+        self.assertEqual(self.in_out.get_name1(), "name1")
+
+    def test_set_name2(self):
+        """Test the set_name2 method of the InputOutput class."""
+        self.in_out.set_name2("Name2")
+        self.assertEqual(self.in_out.get_name2(), "name2")
+
+    def test_set_hack_type(self):
+        """Test the set_hack_type method of the InputOutput class."""
+        self.in_out.set_hack_type("1")
+        self.assertEqual(self.in_out.get_hack_type(), "1")
+
+    def test_set_old_name(self):
+        """Test the set_old_name method of the InputOutput class."""
+        self.in_out.set_old_name("Old name")
+        self.assertEqual(self.in_out.get_old_name(), "old name")
+
+    def test_set_new_name(self):
+        """Test the set_new_name method of the InputOutput class."""
+        self.in_out.set_new_name('New name')
+        self.assertEqual(self.in_out.get_new_name(), "new name")
 
 
 if __name__ == "__main__":
