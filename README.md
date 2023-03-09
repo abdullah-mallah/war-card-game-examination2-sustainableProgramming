@@ -46,11 +46,20 @@ After installing what is in the requirenment.txt you can use:
 5- ("make test") to run flake8, pylint tests and coverage at the same time
 When you finish your tests and coverage you can close the vetual environment using ("deactivate").
 
+How to generate documentation and html:(abdullah)
+---------------------------------------
+After oppening git bash in the game file and activating venv you need to use ("make doc") to generation documentation of the
+game
 
 How to generate uml:(abdullah)
 -------------------
+After opening the virtual environment in the path of the game and activate it and generating documentation you need to
+use ("pip install graphviz") then ("pyreverse classes/*.py") then:
+1- ("dot -Tpng classes.dot -o doc/pyreverse/classes.png") to generate uml of the classes.
+2- ("dot -Tpng packages.dot -o doc/pyreverse/packages.png") to generate uml of packages.
+If for some reason step 1 or 2 did not work then just create a folder with the name "doc" in the game folder then do step 1 and 2.
 
-
-How to generate html:(abdullah)
---------------------
-
+Other useful commands:
+----------------------
+1- ("make --version") to check if make is installed on your computer and which version is installed.
+1- ("choco --version") to check if chocolati is installed on your computer and which version is installed.
