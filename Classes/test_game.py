@@ -66,20 +66,6 @@ class TestGame(unittest.TestCase):
         self.game.steal_1_card(self.player1, self.player2, 2)
         self.assertEqual(self.player2.get_card_list(), test_list2)
 
-    # def test_increase_chance(self):
-    #     """Test the method to check the order of player's deck."""
-    #     deck = [["diamond", 1], ["diamond", 10], ["heart", 13],
-    #             ["spades", 13], ["diamonds", 11]]
-    #     self.player1.set_deck(deck)
-    #     deck2 = [["diamond", 1], ["diamond", 13], ["heart", 13],
-    #              ["diamond", 8], ["heart", 13]]
-    #     self.player2.set_deck(deck2)
-    #     self.game.increase_chance(self.player1, self.player2, 1)
-    #     self.game.increase_chance(self.player1, self.player2, 1)
-    #     test_1 = [["diamond", 1], ["heart", 13], ["diamond", 10],
-    #               ["spades", 13], ["diamonds", 11]]
-    #     self.assertEqual(self.player1.get_card_list(), test_1)
-
     def test_chk_player_won_round(self):
         """Test the method to check which player won the war flipp."""
         self.assertEqual(self.game.chk_player_won_round(1, 2), 1)

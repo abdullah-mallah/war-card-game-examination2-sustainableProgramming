@@ -157,17 +157,6 @@ class Game:
             card = player1.steal_1_card(rand_num)
             player2.add_1_card(card)
 
-    # def increase_chance(self, player1: Player, player2: Player, turn):
-    #     """
-    #     Take two objects of the type Player and one integer.
-
-    #     Put the highest card in the Player object at the begining.
-    #     """
-    #     if turn == 1:
-    #         player1.increase_chance()
-    #     else:
-    #         player2.increase_chance()
-
     def chk_player_won_round(self, war_card1, war_card2):
         """
         Take two integers.
