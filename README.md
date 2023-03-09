@@ -13,7 +13,7 @@ The objective of the game is to win all of the cards.
 Players start by evenly dividing the deck between themselves and then each player turns over their top card. 
 The player with the highest card wins both cards and adds them to the bottom of their deck. 
 
-Ace(1) is the strongest card, followed by king(12), queen(11), jack(10), ten and so on.
+Ace (1) is the strongest card, followed by King (12), Queen (11), Jack (10), ten and so on.
 
 If there is a tie, a "war" occurs where each player puts three cards face down and then turns over another card.
 The player with the highest card wins all the cards in the tie. The game continues until one player has no more 

@@ -40,3 +40,7 @@ v9.0.0 (2023-02-26)
 v10.0.0 (2023-03-9)
 ------------------------
 * A player can steal 2 cards from the other player.
+
+v11.0.0 (2023-03-09)
+------------------------
+* The game is now runnable for any user that download it.
