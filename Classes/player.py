@@ -91,36 +91,36 @@ class Player:
         """
         self._deck.append(card)
 
-    def increase_chance(self):
-        """Responsible of cards order of human player."""
-        max_num = 0
-        indexx = -1
-        max_found = False
-        if self._chance_index < len(self._deck):
-            while not max_found:
-                for index, card in enumerate(self._deck):
-                    if index >= self._chance_index:
-                        if card[1] == 1:
-                            max_num = card[1]
-                            indexx = self._deck.index(card)
-                            self._deck.insert(self._chance_index,
-                                              self._deck[indexx])
-                            self._chance_index += 1
-                            del self._deck[indexx + 1]
-                            max_found = True
-                            break
-                        else:
-                            if card[1] > max_num:
-                                max_num = card[1]
-                                indexx = self._deck.index(card)
-                max_found = True
-            if max_num != 1:
-                self._deck.insert(self._chance_index, self._deck[indexx])
-                self._chance_index += 1
-                del self._deck[indexx + 1]
-        else:
-            self._chance_index = 0
-            self.increase_chance()
+    # def increase_chance(self):
+    #     """Responsible of cards order of human player."""
+    #     max_num = 0
+    #     indexx = -1
+    #     max_found = False
+    #     if self._chance_index < len(self._deck):
+    #         while not max_found:
+    #             for index, card in enumerate(self._deck):
+    #                 if index >= self._chance_index:
+    #                     if card[1] == 1:
+    #                         max_num = card[1]
+    #                         indexx = self._deck.index(card)
+    #                         self._deck.insert(self._chance_index,
+    #                                           self._deck[indexx])
+    #                         self._chance_index += 1
+    #                         del self._deck[indexx + 1]
+    #                         max_found = True
+    #                         break
+    #                     else:
+    #                         if card[1] > max_num:
+    #                             max_num = card[1]
+    #                             indexx = self._deck.index(card)
+    #             max_found = True
+    #         if max_num != 1:
+    #             self._deck.insert(self._chance_index, self._deck[indexx])
+    #             self._chance_index += 1
+    #             del self._deck[indexx + 1]
+    #     else:
+    #         self._chance_index = 0
+    #         self.increase_chance()
 
     def get_card_list(self):
         """Return deck list."""

@@ -85,16 +85,16 @@ class TestPlayer(unittest.TestCase):
         self.player1.add_1_card(card)
         self.assertEqual(self.player1.get_card_list(), test)
 
-    def test_increase_chance(self):
-        """Test the method to check player's deck after rearranging it."""
-        test_deck = [["diamond", 1], ["diamond", 8], ["heart", 9]]
-        self.player2.set_deck(test_deck)
-        test_deck2 = [["heart", 9], ["diamond", 1], ["diamond", 8]]
-        self.player2.increase_chance()
-        self.assertEqual(self.player2.get_card_list(), test_deck2)
-        test_deck3 = [["heart", 9], ["diamond", 8], ["diamond", 1]]
-        self.player2.increase_chance()
-        self.assertEqual(self.player2.get_card_list(), test_deck3)
+    # def test_increase_chance(self):
+    #     """Test the method to check player's deck after rearranging it."""
+    #     test_deck = [["diamond", 1], ["diamond", 8], ["heart", 9]]
+    #     self.player2.set_deck(test_deck)
+    #     test_deck2 = [["heart", 9], ["diamond", 1], ["diamond", 8]]
+    #     self.player2.increase_chance()
+    #     self.assertEqual(self.player2.get_card_list(), test_deck2)
+    #     test_deck3 = [["heart", 9], ["diamond", 8], ["diamond", 1]]
+    #     self.player2.increase_chance()
+    #     self.assertEqual(self.player2.get_card_list(), test_deck3)
 
     def test_get_card_list(self):
         """Test the get_card_list method of the InputOutput class."""

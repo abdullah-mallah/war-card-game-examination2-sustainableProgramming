@@ -56,9 +56,6 @@ class Game:
                     input_output.game_menu_controller()
                     if input_output.get_choice_game_menu() == "1":
                         war_card1 = self.flipp_once(player1)
-                        input_output.flipped_card(war_card1,
-                                                  player1.get_name(),
-                                                  player1.count_cards())
                         break
                     elif input_output.get_choice_game_menu() == "2":
                         if input_output.get_hack_type() == "1":
@@ -68,7 +65,15 @@ class Game:
                                 war_card2 = 0
                                 break
                         else:
-                            self.increase_chance(player1, player2, turn)
+                            if player2.count_cards() < 2:
+                                print("No enough cards to steal.")
+                            elif player2.count_cards() == 2:
+                                war_card1 = 14
+                                war_card2 = 0
+                                break
+                            else:
+                                self.steal_1_card(player1, player2, turn)
+                                self.steal_1_card(player1, player2, turn)
                     elif input_output.get_choice_game_menu() == "3":
                         war_card1 = 0
                         war_card2 = 0
@@ -83,6 +88,9 @@ class Game:
                 print(f"\n{player2.get_name().capitalize()}'s turn")
                 if player2.get_name() == "computer":
                     war_card2 = self.flipp_once(player2)
+                    input_output.flipped_card(war_card1,
+                                              player1.get_name(),
+                                              player1.count_cards())
                     input_output.flipped_card(war_card2,
                                               player2.get_name(),
                                               player2.count_cards())
@@ -92,6 +100,9 @@ class Game:
                         input_output.game_menu_controller()
                         if input_output.get_choice_game_menu() == "1":
                             war_card2 = self.flipp_once(player2)
+                            input_output.flipped_card(war_card1,
+                                                      player1.get_name(),
+                                                      player1.count_cards())
                             input_output.flipped_card(war_card2,
                                                       player2.get_name(),
                                                       player2.count_cards())
@@ -104,7 +115,15 @@ class Game:
                                     war_card2 = 14
                                     break
                             else:
-                                self.increase_chance(player1, player2, turn)
+                                if player2.count_cards() < 2:
+                                    print("No enough cards to steal.")
+                                elif player2.count_cards() == 2:
+                                    war_card1 = 0
+                                    war_card2 = 14
+                                    break
+                                else:
+                                    self.steal_1_card(player1, player2, turn)
+                                    self.steal_1_card(player1, player2, turn)
                         elif input_output.get_choice_game_menu() == "3":
                             war_card1 = 0
                             war_card2 = 0
@@ -138,16 +157,16 @@ class Game:
             card = player1.steal_1_card(rand_num)
             player2.add_1_card(card)
 
-    def increase_chance(self, player1: Player, player2: Player, turn):
-        """
-        Take two objects of the type Player and one integer.
+    # def increase_chance(self, player1: Player, player2: Player, turn):
+    #     """
+    #     Take two objects of the type Player and one integer.
 
-        Put the highest card in the Player object at the begining.
-        """
-        if turn == 1:
-            player1.increase_chance()
-        else:
-            player2.increase_chance()
+    #     Put the highest card in the Player object at the begining.
+    #     """
+    #     if turn == 1:
+    #         player1.increase_chance()
+    #     else:
+    #         player2.increase_chance()
 
     def chk_player_won_round(self, war_card1, war_card2):
         """
@@ -404,12 +423,12 @@ class Game:
             if turn == 1:
                 print(f"\n{player1.get_name().capitalize()}'s turn")
                 war_card1 = self.flipp_once(player1)
-                input_output.flipped_card(war_card1,
-                                          player1.get_name(),
-                                          player1.count_cards())
             else:
                 print(f"\n{player2.get_name().capitalize()}'s turn")
                 war_card2 = self.flipp_once(player2)
+                input_output.flipped_card(war_card1,
+                                          player1.get_name(),
+                                          player1.count_cards())
                 input_output.flipped_card(war_card2,
                                           player2.get_name(),
                                           player2.count_cards())

@@ -147,7 +147,7 @@ class InputOutput:
     def hack_menu(self):
         """Print out the choices of hack types to the user."""
         print("1) Steal one card from opponent")
-        print("2) Put the highest card in your deck at the beginning")
+        print("2) Steal two cards from opponent")
 
     def hack_menu_input(self):
         """Read the choice of hack type from the user."""

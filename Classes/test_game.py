@@ -4,9 +4,9 @@ This script is used to test class Game.
 Authors: Abdullah Mallah, Eszter Kalmar and Hampus Gunnarsson.
 """
 import unittest
+import unittest.mock
 from player import Player
 from input_output import InputOutput
-from unittest.mock import patch
 from game import Game
 
 
@@ -44,25 +44,6 @@ class TestGame(unittest.TestCase):
                 unittest.mock.call("Flipped 4 times")
             ])
 
-    # @patch("inputOutput.Input_output.lvl_game_menu_input", return_value="1")
-    # def test_flip_once(self, input):
-    #     with unittest.mock.patch('builtins.print') as mock_print:
-    #         deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
-    #                 ["diamond", 13], ["heart", 13]]
-    #         self.player1.set_deck(deck)
-    #         deck2 = [["diamond", 1], ["diamond", 13], ["heart", 13],
-    #                  ["diamond", 8], ["heart", 13]]
-    #         self.player2.set_deck(deck2)
-    #         self.inOut.lvl_game_menu_input()
-    #         war_card1, war_card2 = self.game.flip_once(self.player1,
-    #                                                    self.player2,
-    #                                                    self.inOut)
-    #         self.assertEqual(war_card1, 1)
-    #         self.assertEqual(war_card2, 1)
-    #         mock_print.assert_has_calls([
-    #             unittest.mock.call("flipped once")
-    #         ])
-
     def test_steal_1_card(self):
         """Test the method to check player's deck stealing one card."""
         deck = [["diamond", 1], ["diamond", 13], ["heart", 13],
@@ -85,19 +66,19 @@ class TestGame(unittest.TestCase):
         self.game.steal_1_card(self.player1, self.player2, 2)
         self.assertEqual(self.player2.get_card_list(), test_list2)
 
-    def test_increase_chance(self):
-        """Test the method to check the order of player's deck."""
-        deck = [["diamond", 1], ["diamond", 10], ["heart", 13],
-                ["spades", 13], ["diamonds", 11]]
-        self.player1.set_deck(deck)
-        deck2 = [["diamond", 1], ["diamond", 13], ["heart", 13],
-                 ["diamond", 8], ["heart", 13]]
-        self.player2.set_deck(deck2)
-        self.game.increase_chance(self.player1, self.player2, 1)
-        self.game.increase_chance(self.player1, self.player2, 1)
-        test_1 = [["diamond", 1], ["heart", 13], ["diamond", 10],
-                  ["spades", 13], ["diamonds", 11]]
-        self.assertEqual(self.player1.get_card_list(), test_1)
+    # def test_increase_chance(self):
+    #     """Test the method to check the order of player's deck."""
+    #     deck = [["diamond", 1], ["diamond", 10], ["heart", 13],
+    #             ["spades", 13], ["diamonds", 11]]
+    #     self.player1.set_deck(deck)
+    #     deck2 = [["diamond", 1], ["diamond", 13], ["heart", 13],
+    #              ["diamond", 8], ["heart", 13]]
+    #     self.player2.set_deck(deck2)
+    #     self.game.increase_chance(self.player1, self.player2, 1)
+    #     self.game.increase_chance(self.player1, self.player2, 1)
+    #     test_1 = [["diamond", 1], ["heart", 13], ["diamond", 10],
+    #               ["spades", 13], ["diamonds", 11]]
+    #     self.assertEqual(self.player1.get_card_list(), test_1)
 
     def test_chk_player_won_round(self):
         """Test the method to check which player won the war flipp."""
