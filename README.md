@@ -30,11 +30,15 @@ a winner is found or exit the game.
 
 Installing the game:
 ------------------------
-Start by downloading the repo, either as a zip-file (check the web page for download options) or using git clone.
+Start by installing the latest version of python3 if you dont have it installed already:
+https://www.python.org/downloads/
+
+Start by downloading the repo, either as a zip-file or using git clone.
+https://github.com/abdullah-mallah/war-card-game-examination2-sustainableProgramming.git
 
 How to run the game:(hampus)
 ----------------------------
-
+Open your terminal and change directory to where you saved the 
 
 How to create and run the virtual environment:
 ----------------------------------------------
@@ -50,20 +54,35 @@ make venv
 
 . .venv/bin/activate
 
-
 Do not forget to deactivate when you are done using:
----------------------------------------------------
 deactivate
 
 
-How to install make and chocolati:(hampus)
-------------------------------------------
+How to install make and chocolatey:
+-----------------------------------
+The Make command and the Makefiles are in general used to compile, build and run programs and tasks.
+
+Ensure that you have it installed in your terminal, it should already be installed on Linux/Mac.
+
+You can check your current version like this.
+$ make --version
+"GNU Make 4.3"
+
+If you do not have it installed then using the Windows package manager chocolatey is one way to do this. 
+You will then install the make command within Windows and it can then be used from Git Bash.
+
+Follow the following steps to install Git Bash, Chocolatey and Make:
+
+1. Start by installing Git Bash on Windows using this link - https://gitforwindows.org/
+2. Install the Windows packet manager Chocolatey - https://chocolatey.org/install
+3. Install GNU make using 'choco install make' using PowerShell (you might need to run the terminal as admin).
+4. Open a new window for Git Bash and check that it works be checking what version you have using make --version.
 
 
-How to do testings:(abdullah)
-----------------
-After installing gitbash, chocolati, make on the computer  and creating the vertual environment in the game folder which
-you downloaded from git hub, you need to install the requirenments.txt on the venv, you do that by oppening git bash in
+How to do testings:
+-------------------
+After installing git bash, chocolatey, make on the computer  and creating the virtual environment in the game folder which
+you downloaded from git hub, you need to install the requirenments.txt on the venv, you do that by opening git bash in
 directory of the game folder then activate venv by using (". .venv/Scripts/activate") then ("make install").
 After installing what is in the requirenment.txt you can use:
 1- ("make flake8") to test the game files using flake8
@@ -71,14 +90,14 @@ After installing what is in the requirenment.txt you can use:
 3- ("make coverage") to do coverage
 4- ("coverage report -m") to see the coverage report
 5- ("make test") to run flake8, pylint tests and coverage at the same time
-When you finish your tests and coverage you can close the vetual environment using ("deactivate").
+When you finish your tests and coverage you can close the virtual environment using ("deactivate").
 
-How to generate documentation and html:(abdullah)
+How to generate documentation and HTML:
 ---------------------------------------
 After oppening git bash in the game file and activating venv you need to use ("make doc") to generation documentation of the
 game
 
-How to generate uml:(abdullah)
+How to generate UML:
 -------------------
 After opening the virtual environment in the path of the game and activate it and generating documentation you need to
 use ("pip install graphviz") then ("pyreverse classes/*.py") then:
@@ -89,4 +108,4 @@ If for some reason step 1 or 2 did not work then just create a folder with the n
 Other useful commands:
 ----------------------
 1- ("make --version") to check if make is installed on your computer and which version is installed.
-1- ("choco --version") to check if chocolati is installed on your computer and which version is installed.
+1- ("choco --version") to check if chocolatey is installed on your computer and which version is installed.
