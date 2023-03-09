@@ -16,10 +16,9 @@ The player with the highest card wins both cards and adds them to the bottom of 
 
 If there is a tie, a "war" occurs where each player puts three cards face down and then turns over another card.
 The player with the highest card wins all the cards in the tie. The game continues until one player has won all the cards.
---------------------------------------------------------------------------------------------------------------------------
 
 Features of our game:(abdullah)
---------------------
+-------------------------------
 When the game starts the user/s can choose to play the game, see scores, change a name which is stored in the txt
 file or exit the game.
 After choosing to play the game the user can choose to play against computer and if so the user can choose the level
@@ -37,19 +36,17 @@ How to run the game:(hampus)
 ----------------------------
 
 
-How to create and run the virtual environment:(hampus)
-------------------------------------------------------
-Create and use the virtual venv:
+How to create and run the virtual environment:
+----------------------------------------------
+Create and use the virtual venv using:
 --------------------------------
 make venv
 
-If you use a Python installation on Window, then activate like this:
---------------------------------------------------------------------
+- If you use a Python installation on Window, then activate like this:
 
 . .venv/Scripts/activate
 
-If you use a Python installation on Mac/Linux, then activate like this:
-----------------------------------------------------------------------
+- If you use a Python installation on Mac/Linux, then activate like this:
 
 . .venv/bin/activate
 
