@@ -3,10 +3,22 @@ Python development project template
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-About the game:(hampus)
----------------
+Description:
+------------
 
-fitures of our game:(abdullah)
+This card game 'War' is a group project created by Abdullah Mallah, Eszter Kalmár and Hampus Gunnarsson.
+
+The basic idea is that the game is played by two players using a standard deck of 52 cards.
+The objective of the game is to win all of the cards.
+
+Players start by evenly dividing the deck between themselves and then each player turns over their top card. 
+The player with the highest card wins both cards and adds them to the bottom of their deck.
+
+If there is a tie, a "war" occurs where each player puts three cards face down and then turns over another card.
+The player with the highest card wins all the cards in the tie. The game continues until one player has won all the cards.
+--------------------------------------------------------------------------------------------------------------------------
+
+Features of our game:(abdullah)
 --------------------
 When the game starts the user/s can choose to play the game, see scores, change a name which is stored in the txt
 file or exit the game.
@@ -17,20 +29,38 @@ or against another player.
 Each human player can flipp, use hack to steal 1 or 2 cards from the opponent, continue the game automatically untill
 a winner is found or exit the game.
 
-How to install the game:(hampus)
+Installing the game:
 ------------------------
-
+Start by downloading the repo, either as a zip-file (check the web page for download options) or using git clone.
 
 How to run the game:(hampus)
---------------------
+----------------------------
 
 
 How to create and run the virtual environment:(hampus)
------------------------------------
+------------------------------------------------------
+Create and use the virtual venv:
+--------------------------------
+make venv
+
+If you use a Python installation on Window, then activate like this:
+--------------------------------------------------------------------
+
+. .venv/Scripts/activate
+
+If you use a Python installation on Mac/Linux, then activate like this:
+----------------------------------------------------------------------
+
+. .venv/bin/activate
+
+
+Do not forget to deactivate when you are done using:
+---------------------------------------------------
+deactivate
 
 
 How to install make and chocolati:(hampus)
-----------------------------------
+------------------------------------------
 
 
 How to do testings:(abdullah)
