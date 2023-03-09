@@ -73,8 +73,7 @@ class TestInputOutput(unittest.TestCase):
             self.in_out.hack_menu()
             mock_print.assert_has_calls([
                 unittest.mock.call("1) Steal one card from opponent"),
-                unittest.mock.call("2) Put the highest card in your "
-                                   "deck at the beginning"),
+                unittest.mock.call("2) Steal two cards from opponent"),
             ])
 
     def test_game_menu(self):
